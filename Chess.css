@@ -10,6 +10,11 @@ p{
     
 }
 
+table {
+    width: 424px;
+    height: 424px;
+}
+
 .chess-head {
     left: 650px;
     position:relative;
@@ -27,6 +32,15 @@ p{
 
 #s1{
     transition: left 0.5s ease-in-out;
+}
+
+.active {
+    /* box-shadow: 0 0 5px 6px rgb(73, 184, 147); */
+    border: 3px solid rgb(16, 175, 16);
+}
+
+.hit {
+    border: 3px solid red;
 }
 
 

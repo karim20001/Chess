@@ -75,15 +75,15 @@ export default class LinkedList {
 
 }
 
-a = new LinkedList();
-a.insert(null,1);
-a.insert(a.head,2);
-a.insert(a.head.next,3);
-a.insert(a.head.next.next,4);
+// a = new LinkedList();
+// a.insert(null,1);
+// a.insert(a.head,2);
+// a.insert(a.head.next,3);
+// a.insert(a.head.next.next,4);
 
-console.log(a.empty());
-console.log(a.head)
-a.delete(a.first());
-// a.makeNull();
-console.log(a.prev(a.next(a.first().next)));
-console.log(a);
+// console.log(a.empty());
+// console.log(a.head)
+// a.delete(a.first());
+// // a.makeNull();
+// console.log(a.prev(a.next(a.first().next)));
+// console.log(a);

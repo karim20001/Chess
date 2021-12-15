@@ -1,4 +1,4 @@
-export default class Queue {
+class Queue {
     constructor() {
         this.front = 0;
         this.rear = 0;
@@ -39,10 +39,10 @@ export default class Queue {
     }
 }
 
-b = new Queue();
-b.enqueue(5);
-b.enqueue(7);
+// b = new Queue();
+// b.enqueue(5);
+// b.enqueue(7);
 
-b.size();
-console.log(b.size());
-console.log(b.dequeue());
+// b.size();
+// console.log(b.size());
+// console.log(b.dequeue());
