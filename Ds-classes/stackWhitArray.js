@@ -26,11 +26,11 @@ class Stack {
         return y;
     }
 
-    peek () {
+    peek (l) {
         if (this.top === 0) {
             return undefined;
         }
-        var y = this.elements[this.top];
+        var y = this.elements[l];
         return y;
     }
 
