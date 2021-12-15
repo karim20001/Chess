@@ -37,12 +37,14 @@ class Queue {
             return y;
         }
     }
+
+    look () {
+        if (this.empty()) {
+            return undefined;
+        } else {
+            var y = this.elements[this.front];
+            return y;
+        }
+    }
 }
 
-// b = new Queue();
-// b.enqueue(5);
-// b.enqueue(7);
-
-// b.size();
-// console.log(b.size());
-// console.log(b.dequeue());

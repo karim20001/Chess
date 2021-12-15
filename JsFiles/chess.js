@@ -76,5 +76,5 @@ function light_clicked(event){
 }
 
 function dark_clicked(){
-
+    
 }

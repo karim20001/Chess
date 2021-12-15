@@ -26,16 +26,17 @@ class Stack {
         return y;
     }
 
+    peek () {
+        if (this.top === 0) {
+            return undefined;
+        }
+        var y = this.elements[this.top];
+        return y;
+    }
+
     size () {
         return this.top;
     }
 }
-
-a = new Stack();
-a.push(2);
-a.push(1);
-
-console.log(a.pop());
-console.log(a.pop());
 
 
