@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Chess.css">
+    <script src="/JsFiles/jquery-3.6.0.js"></script>
+    <title>Document</title>
+</head>
+<body>
+
+    <p class="chess-head" id="turn"></p>
+
+    <p class="chess-head" id="second-counter"></p>
+
+
+    <table class="chess-board">
+        <tbody>
+            
+            <tr>
+                <td class="light"><p class="dark-mohre">♜</p></td>
+                <td class="dark"><p class="dark-mohre">♞</p></td>
+                <td class="light"><p class="dark-mohre">♝</p></td>
+                <td class="dark"><p class="dark-mohre">♛</p></td>
+                <td class="light"><p class="dark-mohre">♚</p></td>
+                <td class="dark"><p class="dark-mohre">♝</p></td>
+                <td class="light"><p class="dark-mohre">♞</p></td>
+                <td class="dark"><p class="dark-mohre">♜</p></td>
+                
+            </tr>
+            <tr>
+                
+                <td class="dark"><p class="dark-mohre">♟</p></td>
+                <td class="light"><p class="dark-mohre">♟</p></td>
+                <td class="dark"><p class="dark-mohre">♟</p></td>
+                <td class="light"><p class="dark-mohre">♟</p></td>
+                <td class="dark"><p class="dark-mohre">♟</p></td>
+                <td class="light"><p class="dark-mohre">♟</p></td>
+                <td class="dark"><p class="dark-mohre">♟</p></td>
+                <td class="light"><p class="dark-mohre">♟</p></td>
+            </tr>
+            <tr>
+                
+                <td class="light"><span></span></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+            </tr>
+            <tr>
+                
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+            </tr>
+            <tr>
+                
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+            </tr>
+            <tr>
+                
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+            </tr>
+            <tr>
+                
+                <td class="light"><p class="light-mohre" id="s1">♟</p></td>
+                <td class="dark"><p class="light-mohre">♟</p></td>
+                <td class="light"><p class="light-mohre">♟</p></td>
+                <td class="dark"><p class="light-mohre">♟</p></td>
+                <td class="light"><p class="light-mohre">♟</p></td>
+                <td class="dark"><p class="light-mohre">♟</p></td>
+                <td class="light"><p class="light-mohre">♟</p></td>
+                <td class="dark"><p class="light-mohre">♟</p></td>
+            </tr>
+            <tr>
+                
+                <td class="dark"><p class="light-mohre">♜</p></td>
+                <td class="light"><p class="light-mohre">♞</p></td>
+                <td class="dark"><p class="light-mohre">♝</p></td>
+                <td class="light"><p class="light-mohre">♛</p></td>
+                <td class="dark"><p class="light-mohre">♚</p></td>
+                <td class="light"><p class="light-mohre">♝</p></td>
+                <td class="dark"><p class="light-mohre">♞</p></td>
+                <td class="light"><p class="light-mohre">♜</p></td>
+            </tr>
+        </tbody>
+    </table>
+    <button id="start">Start</button>
+
+    <script src="JsFiles/chess.js"></script>
+</body>
+</html>

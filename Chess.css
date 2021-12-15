@@ -1,0 +1,68 @@
+body {
+    background-color: rgb(51, 49, 49);
+     overflow-x: hidden;
+}
+
+p{
+    padding: 0;
+    margin: 0;
+    position: relative;
+    
+}
+
+.chess-head {
+    left: 650px;
+    position:relative;
+}
+#turn {
+    font-size: large;
+    color: white;
+}
+
+#second-counter {
+    font-size: 18px;
+    left: 660px;
+    color: green;
+}
+
+#s1{
+    transition: left 0.5s ease-in-out;
+}
+
+
+.chess-board { position:absolute; border-spacing: 0; border-collapse: collapse;
+        left: 500px;
+        top: 80px;
+}
+.chess-board th { padding: .5em; }
+.chess-board th + th { border-bottom: 1px solid #000; }
+.chess-board th:first-child,
+.chess-board td:last-child { border-right: 1px solid rgb(0, 0, 0); }
+.chess-board tr:last-child td { border-bottom: 1px solid; }
+.chess-board th:empty { border: none; }
+.chess-board td { width: 1.5em; height: 1.5em; text-align: center; font-size: 32px; line-height: 0;
+}
+.chess-board .light { background: rgb(83, 66, 14); }
+.chess-board .dark { background: rgb(124, 124, 124); }
+.light-mohre{
+    color: white;
+}
+
+#start {
+    background-color: aquamarine;
+    position: absolute;
+    font-size: larger;
+    border: none;
+    border-radius: 10px;
+    padding: 7px;
+    top: 560px;
+    left: 660px;
+}
+
+#start:hover {
+    background-color: rgb(73, 184, 147);
+}
+
+
+
+    
