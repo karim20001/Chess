@@ -1,3 +1,5 @@
+import Queue from '../Ds-classes/queue';
+
 
 const start_button = document.getElementById('start')
 
@@ -14,6 +16,19 @@ function start(){
 
 let check_side_move = true
 var second = 30;
+
+// a = new LinkedList();
+// a.insert(null,1);
+// a.insert(a.head,2);
+// a.insert(a.head.next,3);
+// console.log(a.empty());
+// console.log(a.head)
+b = new Queue();
+b.enqueue(5);
+b.enqueue(7);
+
+b.size();
+console.log(b.size());
 
 function counter(){
     let switcher = document.getElementById('turn')

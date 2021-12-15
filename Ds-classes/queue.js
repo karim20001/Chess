@@ -1,4 +1,4 @@
-class Queue {
+export default class Queue {
     constructor() {
         this.front = 0;
         this.rear = 0;
