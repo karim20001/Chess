@@ -1,5 +1,6 @@
 const start_button = document.getElementById('start')
-const _all_ = document.getElementsByTagName('td')
+const _all_ = document.getElementsByTagName('td');
+const rows = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
 //switch between dark & white in 30s
 var interval;
@@ -12,11 +13,10 @@ function start(){
     interval = setInterval(counter, 1000)
 }
 
-let check_side_move = true;
-$('.c3').addClass('active');
+let check_side_move = true, firstClicked_or_second = true, bullshit_stuff_with_interval = true;
 // $('.c3').removeClass('active');
 var second = 30;
-let bullshit_stuff_with_interval = true;
+
 
 function counter(){
     let switcher = document.getElementById('turn')
@@ -78,10 +78,11 @@ function light_clicked(event){
     
     let id = event.target.id
     let _parent_className = $(`#${id}`).parent().attr('class');
+    
 
-    switch (id){
+    switch (id[0]){
 
-        case "sw1":
+        case "s":
             moveSoldier(id, _parent_className)
             // $('#s1').animate({
             //     top: "-=90px",
@@ -92,6 +93,12 @@ function light_clicked(event){
         case "s3":
             break;
     }
+
+    if (firstClicked_or_second)
+        firstClicked_or_second = false;
+    
+    else
+        firstClicked_or_second = true;
     
 }
 

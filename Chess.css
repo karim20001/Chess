@@ -17,9 +17,10 @@ table {
 
 .active {
     /* box-shadow: 0 0 5px 6px rgb(73, 184, 147); */
-    border: 3px solid rgb(16, 175, 16);
+    outline: 3px solid rgb(16, 175, 16);
     /* background-image: radial-gradient(red, yellow, green); */
     background-color: aquamarine;
+    cursor: pointer;
 }
 
 .chess-head {
