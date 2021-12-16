@@ -18,10 +18,11 @@ function moveSoldier(id, className){
         $('.active').click(function (e) { 
             e.preventDefault();
 
+            // the class object should go
             let class_name = e.target.className.split(" ");
-            alert(class_name[1][0])
             let Top = 0;
             
+            // find diffrence between two class
             for (let i = 0; i < rows.length; i++){
 
                 if (rows[i] == class_name[1][0])
@@ -29,20 +30,33 @@ function moveSoldier(id, className){
 
                 if (rows[i] == className[className.length - 2]){
                     Top = (Top - i) * 53;
-                    alert(Top)
                     break;
                 }
             }
+
+            
 
             $(`#${id}`).animate({
                 top: `+=${Top}px`,
                 // left: "+=80px"
             }, 500)
 
+            // remove listener of active classes
+            $('.active').prop('onclick', null).off('click')
+            // remove active from all elements
             $('.light, .dark').removeClass('active');
+
+            // this timeout created beacause of animation & displacement class of chess pieces
+            setTimeout(function(){
+                let temp = className.substring(className.length - 2)
+                // alert(temp)
+                $(`.${temp}`).html('');
+                temp = class_name[1];
+                $(`.${temp}`).html(`<p class="light-mohre" id=${id}>♟</p>`)
+                // console.log($(`.${temp}`).children())
+                $('.light-mohre').click(light_clicked)
+            }, 495)
+            
         });
-    //}
-    // else {
-        
-    // }
+   
 }
