@@ -18,25 +18,25 @@ function moveSoldier(id, className){
         $('.active').click(function (e) { 
             e.preventDefault();
 
-            let class_name = e.target.className;
-            let Top;
+            let class_name = e.target.className.split(" ");
+            alert(class_name[1][0])
+            let Top = 0;
+            
             for (let i = 0; i < rows.length; i++){
 
-                let j;
-                if (rows[i] == class_name[class_name.length - 2])
-                    j = i;
+                if (rows[i] == class_name[1][0])
+                    Top = i;
 
                 if (rows[i] == className[className.length - 2]){
-                    Top = i - j;
+                    Top = (Top - i) * 53;
+                    alert(Top)
+                    break;
                 }
             }
 
-            Top = $(e.target).css('top');
-            alert(Top - 10)
-
             $(`#${id}`).animate({
-                top: `-=${Top}px`,
-                left: "+=80px"
+                top: `+=${Top}px`,
+                // left: "+=80px"
             }, 500)
 
             $('.light, .dark').removeClass('active');
