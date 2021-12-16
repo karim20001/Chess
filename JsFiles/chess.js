@@ -12,7 +12,9 @@ function start(){
     interval = setInterval(counter, 1000)
 }
 
-let check_side_move = true
+let check_side_move = true;
+$('.c3').addClass('active');
+// $('.c3').removeClass('active');
 var second = 30;
 let bullshit_stuff_with_interval = true;
 
@@ -74,11 +76,13 @@ function counter(){
 
 function light_clicked(event){
     
-    console.log(325)
-    switch (event.target.id){
+    let id = event.target.id
+    let _parent_className = $(`#${id}`).parent().attr('class');
 
-        case "s1":
-            alert(353)
+    switch (id){
+
+        case "sw1":
+            moveSoldier(id, _parent_className)
             // $('#s1').animate({
             //     top: "-=90px",
             // },300)
@@ -91,7 +95,11 @@ function light_clicked(event){
     
 }
 
-function dark_clicked(){
-    console.log(32532)
+function dark_clicked(event){
+    
+    switch (event){
+
+        case '':
+    }
     
 }
