@@ -2,18 +2,21 @@ const start_button = document.getElementById('start')
 const _all_ = document.getElementsByTagName('td')
 
 //switch between dark & white in 30s
+var interval;
 
 start_button.addEventListener('click',start)
 
 function start(){
     start_button.style.display = 'none'
     
-    var interval = setInterval(counter, 1000)
+    interval = setInterval(counter, 1000)
 }
 
-
-let check_side_move = true
+let check_side_move = true;
+$('.c3').addClass('active');
+// $('.c3').removeClass('active');
 var second = 30;
+let bullshit_stuff_with_interval = true;
 
 function counter(){
     let switcher = document.getElementById('turn')
@@ -24,15 +27,26 @@ function counter(){
         $('.dark-mohre').css('cursor', '');
         $('.light-mohre').css('cursor', 'pointer');
         $(".dark-mohre").prop("onclick", null).off("click");
-        $('.light-mohre').click(light_clicked)
+
+        if (bullshit_stuff_with_interval){
+            bullshit_stuff_with_interval = false;
+            $('.light-mohre').click(light_clicked)
+        }
         
     }
+    
     else {
         switcher.innerHTML = 'Black'
         $('.light-mohre').css('cursor', '');
         $('.dark-mohre').css('cursor', 'pointer');
         $(".light-mohre").prop("onclick", null).off("click");
-        $('.dark-mohre').click(dark_clicked);
+
+        if (bullshit_stuff_with_interval){
+            bullshit_stuff_with_interval = false
+            $('.dark-mohre').click(dark_clicked);
+            // $(".dark-mohre").prop("onclick", null).off("click");
+        }
+        
     }
     
     seconds.innerHTML = second + 's'
@@ -50,20 +64,25 @@ function counter(){
             else
                 check_side_move = true;
             second = 31;
+            bullshit_stuff_with_interval = true;
+            
             seconds.style.color = 'green'
             break;
     }
 
     second -= 1;
-
+    
 }
 
 function light_clicked(event){
     
-    switch (event.target.id){
+    let id = event.target.id
+    let _parent_className = $(`#${id}`).parent().attr('class');
 
-        case "s1":
-            alert(353)
+    switch (id){
+
+        case "sw1":
+            moveSoldier(id, _parent_className)
             // $('#s1').animate({
             //     top: "-=90px",
             // },300)
@@ -73,8 +92,14 @@ function light_clicked(event){
         case "s3":
             break;
     }
+    
 }
 
-function dark_clicked(){
+function dark_clicked(event){
+    
+    switch (event){
+
+        case '':
+    }
     
 }

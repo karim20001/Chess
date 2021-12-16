@@ -1,5 +1,5 @@
 
 
-function moveSoldier(){
-
+function moveSoldier(id, className){
+    
 }

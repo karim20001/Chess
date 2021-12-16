@@ -8,6 +8,8 @@
     <script src="JsFiles/jquery-3.6.0.js"></script>
     <script src="Ds-classes/queue.js"></script>
     <script src="Ds-classes/oneWayLinkedList.js"></script>
+    <script src="Ds-classes/stack.js"></script>
+    <script src="JsFiles/movingSoldier.js"></script>
     <title>Chess</title>
 </head>
 <body>
@@ -20,26 +22,48 @@
         <tbody>
             
             <tr>
-                <td class="light"><p class="dark-mohre" id="rd1">♜</p></td>
-                <td class="dark"><p class="dark-mohre" id="hd1">♞</p></td>
-                <td class="light"><p class="dark-mohre" id="ed1">♝</p></td>
-                <td class="dark"><p class="dark-mohre" id="vd1">♛</p></td>
-                <td class="light"><p class="dark-mohre" id="kd1">♚</p></td>
-                <td class="dark"><p class="dark-mohre" id="ed2">♝</p></td>
-                <td class="light"><p class="dark-mohre" id="hd2">♞</p></td>
-                <td class="dark"><p class="dark-mohre" id="rd2">♜</p></td>
+                <td class="light a1"><p class="dark-mohre" id="rd1">♜</p></td>
+                <td class="dark a2"><p class="dark-mohre" id="hd1">♞</p></td>
+                <td class="light a3"><p class="dark-mohre" id="ed1">♝</p></td>
+                <td class="dark a4"><p class="dark-mohre" id="vd1">♛</p></td>
+                <td class="light a5"><p class="dark-mohre" id="kd1">♚</p></td>
+                <td class="dark a6"><p class="dark-mohre" id="ed2">♝</p></td>
+                <td class="light a7"><p class="dark-mohre" id="hd2">♞</p></td>
+                <td class="dark a8"><p class="dark-mohre" id="rd2">♜</p></td>
                 
             </tr>
             <tr>
                 
-                <td class="dark"><p class="dark-mohre" id="sd1">♟</p></td>
-                <td class="light"><p class="dark-mohre" id="sd2">♟</p></td>
-                <td class="dark"><p class="dark-mohre" id="sd3">♟</p></td>
-                <td class="light"><p class="dark-mohre" id="sd4">♟</p></td>
-                <td class="dark"><p class="dark-mohre" id="sd5">♟</p></td>
-                <td class="light"><p class="dark-mohre" id="sd6">♟</p></td>
-                <td class="dark"><p class="dark-mohre" id="sd7">♟</p></td>
-                <td class="light"><p class="dark-mohre" id="sd8">♟</p></td>
+                <td class="dark b1"><p class="dark-mohre" id="sd1">♟</p></td>
+                <td class="light b2"><p class="dark-mohre" id="sd2">♟</p></td>
+                <td class="dark b3"><p class="dark-mohre" id="sd3">♟</p></td>
+                <td class="light b4"><p class="dark-mohre" id="sd4">♟</p></td>
+                <td class="dark b5"><p class="dark-mohre" id="sd5">♟</p></td>
+                <td class="light b6"><p class="dark-mohre" id="sd6">♟</p></td>
+                <td class="dark b7"><p class="dark-mohre" id="sd7">♟</p></td>
+                <td class="light b8"><p class="dark-mohre" id="sd8">♟</p></td>
+            </tr>
+            <tr>
+                
+                <td class="light c1"></td>
+                <td class="dark c2"></td>
+                <td class="light c3"></td>
+                <td class="dark c4"></td>
+                <td class="light c5"></td>
+                <td class="dark c6"></td>
+                <td class="light c7"></td>
+                <td class="dark c8"></td>
+            </tr>
+            <tr>
+                
+                <td class="dark d1"></td>
+                <td class="light d2"></td>
+                <td class="dark d3"></td>
+                <td class="light d4"></td>
+                <td class="dark d5"></td>
+                <td class="light d6"></td>
+                <td class="dark d7"></td>
+                <td class="light d8"></td>
             </tr>
             <tr>
                 
@@ -65,29 +89,7 @@
             </tr>
             <tr>
                 
-                <td class="light"></td>
-                <td class="dark"></td>
-                <td class="light"></td>
-                <td class="dark"></td>
-                <td class="light"></td>
-                <td class="dark"></td>
-                <td class="light"></td>
-                <td class="dark"></td>
-            </tr>
-            <tr>
-                
-                <td class="dark"></td>
-                <td class="light"></td>
-                <td class="dark"></td>
-                <td class="light"></td>
-                <td class="dark"></td>
-                <td class="light"></td>
-                <td class="dark"></td>
-                <td class="light"></td>
-            </tr>
-            <tr>
-                
-                <td class="light"><p class="light-mohre" id="sw1">♟</p></td>
+                <td class="light g2"><p class="light-mohre" id="sw1">♟</p></td>
                 <td class="dark"><p class="light-mohre" id="sw2">♟</p></td>
                 <td class="light"><p class="light-mohre" id="sw3">♟</p></td>
                 <td class="dark"><p class="light-mohre" id="sw4">♟</p></td>

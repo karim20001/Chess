@@ -6,7 +6,7 @@ class Node {
     }
 }
 
-class LinkedList {
+class LinkedList2 {
     constructor() {
         this.head = null;
     }

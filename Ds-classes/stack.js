@@ -38,5 +38,3 @@ class Stack {
         return this.top;
     }
 }
-
-
