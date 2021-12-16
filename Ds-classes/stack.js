@@ -30,7 +30,7 @@ class Stack {
         if (this.top === 0) {
             return undefined;
         }
-        var y = this.elements[this.top - 1];
+        var y = this.elements[this.top-1];
         return y;
     }
 
@@ -38,5 +38,3 @@ class Stack {
         return this.top;
     }
 }
-
-
