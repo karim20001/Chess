@@ -113,3 +113,48 @@ function dark_clicked(event){
     }
     
 }
+
+function animatingMoves(className, class_name, id, Char, second_move){
+        let Top = 0;
+        let Left = 0;
+
+        for (let i = 0; i < rows.length; i++){
+
+            if (rows[i] == class_name[1][0]){
+                Top = i;
+            }
+
+            if (rows[i] == className[className.length - 2]){
+                Top = (Top - i) * 53;
+                
+                break;
+            }
+
+        }
+
+        Left = (parseInt(class_name[1][1]) - parseInt(className[className.length - 1])) * 53;
+        
+        // animating part
+        $(`#${id}`).animate({
+            top: `+=${Top}px`,
+            left: `+=${Left}px`
+        }, 500)
+
+        // remove listener of active & hit classes
+        $('.active').prop('onclick', null).off('click')
+        $('.hit').prop('onclick', null).off('click')
+
+        // remove active from all elements
+        $('.light, .dark').removeClass('active');
+        $('.light, .dark').removeClass('hit');
+
+        setTimeout(function(){
+            let temp = className.substring(className.length - 2)
+            // alert(temp)
+            $(`.${temp}`).html('');
+            temp = class_name[1];
+            $(`.${temp}`).html(`<p class="light-mohre${second_move}" id=${id}>${Char}</p>`)
+            // console.log($(`.${temp}`).children())
+            $('.light-mohre').click(light_clicked)
+        }, 495)
+}

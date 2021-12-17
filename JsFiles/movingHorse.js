@@ -1,5 +1,6 @@
 function moveHorse (id, className){
 
+    // save col position of horse
     let save_the_col;
     for (let i = 1; i < 9; i++){
         if (className[className.length - 1] == i){
@@ -7,6 +8,7 @@ function moveHorse (id, className){
             break;
         }
     }
+    //--------------------------
 
     for (let i = 0; i < rows.length; i++){
         if (className[className.length - 2] == rows[i]){
@@ -14,7 +16,7 @@ function moveHorse (id, className){
             //check wich homes horse can go
             for (let j = i - 2; j <= i + 2; j++){
 
-                if (j > 0 && j < 8 && j != i){
+                if (j >= 0 && j < 8 && j != i){
 
                     for (let k = save_the_col - 2; k <= save_the_col + 2; k++){
 
@@ -39,7 +41,20 @@ function moveHorse (id, className){
         }
     }
 
+    //---------------------------------------------
+    //animating
 
+    $('.active, .hit').click(function (e) { 
+        e.preventDefault();
+        
+        let class_name = e.target.className.split(" ");
+        let id_obj = e.target.id;
 
-    
+        if (class_name.length < 2){
+            class_name = $(`#${id_obj}`).parent().attr('class').split(" ");
+        }
+
+        animatingMoves(className, class_name, id, '♞', '');
+
+    });
 }
