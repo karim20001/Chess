@@ -20,11 +20,11 @@ function moveSoldier(id, className){
             if (className[className.length - 2] == rows[i]){
 
                 // check soldier can hit enemy chess piece
-                if ($(`.${rows[i - 1]}${save_the_col - 1}`).html() != ''){
+                if ($(`.${rows[i - 1]}${save_the_col - 1}`).html() != '' && $(`.${rows[i - 1]}${save_the_col - 1}`).children().attr('class') != 'light-mohre'){
                     $(`.${rows[i - 1]}${save_the_col - 1}`).addClass('hit')
                 }
 
-                if($(`.${rows[i - 1]}${save_the_col + 1}`).html() != ''){
+                if($(`.${rows[i - 1]}${save_the_col + 1}`).html() != '' && $(`.${rows[i - 1]}${save_the_col + 1}`).children().attr('class') != 'light-mohre'){
                     $(`.${rows[i - 1]}${save_the_col + 1}`).addClass('hit')
                 }
                 //-------------------------------------------
