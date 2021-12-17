@@ -1,12 +1,6 @@
-
-
 function moveSoldier(id, className){
     
-    //if (){
-        $('.active').prop('onclick', null).off('click')
-        $('.hit').prop('onclick', null).off('click')
-        $('.light, .dark').removeClass('active');
-        $('.light, .dark').removeClass('hit');
+        
         let save_the_col;
 
         for (let i = 1; i < 9; i++){
@@ -31,7 +25,7 @@ function moveSoldier(id, className){
                     }
                 //-------------------------------------------
                 // check soldier can move forward
-                alert($(`.${rows[i - 1]}${className[className.length - 1]}`).html())
+                
                 if ($(`.${rows[i - 1]}${className[className.length - 1]}`).html() == ''){
 
                     $(`.${rows[i - 1]}${className[className.length - 1]}`).addClass('active');
@@ -95,7 +89,7 @@ function moveSoldier(id, className){
                 left: `+=${Left}px`
             }, 500)
 
-            // remove listener of active classes
+            // remove listener of active & hit classes
             $('.active').prop('onclick', null).off('click')
             $('.hit').prop('onclick', null).off('click')
 

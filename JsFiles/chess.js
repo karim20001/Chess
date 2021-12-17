@@ -78,19 +78,22 @@ function light_clicked(event){
     
     let id = event.target.id
     let _parent_className = $(`#${id}`).parent().attr('class');
-    
+    // remove active classes & off onclick for them every time clicked
+    $('.active').prop('onclick', null).off('click')
+    $('.hit').prop('onclick', null).off('click')
+    $('.light, .dark').removeClass('active');
+    $('.light, .dark').removeClass('hit');
+    //----------------------------------------------------
 
     switch (id[0]){
 
         case "s":
             moveSoldier(id, _parent_className)
-            // $('#s1').animate({
-            //     top: "-=90px",
-            // },300)
             break;
-        case "s2":
+        case "r":
             break;
-        case "s3":
+        case "h":
+            moveHorse(id, _parent_className)
             break;
     }
 
