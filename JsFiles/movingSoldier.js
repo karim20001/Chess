@@ -4,7 +4,9 @@ function moveSoldier(id, className){
     
     //if (){
         $('.active').prop('onclick', null).off('click')
+        $('.hit').prop('onclick', null).off('click')
         $('.light, .dark').removeClass('active');
+        $('.light, .dark').removeClass('hit');
         let save_the_col;
 
         for (let i = 1; i < 9; i++){
@@ -91,6 +93,7 @@ function moveSoldier(id, className){
 
             // remove listener of active classes
             $('.active').prop('onclick', null).off('click')
+            $('.hit').prop('onclick', null).off('click')
 
             // remove active from all elements
             $('.light, .dark').removeClass('active');
