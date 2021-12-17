@@ -91,6 +91,7 @@ function light_clicked(event){
             moveSoldier(id, _parent_className)
             break;
         case "r":
+            moveRokh(id, _parent_className)
             break;
         case "h":
             moveHorse(id, _parent_className)
@@ -117,31 +118,8 @@ function dark_clicked(event){
 function animatingMoves(className, class_name, id, Char, second_move){
         let Top = 0;
         let Left = 0;
-        
-
-        // for (let i = 0; i < rows.length; i++){
-
-        //     if (rows[i] == class_name[1][0]){
-        //         Top = i;
-        //         checker = true;
-        //     }
-
-        //     if (rows[i] == className[className.length - 2]){
-        //         if (checker){
-        //             Top = (Top - i) * 53;
-        //             break;
-        //         }   
-        //     }
-        //     if (Top == undefined && i == rows.length - 1){
-        //         i = 0;
-        //     }
-
-        // }
 
         Top = (class_name[1].charCodeAt(0) - className[className.length - 2].charCodeAt(0)) * 53;
-        console.log(class_name[1].charCodeAt(0))
-        console.log(className[className.length - 2].charCodeAt(0))
-
         Left = (parseInt(class_name[1][1]) - parseInt(className[className.length - 1])) * 53;
         
         // animating part

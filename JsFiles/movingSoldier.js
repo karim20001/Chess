@@ -1,14 +1,7 @@
 function moveSoldier(id, className){
     
         
-        let save_the_col;
-
-        for (let i = 1; i < 9; i++){
-            if (className[className.length - 1] == i){
-                save_the_col = i;
-                break;
-            }
-        }
+        let save_the_col = parseInt(className[className.length - 1]);
 
         for (let i = 0; i < rows.length; i++){
             if (className[className.length - 2] == rows[i]){
@@ -55,61 +48,6 @@ function moveSoldier(id, className){
             }
 
             animatingMoves(className, class_name, id, '♟', ' second-move');
-
-            // let Top = 0;
-            // let Left = 0;
-            
-            // // find diffrence between two class
-            // for (let i = 0; i < rows.length; i++){
-
-            //     if (rows[i] == class_name[1][0]){
-            //         Top = i;
-            //     }
-
-            //     if (rows[i] == className[className.length - 2]){
-            //         Top = (Top - i) * 53;
-
-            //         if (class_name[2] == 'hit'){
-            //             if (Math.abs(Top) == 53){
-            //                 if (parseInt(class_name[1][1]) > parseInt(className[className.length - 1])){
-            //                     Left = 53;
-            //                 }
-            //                 else {
-            //                     Left = -53;
-            //                 }
-            //             }
-            //         }
-                    
-            //         break;
-            //     }
-
-            // }
-
-            // // animating part
-            // $(`#${id}`).animate({
-            //     top: `+=${Top}px`,
-            //     left: `+=${Left}px`
-            // }, 500)
-
-            // // remove listener of active & hit classes
-            // $('.active').prop('onclick', null).off('click')
-            // $('.hit').prop('onclick', null).off('click')
-
-            // // remove active from all elements
-            // $('.light, .dark').removeClass('active');
-            
-
-            // // this timeout created beacause of animation & displacement class of chess pieces
-            // setTimeout(function(){
-            //     let temp = className.substring(className.length - 2)
-            //     // alert(temp)
-            //     $(`.${temp}`).html('');
-            //     temp = class_name[1];
-            //     $('.light, .dark').removeClass('hit');
-            //     $(`.${temp}`).html(`<p class="light-mohre second-move" id=${id}>♟</p>`)
-            //     // console.log($(`.${temp}`).children())
-            //     $('.light-mohre').click(light_clicked)
-            // }, 495)
             
         });
    

@@ -1,13 +1,7 @@
 function moveHorse (id, className){
 
     // save col position of horse
-    let save_the_col;
-    for (let i = 1; i < 9; i++){
-        if (className[className.length - 1] == i){
-            save_the_col = i;
-            break;
-        }
-    }
+    let save_the_col = parseInt(className[className.length - 1]);
     //--------------------------
 
     for (let i = 0; i < rows.length; i++){
