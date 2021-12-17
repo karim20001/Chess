@@ -20,15 +20,18 @@ function moveSoldier(id, className){
             if (className[className.length - 2] == rows[i]){
 
                 // check soldier can hit dark chess piece & not white ones
-                if ( $(`.${rows[i - 1]}${save_the_col - 1}`).html() != '' && $(`.${rows[i - 1]}${save_the_col - 1}`).children().attr('class') != 'light-mohre'){
-                    $(`.${rows[i - 1]}${save_the_col - 1}`).addClass('hit')
-                }
-
-                if ( $(`.${rows[i - 1]}${save_the_col + 1}`).html() != '' && $(`.${rows[i - 1]}${save_the_col + 1}`).children().attr('class') != 'light-mohre'){
-                    $(`.${rows[i - 1]}${save_the_col + 1}`).addClass('hit')
-                }
+                if (save_the_col != 1)
+                    if ( $(`.${rows[i - 1]}${save_the_col - 1}`).html() != '' && $(`.${rows[i - 1]}${save_the_col - 1}`).children().attr('class').search('dark-mohre') != -1){
+                        $(`.${rows[i - 1]}${save_the_col - 1}`).addClass('hit')
+                    }
+                    
+                if (save_the_col != 8)
+                    if ( $(`.${rows[i - 1]}${save_the_col + 1}`).html() != '' && $(`.${rows[i - 1]}${save_the_col + 1}`).children().attr('class').search('dark-mohre') != -1){
+                        $(`.${rows[i - 1]}${save_the_col + 1}`).addClass('hit')
+                    }
                 //-------------------------------------------
                 // check soldier can move forward
+                alert($(`.${rows[i - 1]}${className[className.length - 1]}`).html())
                 if ($(`.${rows[i - 1]}${className[className.length - 1]}`).html() == ''){
 
                     $(`.${rows[i - 1]}${className[className.length - 1]}`).addClass('active');
