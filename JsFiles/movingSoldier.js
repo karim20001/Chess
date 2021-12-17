@@ -20,11 +20,11 @@ function moveSoldier(id, className){
             if (className[className.length - 2] == rows[i]){
 
                 // check soldier can hit dark chess piece & not white ones
-                if ($(`.${rows[i - 1]}${save_the_col - 1}`).html() != '' && $(`.${rows[i - 1]}${save_the_col - 1}`).children().attr('class') != 'light-mohre'){
+                if ( $(`.${rows[i - 1]}${save_the_col - 1}`).html() != '' && $(`.${rows[i - 1]}${save_the_col - 1}`).children().attr('class') != 'light-mohre'){
                     $(`.${rows[i - 1]}${save_the_col - 1}`).addClass('hit')
                 }
 
-                if($(`.${rows[i - 1]}${save_the_col + 1}`).html() != '' && $(`.${rows[i - 1]}${save_the_col + 1}`).children().attr('class') != 'light-mohre'){
+                if ( $(`.${rows[i - 1]}${save_the_col + 1}`).html() != '' && $(`.${rows[i - 1]}${save_the_col + 1}`).children().attr('class') != 'light-mohre'){
                     $(`.${rows[i - 1]}${save_the_col + 1}`).addClass('hit')
                 }
                 //-------------------------------------------
@@ -33,7 +33,8 @@ function moveSoldier(id, className){
 
                     $(`.${rows[i - 1]}${className[className.length - 1]}`).addClass('active');
 
-                    if ($(`.${rows[i - 2]}${className[className.length - 1]}`).html() == ''){
+                    if ($(`.${rows[i - 2]}${className[className.length - 1]}`).html() == '' && $(`#${id}`).attr('class') === 'light-mohre'){
+                        
                         $(`.${rows[i - 2]}${className[className.length - 1]}`).addClass('active');
                     }
                 }
@@ -47,7 +48,7 @@ function moveSoldier(id, className){
         
         $('.active, .hit').click(function (e) { 
             e.preventDefault();
-
+            
             // the class & id object should go
             let class_name = e.target.className.split(" ");
             let id_obj = e.target.id;
@@ -106,7 +107,7 @@ function moveSoldier(id, className){
                 $(`.${temp}`).html('');
                 temp = class_name[1];
                 $('.light, .dark').removeClass('hit');
-                $(`.${temp}`).html(`<p class="light-mohre" id=${id}>♟</p>`)
+                $(`.${temp}`).html(`<p class="light-mohre second-move" id=${id}>♟</p>`)
                 // console.log($(`.${temp}`).children())
                 $('.light-mohre').click(light_clicked)
             }, 495)
