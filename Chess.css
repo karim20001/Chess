@@ -45,7 +45,8 @@ table {
 
 
 .hit {
-    border: 3px solid red;
+    outline: 3px solid red;
+    cursor: pointer;
 }
 
 
