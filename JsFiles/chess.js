@@ -166,6 +166,7 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
         second = 0;
         counter();
 
+        
         $(".dark-mohre").prop("onclick", null).off("click");
         $(".light-mohre").prop("onclick", null).off("click");
 
