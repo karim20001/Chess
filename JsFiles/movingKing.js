@@ -4,23 +4,25 @@ function moveKing (id, className, hit_dark_or_white, piece_color){
     let save_the_row = className[className.length - 2].charCodeAt(0) - 97;
     let cheker;
 
-    for (let i = save_the_row - 1; i < save_the_row + 2 && i < 8 && i >= 0; i++){
+    for (let i = save_the_row - 1; i < save_the_row + 2; i++){
+        
+        if (i < 8 && i >= 0){
+            for (let j = save_the_col - 1; j < save_the_col + 2; j++){
 
-        for (let j = save_the_col - 1; j < save_the_col + 2 && j < 9 && j > 0; j++){
+                if (j < 9 && j > 0){
+                    cheker = true;
+                    var temp = $(`.${rows[i]}${j}`);
 
-            cheker = true;
-            var temp = $(`.${rows[i]}${j}`);
-
-            if ( temp.html() == ''){
-                    temp.addClass('active');
-                    cheker = false;
-                    console.log(345)
-            }
-            if (cheker && temp.children().attr('class').search(`${hit_dark_or_white}`) != -1){
-                temp.addClass('hit');
+                    if ( temp.html() == ''){
+                            temp.addClass('active');
+                            cheker = false;
+                    }
+                    if (cheker && temp.children().attr('class').search(`${hit_dark_or_white}`) != -1){
+                        temp.addClass('hit');
+                    }
+                }
             }
         }
-
     }
 
     $('.active, .hit').click(function (e) { 

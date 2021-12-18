@@ -38,7 +38,8 @@ function doingRokh_logic (save_the_row, save_the_col, is_row, is_col, hit_dark_o
                 cheker = false;
         }
         else if (temp.children().attr('class').search(`${hit_dark_or_white}`) != -1){
-            temp.addClass('hit');
+            if (temp.children().attr('id').search('k') == -1)
+                temp.addClass('hit');
             break;
         }
         if (cheker && temp.children().attr('class').search(`${piece_color}`) != -1)
