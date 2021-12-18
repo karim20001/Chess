@@ -24,7 +24,6 @@ function moveRokh(id, className){
         }
 
         animatingMoves(className, class_name, id, '♜', '')
-        
     });
 }
 

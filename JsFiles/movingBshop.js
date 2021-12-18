@@ -21,7 +21,6 @@ function moveBshop(id, className){
         }
 
         animatingMoves(className, class_name, id, '♝', '')
-        
     });
 }
 
