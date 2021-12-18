@@ -11,6 +11,8 @@ function start(){
     start_button.style.display = 'none'
     
     interval = setInterval(counter, 1000)
+
+    actions = new Stack();
 }
 
 let check_side_move = true, firstClicked_or_second = true, bullshit_stuff_with_interval = true;
