@@ -3,17 +3,12 @@ function moveBshop(id, className){
     let save_the_col = parseInt(className[className.length - 1])
 
     let save_the_row = className.charCodeAt(className.length - 2) - 97;
-
-    // alert(save_the_row)
     
     doingBishop_logic(-1, -1, save_the_row, save_the_col);
     doingBishop_logic(-1, 1, save_the_row, save_the_col);
     doingBishop_logic(1, -1, save_the_row, save_the_col);
     doingBishop_logic(1, 1, save_the_row, save_the_col);
     
-
-
-
     $('.active, .hit').click(function (e) { 
         e.preventDefault();
         
@@ -48,6 +43,5 @@ function doingBishop_logic(zaribI, zaribJ, save_the_row, save_the_col){
         }
         if (cheker && temp.children().attr('class').search('light-mohre') != -1)
             break;
-
     }
 }
