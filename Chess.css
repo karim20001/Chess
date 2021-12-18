@@ -30,18 +30,20 @@ table {
 }
 
 .chess-head {
-    left: 650px;
+    left: 680px;
     position:relative;
 }
 #turn {
     font-size: large;
     color: white;
+    font-family: "Helvetica Neue", "Helvetica";
 }
 
 #second-counter {
     font-size: 18px;
-    left: 660px;
+    left: 690px;
     color: green;
+    font-family: "Helvetica Neue", "Helvetica";
 }
 
 #s1{
@@ -83,12 +85,13 @@ table {
     border-radius: 10px;
     padding: 7px;
     top: 560px;
-    left: 680px;
+    left: 683px;
     cursor: pointer;
 }
 
 #start:hover {
     background-color: rgb(73, 184, 147);
+    color: white;
 }
 
 
