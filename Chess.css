@@ -7,6 +7,15 @@ body {
     -moz-user-select: none; 
     -ms-user-select: none; 
     user-select: none;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.middle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 p{
@@ -16,9 +25,37 @@ p{
     
 }
 
-table {
-    width: 424px;
-    height: 424px;
+header {
+    height: 50px;
+    margin: 0 auto;
+}
+
+#deleted-mohre {
+    width : 424px;
+    height : 50px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:18px;
+    
+}
+
+#deleted-white {
+    height : 50px;
+    width : 200px;
+    background-color: #000000;
+    margin-right: 12px;
+    color: #ffffff;
+    text-align: center;
+}
+
+#deleted-black {
+    height : 50px;
+    width : 200px;
+    background-color: #ffffff;
+    margin-left: 12px;
+    text-align: center;
 }
 
 .active {
@@ -30,9 +67,9 @@ table {
 }
 
 .chess-head {
-    left: 680px;
-    position:relative;
+    margin : 1px auto 5px auto;
 }
+
 #turn {
     font-size: large;
     color: white;
@@ -41,7 +78,6 @@ table {
 
 #second-counter {
     font-size: 18px;
-    left: 690px;
     color: green;
     font-family: "Helvetica Neue", "Helvetica";
 }
@@ -59,11 +95,11 @@ table {
 
 
 .chess-board { 
-        position:absolute; 
-        border-spacing: 0; 
-        border-collapse: collapse;
-        left: 500px;
-        top: 80px;
+    width: 424px;
+    height: 424px;
+    border-spacing: 0; 
+    border-collapse: collapse;
+  
 }
 .chess-board th { padding: .5em; }
 .chess-board th + th { border-bottom: 1px solid #000; }
@@ -79,14 +115,13 @@ table {
 
 #start {
     background-color: aquamarine;
-    position: absolute;
     font-size: larger;
     border: none;
-    border-radius: 10px;
-    padding: 7px;
-    top: 560px;
-    left: 683px;
+    border-radius: 5px;
+    margin : 10px auto;
     cursor: pointer;
+    width : 60px;
+    height : 30px;
 }
 
 #start:hover {
