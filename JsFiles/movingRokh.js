@@ -1,15 +1,13 @@
-function moveRokh(id, className){
+function moveRokh(id, className, hit_dark_or_white, piece_color){
 
     let save_the_col = parseInt(className[className.length - 1]);
 
     let save_the_row = className[className.length - 2].charCodeAt(0) - 97;
-
-
     
-    doingRokh_logic(save_the_row, save_the_col, -1, 0);
-    doingRokh_logic(save_the_row, save_the_col, 0, -1);
-    doingRokh_logic(save_the_row, save_the_col, 1, 0);
-    doingRokh_logic(save_the_row, save_the_col, 0, 1);
+    doingRokh_logic(save_the_row, save_the_col, -1, 0, hit_dark_or_white, piece_color);
+    doingRokh_logic(save_the_row, save_the_col, 0, -1, hit_dark_or_white, piece_color);
+    doingRokh_logic(save_the_row, save_the_col, 1, 0, hit_dark_or_white, piece_color);
+    doingRokh_logic(save_the_row, save_the_col, 0, 1, hit_dark_or_white, piece_color);
 
 
     $('.active, .hit').click(function (e) { 
@@ -19,15 +17,15 @@ function moveRokh(id, className){
         let class_name = e.target.className.split(" ");
         let id_obj = e.target.id;
 
-        if (class_name.length < 2){
+        if (class_name.length < 2 || class_name[1] == 'second-move'){
             class_name = $(`#${id_obj}`).parent().attr('class').split(" ");
         }
 
-        animatingMoves(className, class_name, id, '♜', '')
+        animatingMoves(className, class_name, id, piece_color, '♜', '')
     });
 }
 
-function doingRokh_logic (save_the_row, save_the_col, is_row, is_col){
+function doingRokh_logic (save_the_row, save_the_col, is_row, is_col, hit_dark_or_white, piece_color){
 
     let cheker;
 
@@ -39,11 +37,11 @@ function doingRokh_logic (save_the_row, save_the_col, is_row, is_col){
                 temp.addClass('active');
                 cheker = false;
         }
-        else if (temp.children().attr('class').search('dark-mohre') != -1){
+        else if (temp.children().attr('class').search(`${hit_dark_or_white}`) != -1){
             temp.addClass('hit');
             break;
         }
-        if (cheker && temp.children().attr('class').search('light-mohre') != -1)
+        if (cheker && temp.children().attr('class').search(`${piece_color}`) != -1)
             break;
     }
 }

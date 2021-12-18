@@ -1,4 +1,4 @@
-function moveHorse (id, className){
+function moveHorse (id, className, hit_dark_or_white, piece_color){
 
     // save col position of horse
     let save_the_col = parseInt(className[className.length - 1]);
@@ -20,7 +20,7 @@ function moveHorse (id, className){
 
                                 if ($(`.${rows[j]}${k}`).html() == '')
                                     $(`.${rows[j]}${k}`).addClass('active')
-                                else if ($(`.${rows[j]}${k}`).children().attr('class').search('dark-mohre') != -1)
+                                else if ($(`.${rows[j]}${k}`).children().attr('class').search(`${hit_dark_or_white}`) != -1)
                                     $(`.${rows[j]}${k}`).addClass('hit')
                             }
 
@@ -44,11 +44,11 @@ function moveHorse (id, className){
         let class_name = e.target.className.split(" ");
         let id_obj = e.target.id;
 
-        if (class_name.length < 2){
+        if (class_name.length < 2  || class_name[1] == 'second-move'){
             class_name = $(`#${id_obj}`).parent().attr('class').split(" ");
         }
 
-        animatingMoves(className, class_name, id, '♞', '');
+        animatingMoves(className, class_name, id, piece_color, '♞', '');
 
     });
 }

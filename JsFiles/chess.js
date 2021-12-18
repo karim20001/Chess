@@ -90,22 +90,22 @@ function light_clicked(event){
     switch (id[0]){
 
         case "s":
-            moveSoldier(id, _parent_className)
+            moveSoldier(id, _parent_className, 1, 'dark-mohre', 'light-mohre')
             break;
         case "r":
-            moveRokh(id, _parent_className)
+            moveRokh(id, _parent_className, 'dark-mohre', 'light-mohre')
             break;
         case "h":
-            moveHorse(id, _parent_className)
+            moveHorse(id, _parent_className, 'dark-mohre', 'light-mohre')
             break;
         case "e":
-            moveBshop(id, _parent_className)
+            moveBshop(id, _parent_className, 'dark-mohre', 'light-mohre')
             break;
         case "v":
-            moveQueen(id, _parent_className)
+            moveQueen(id, _parent_className, 'dark-mohre', 'light-mohre')
             break;
         case "k":
-            moveKing(id, _parent_className)
+            moveKing(id, _parent_className, 'dark-mohre', 'light-mohre')
             break;
     }
 
@@ -118,17 +118,53 @@ function light_clicked(event){
 }
 
 function dark_clicked(event){
-    
-    switch (event){
 
-        case '':
+    let id = event.target.id
+    let _parent_className = $(`#${id}`).parent().attr('class');
+    // remove active classes & off onclick for them every time clicked
+    $('.active').prop('onclick', null).off('click')
+    $('.hit').prop('onclick', null).off('click')
+    $('.light, .dark').removeClass('active');
+    $('.light, .dark').removeClass('hit');
+    
+    switch (id[0]){
+
+        case "s":
+            moveSoldier(id, _parent_className, -1, 'light-mohre', 'dark-mohre')
+            break;
+        case "r":
+            moveRokh(id, _parent_className, 'light-mohre', 'dark-mohre')
+            break;
+        case "h":
+            moveHorse(id, _parent_className, 'light-mohre', 'dark-mohre');
+            break;
+        case "e":
+            moveBshop(id, _parent_className, 'light-mohre', 'dark-mohre')
+            break;
+        case "v":
+            moveQueen(id, _parent_className, 'light-mohre', 'dark-mohre')
+            break;
+        case "k":
+            moveKing(id, _parent_className, 'light-mohre', 'dark-mohre')
+            break;
+        
     }
+
+    if (firstClicked_or_second)
+        firstClicked_or_second = false;
+    
+    else
+        firstClicked_or_second = true;
     
 }
 
-function animatingMoves(className, class_name, id, Char, second_move){
+function animatingMoves(className, class_name, id, dark_or_white, Char, second_move){
+
         let Top = 0;
         let Left = 0;
+
+        second = 0;
+        counter();
 
         Top = (class_name[1].charCodeAt(0) - className[className.length - 2].charCodeAt(0)) * 53;
         Left = (parseInt(class_name[1][1]) - parseInt(className[className.length - 1])) * 53;
@@ -152,8 +188,10 @@ function animatingMoves(className, class_name, id, Char, second_move){
             // alert(temp)
             $(`.${temp}`).html('');
             temp = class_name[1];
-            $(`.${temp}`).html(`<p class="light-mohre${second_move}" id=${id}>${Char}</p>`)
+            
+            $(`.${temp}`).html(`<p class="${dark_or_white}${second_move}" id=${id}>${Char}</p>`)
             // console.log($(`.${temp}`).children())
-            $('.light-mohre').click(light_clicked)
+            // $('.light-mohre').click(light_clicked)
+            // $('.dark-mohre').click(dark_clicked)
         }, 495)
 }
