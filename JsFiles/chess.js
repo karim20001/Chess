@@ -102,6 +102,9 @@ function light_clicked(event){
         case "v":
             moveQueen(id, _parent_className)
             break;
+        case "k":
+            moveKing(id, _parent_className)
+            break;
     }
 
     if (firstClicked_or_second)
