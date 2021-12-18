@@ -166,6 +166,9 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
         second = 0;
         counter();
 
+        $(".dark-mohre").prop("onclick", null).off("click");
+        $(".light-mohre").prop("onclick", null).off("click");
+
         Top = (class_name[1].charCodeAt(0) - className[className.length - 2].charCodeAt(0)) * 53;
         Left = (parseInt(class_name[1][1]) - parseInt(className[className.length - 1])) * 53;
         
