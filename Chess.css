@@ -1,6 +1,12 @@
 body {
-    background-color: rgb(51, 49, 49);
-     overflow-x: hidden;
+    background-color: #1a283a;
+    overflow-x: hidden;
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
 }
 
 p{
@@ -50,7 +56,10 @@ table {
 }
 
 
-.chess-board { position:absolute; border-spacing: 0; border-collapse: collapse;
+.chess-board { 
+        position:absolute; 
+        border-spacing: 0; 
+        border-collapse: collapse;
         left: 500px;
         top: 80px;
 }
@@ -62,11 +71,9 @@ table {
 .chess-board th:empty { border: none; }
 .chess-board td { width: 1.5em; height: 1.5em; text-align: center; font-size: 32px; line-height: 0;
 }
-.chess-board .light { background: rgb(83, 66, 14); }
-.chess-board .dark { background: rgb(124, 124, 124); }
-.light-mohre{
-    color: white;
-}
+.chess-board .light { background: #718091; }
+.chess-board .dark { background: #a4aebb; }
+.light-mohre{ color: #FFFFFF; }
 
 #start {
     background-color: aquamarine;
@@ -76,7 +83,8 @@ table {
     border-radius: 10px;
     padding: 7px;
     top: 560px;
-    left: 660px;
+    left: 680px;
+    cursor: pointer;
 }
 
 #start:hover {
