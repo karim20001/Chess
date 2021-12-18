@@ -96,6 +96,9 @@ function light_clicked(event){
         case "h":
             moveHorse(id, _parent_className)
             break;
+        case 'e':
+            moveBshop(id, _parent_className)
+            break;
     }
 
     if (firstClicked_or_second)
