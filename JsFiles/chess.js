@@ -184,6 +184,7 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
         // remove listener of active & hit classes
         $('.active').prop('onclick', null).off('click')
         $('.hit').prop('onclick', null).off('click')
+        $('.cascade').prop('onclick', null).off('click');
 
         // remove active from all elements
         $('.light, .dark').removeClass('active');
