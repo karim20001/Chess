@@ -1,3 +1,5 @@
+const check_secondRookh_move = [false, false, false, false];
+
 function moveRokh(id, className, hit_dark_or_white, piece_color){
 
     let save_the_col = parseInt(className[className.length - 1]);
@@ -12,7 +14,11 @@ function moveRokh(id, className, hit_dark_or_white, piece_color){
 
     $('.active, .hit').click(function (e) { 
         e.preventDefault();
-        
+        // set second move for rookh
+        let tempory = 0;
+        if (piece_color == 'dark-mohre')
+            tempory = 2;
+        check_secondRookh_move[parseInt(id[2]) - 1 + tempory] = true;
         // the class & id object should go
         let class_name = e.target.className.split(" ");
         let id_obj = e.target.id;

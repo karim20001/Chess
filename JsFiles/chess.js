@@ -1,5 +1,5 @@
 const start_button = document.getElementById('start')
-const _all_ = document.getElementsByTagName('td');
+//const _all_ = document.getElementsByTagName('td');
 const rows = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
 //switch between dark & white in 30s
@@ -85,6 +85,7 @@ function light_clicked(event){
     $('.hit').prop('onclick', null).off('click')
     $('.light, .dark').removeClass('active');
     $('.light, .dark').removeClass('hit');
+    $('.light, .dark').removeClass('cascade');
     //----------------------------------------------------
 
     switch (id[0]){
@@ -126,6 +127,7 @@ function dark_clicked(event){
     $('.hit').prop('onclick', null).off('click')
     $('.light, .dark').removeClass('active');
     $('.light, .dark').removeClass('hit');
+    $('.light, .dark').removeClass('cascade');
     
     switch (id[0]){
 
@@ -186,6 +188,7 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
         // remove active from all elements
         $('.light, .dark').removeClass('active');
         $('.light, .dark').removeClass('hit');
+        $('.light, .dark').removeClass('cascade');
 
         setTimeout(function(){
             let temp = className.substring(className.length - 2)

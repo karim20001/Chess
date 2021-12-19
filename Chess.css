@@ -93,6 +93,11 @@ header {
     cursor: pointer;
 }
 
+.cascade {
+    cursor: pointer;
+    outline: 3px solid goldenrod;
+}
+
 
 .chess-board { 
     width: 424px;
