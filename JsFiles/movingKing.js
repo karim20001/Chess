@@ -114,12 +114,15 @@ function moveKing (id, className, hit_dark_or_white, piece_color){
             left: `+=${rookh_going_position}`
         }, 500)
 
-        $('.light, .dark').removeClass('cascade');
-        $('.hit').prop('onclick', null).off('click');
-        $('.active').prop('onclick', null).off('click');
+        // remove listener of active & hit classes
+        $('.active').prop('onclick', null).off('click')
+        $('.hit').prop('onclick', null).off('click')
         $('.cascade').prop('onclick', null).off('click');
+
+        // remove active from all elements
         $('.light, .dark').removeClass('active');
         $('.light, .dark').removeClass('hit');
+        $('.light, .dark').removeClass('cascade');
 
         setTimeout(function(){
             let temp = className.substring(className.length - 2)
