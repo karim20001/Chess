@@ -55,8 +55,10 @@ function moving_piece_check_own_same_rowCol (own_piece_parent_className, piece_c
             }
             // between king & piece is empty
 
+            let checkerr = true;
             if (queen_parent[1][0] == own_piece_parent_className[1][0]){
 
+                checkerr = false;
                 sorting = [queen_parent[1], own_piece_parent_className[1]];
                 sorting.sort();
 
@@ -70,6 +72,7 @@ function moving_piece_check_own_same_rowCol (own_piece_parent_className, piece_c
 
             if (roohks_parent[0][1][0] == own_piece_parent_className[1][0]){
 
+                checkerr = false;
                 sorting = [roohks_parent[0][1], own_piece_parent_className[1]];
                 sorting.sort();
 
@@ -83,6 +86,7 @@ function moving_piece_check_own_same_rowCol (own_piece_parent_className, piece_c
 
             if (roohks_parent[1][1][0] == own_piece_parent_className[1][0]){
 
+                checkerr = false;
                 sorting = [roohks_parent[1][1], own_piece_parent_className[1]];
                 sorting.sort();
 
@@ -93,6 +97,10 @@ function moving_piece_check_own_same_rowCol (own_piece_parent_className, piece_c
                     }
                 }
             }
+
+            if (checkerr)
+                return true;
+            return false;
         }
 
         //---------------------------------------------------------------------
@@ -100,10 +108,10 @@ function moving_piece_check_own_same_rowCol (own_piece_parent_className, piece_c
 
         if (king_parent[1][1] == own_piece_parent_className[1][1]){
 
+            let checkerr = true;
             for (let i = sorting[0][0].charCodeAt(0) - 96; i < sorting[1][0].charCodeAt(0) - 97; i++){
 
                 if ($(`.${rows[i]}${sorting[0][1]}`).html() != ''){
-                    console.log($(`.${rows[i]}${sorting[0][1]}`).html())
                     return true;
                 }
             }
@@ -111,6 +119,7 @@ function moving_piece_check_own_same_rowCol (own_piece_parent_className, piece_c
 
             if (queen_parent[1][1] == own_piece_parent_className[1][1]){
 
+                checkerr = false;
                 sorting = [queen_parent[1], own_piece_parent_className[1]];
                 sorting.sort();
 
@@ -124,6 +133,7 @@ function moving_piece_check_own_same_rowCol (own_piece_parent_className, piece_c
 
             if (roohks_parent[0][1][1] == own_piece_parent_className[1][1]){
 
+                checkerr = false;
                 sorting = [roohks_parent[0][1], own_piece_parent_className[1]];
                 sorting.sort();
 
@@ -137,6 +147,7 @@ function moving_piece_check_own_same_rowCol (own_piece_parent_className, piece_c
 
             if (roohks_parent[1][1][1] == own_piece_parent_className[1][1]){
 
+                checkerr = false;
                 sorting = [roohks_parent[1][1], own_piece_parent_className[1]];
                 sorting.sort();
 
@@ -147,6 +158,9 @@ function moving_piece_check_own_same_rowCol (own_piece_parent_className, piece_c
                     }
                 }
             }
+            if (checkerr)
+                return true;
+            return false;
         }
 
         //------------------------------------------  
@@ -172,8 +186,6 @@ function moving_piece_notIn_same_col (own_piece_parent_className, piece_color){
     let king_parent = $(king_id).parent().attr('class').split(" ");
 
     if (Math.abs(king_parent[1].charCodeAt(0) - own_piece_parent_className[1].charCodeAt(0)) != Math.abs(parseInt(king_parent[1][1]) - parseInt(own_piece_parent_className[1][1])) ){
-        console.log(Math.abs(king_parent[1].charCodeAt(0) - own_piece_parent_className[1].charCodeAt(0)) )
-        console.log(Math.abs(parseInt(king_parent[1][1]) - parseInt(own_piece_parent_className[1][1])))
         return true;
     }
 
@@ -235,8 +247,10 @@ function cheking_for_queen_bishop (zaribI, zaribJ, own_piece_parent_className, k
         }
     }
 
-    if (Math.abs(queen_parent[1].charCodeAt(0) - own_piece_parent_className[1].charCodeAt(0)) == Math.abs(parseInt(queen_parent[1][1]) - parseInt(own_piece_parent_className[1][1]))){
+    let check_for_ifs = true;
+    if ((queen_parent[1].charCodeAt(0) - own_piece_parent_className[1].charCodeAt(0)) * zaribI == (parseInt(queen_parent[1][1]) - parseInt(own_piece_parent_className[1][1])) * zaribJ){
 
+        check_for_ifs = false;
         for (let i = own_piece_parent_className[1].charCodeAt(0) - 97 + 1 * zaribI, j = parseInt(own_piece_parent_className[1][1]) + 1 * zaribJ; j < parseInt(queen_parent[1][1]); i += 1 * zaribI, j += 1 * zaribJ){
         
             if ($(`.${rows[i]}${j}`).html() != ''){
@@ -245,8 +259,9 @@ function cheking_for_queen_bishop (zaribI, zaribJ, own_piece_parent_className, k
         }
     }
 
-    if (Math.abs(bishops_parent[0][1].charCodeAt(0) - own_piece_parent_className[1].charCodeAt(0)) == Math.abs(parseInt(bishops_parent[0][1][1]) - parseInt(own_piece_parent_className[1][1]))){
+    if ((bishops_parent[0][1].charCodeAt(0) - own_piece_parent_className[1].charCodeAt(0)) * zaribI == (parseInt(bishops_parent[0][1][1]) - parseInt(own_piece_parent_className[1][1])) * zaribJ){
 
+        check_for_ifs = false;
         for (let i = own_piece_parent_className[1].charCodeAt(0) - 97 + 1 * zaribI, j = parseInt(own_piece_parent_className[1][1]) + 1 * zaribJ; j < parseInt(bishops_parent[0][1][1]); i += 1 * zaribI, j += 1 * zaribJ){
         
             if ($(`.${rows[i]}${j}`).html() != ''){
@@ -255,8 +270,9 @@ function cheking_for_queen_bishop (zaribI, zaribJ, own_piece_parent_className, k
         }
     }
 
-    if (Math.abs(bishops_parent[1][1].charCodeAt(0) - own_piece_parent_className[1].charCodeAt(0)) == Math.abs(parseInt(bishops_parent[1][1][1]) - parseInt(own_piece_parent_className[1][1]))){
+    if ((bishops_parent[1][1].charCodeAt(0) - own_piece_parent_className[1].charCodeAt(0)) * zaribI == (parseInt(bishops_parent[1][1][1]) - parseInt(own_piece_parent_className[1][1])) * zaribJ){
 
+        check_for_ifs = false;
         for (let i = own_piece_parent_className[1].charCodeAt(0) - 97 + 1 * zaribI, j = parseInt(own_piece_parent_className[1][1]) + 1 * zaribJ; j < parseInt(bishops_parent[1][1][1]); i += 1 * zaribI, j += 1 * zaribJ){
         
             if ($(`.${rows[i]}${j}`).html() != ''){
@@ -264,4 +280,8 @@ function cheking_for_queen_bishop (zaribI, zaribJ, own_piece_parent_className, k
             }
         }
     }
+
+    if (check_for_ifs)
+        return true
+    return false;
 }
