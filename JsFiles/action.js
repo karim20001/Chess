@@ -23,25 +23,26 @@ function moving_piece_check_own_same_rowCol (own_piece_parent_className, piece_c
     }
 
     let king_parent = $(king_id).parent().attr('class').split(" ");
+
+    if (king_parent[1][0] != own_piece_parent_className[1][0] && king_parent[1][1] != own_piece_parent_className[1][1]){
+        return true;
+    }
+
     let roohks_parent = [];
     let queen_parent = null;
 
-    if ($(oppenet_queen_id).parent() != undefined)
+    if ($(oppenet_queen_id).parent().attr('class') != undefined)
         queen_parent = $(oppenet_queen_id).parent().attr('class').split(" ");
     
-    if ($(oppenet_rookhs_id[0]).parent() != undefined)
+    if ($(oppenet_rookhs_id[0]).parent().attr('class') != undefined)
         roohks_parent[0] = $(oppenet_rookhs_id[0]).parent().attr('class').split(" ");
     
-    if ($(oppenet_rookhs_id[1]).parent() != undefined)
+    if ($(oppenet_rookhs_id[1]).parent().attr('class') != undefined)
         roohks_parent[1] = $(oppenet_rookhs_id[1]).parent().attr('class').split(" ")
 
     let sorting = [king_parent[1], own_piece_parent_className[1]]
     sorting.sort();
 
-    if (king_parent[1][0] != own_piece_parent_className[1][0] && king_parent[1][1] != own_piece_parent_className[1][1]){
-        return true;
-    }
-    else {
 
         // same row
         if (king_parent[1][0] == own_piece_parent_className[1][0]){
@@ -49,7 +50,6 @@ function moving_piece_check_own_same_rowCol (own_piece_parent_className, piece_c
             for (let i = parseInt(sorting[0][1]) + 1; i < parseInt(sorting[1][1]); i++){
 
                 if ($(`.${sorting[0][0]}${i}`).html() != ''){
-                    console.log(i)
                     return true;
                 }
             }
@@ -150,6 +150,31 @@ function moving_piece_check_own_same_rowCol (own_piece_parent_className, piece_c
         }
 
         //------------------------------------------  
-    }
+    
     return false;
+}
+
+function moving_piece_notIn_same_col (own_piece_parent_className, piece_color){
+
+    let king_id;
+    let oppenet_bishop_id, oppenet_queen_id;
+    if (piece_color == 'dark-mohre'){
+        king_id = '#kd1';
+        oppenet_bishop_id = ['#ew1', '#ew2'];
+        oppenet_queen_id = '#vw1';
+    }
+    else {
+        king_id = '#kw1';
+        oppenet_bishop_id = ['#ed1', '#ed2'];
+        oppenet_queen_id = '#vd1';
+    }
+
+    let king_parent = $(king_id).parent().attr('class').split(" ");
+
+    if (Math.abs(king_parent[1].charCodeAt(0) - own_piece_parent_className[1].charCodeAt(0)) != Math.abs(parseInt(king_parent[1][1]) - parseInt(own_piece_parent_className[1][1])) ){
+        console.log(Math.abs(king_parent[1].charCodeAt(0) - own_piece_parent_className[1].charCodeAt(0)) )
+        console.log(Math.abs(parseInt(king_parent[1][1]) - parseInt(own_piece_parent_className[1][1])))
+        return true;
+    }
+    
 }

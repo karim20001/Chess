@@ -15,6 +15,7 @@ function moveHorse (id, className, hit_dark_or_white, piece_color){
                     for (let k = save_the_col - 2; k <= save_the_col + 2; k++){
 
                         if (k > 0 && k < 9){
+                            if (moving_piece_notIn_same_col(className.split(" "), piece_color))
 
                             if (moving_piece_check_own_same_rowCol(className.split(" "), piece_color)){
 
