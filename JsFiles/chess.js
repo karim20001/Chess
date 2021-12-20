@@ -67,6 +67,15 @@ function counter(){
                 check_side_move = true;
             second = 31;
             bullshit_stuff_with_interval = true;
+            // remove listener of active & hit classes
+            $('.active').prop('onclick', null).off('click')
+            $('.hit').prop('onclick', null).off('click')
+            $('.cascade').prop('onclick', null).off('click');
+
+            // remove active from all elements
+            $('.light, .dark').removeClass('active');
+            $('.light, .dark').removeClass('hit');
+            $('.light, .dark').removeClass('cascade');
             
             seconds.style.color = 'green'
             break;

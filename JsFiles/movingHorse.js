@@ -16,13 +16,16 @@ function moveHorse (id, className, hit_dark_or_white, piece_color){
 
                         if (k > 0 && k < 9){
 
-                            if ( k != parseInt(className[className.length - 1]) && (Math.abs(k - save_the_col) < 2 || Math.abs(j - i) < 2) && (Math.abs(k - save_the_col) != 1 || Math.abs(j - i) != 1)){
+                            if (moving_piece_check_own_same_rowCol(className.split(" "), piece_color)){
 
-                                if ($(`.${rows[j]}${k}`).html() == '')
-                                    $(`.${rows[j]}${k}`).addClass('active')
-                                else if ($(`.${rows[j]}${k}`).children().attr('class').search(`${hit_dark_or_white}`) != -1){
-                                    if ($(`.${rows[j]}${k}`).children().attr('id').search('k') == -1)
-                                        $(`.${rows[j]}${k}`).addClass('hit')
+                                if ( k != parseInt(className[className.length - 1]) && (Math.abs(k - save_the_col) < 2 || Math.abs(j - i) < 2) && (Math.abs(k - save_the_col) != 1 || Math.abs(j - i) != 1)){
+
+                                    if ($(`.${rows[j]}${k}`).html() == '')
+                                        $(`.${rows[j]}${k}`).addClass('active')
+                                    else if ($(`.${rows[j]}${k}`).children().attr('class').search(`${hit_dark_or_white}`) != -1){
+                                        if ($(`.${rows[j]}${k}`).children().attr('id').search('k') == -1)
+                                            $(`.${rows[j]}${k}`).addClass('hit')
+                                    }
                                 }
                             }
 
