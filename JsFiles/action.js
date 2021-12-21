@@ -7,7 +7,7 @@ class Action {
     }
 }
 
-function moving_piece_check_own_same_rowCol (own_piece_parent_className, piece_color){
+function moving_piece_check_own_same_rowCol (own_piece_parent_className, piece_color, id){
 
     let king_id;
     let oppenet_rookhs_id, oppenet_queen_id;
@@ -57,6 +57,10 @@ function moving_piece_check_own_same_rowCol (own_piece_parent_className, piece_c
 
             let checkerr = true;
             if (queen_parent[1][0] == own_piece_parent_className[1][0]){
+                if (id.search('r') != -1 || id.search('v') != -1){
+                    rook_col_row = false;
+                    return true;
+                }
 
                 checkerr = false;
                 sorting = [queen_parent[1], own_piece_parent_className[1]];
@@ -71,6 +75,10 @@ function moving_piece_check_own_same_rowCol (own_piece_parent_className, piece_c
             }
 
             if (roohks_parent[0][1][0] == own_piece_parent_className[1][0]){
+                if (id.search('r') != -1 || id.search('v') != -1){
+                    rook_col_row = false;
+                    return true;
+                }
 
                 checkerr = false;
                 sorting = [roohks_parent[0][1], own_piece_parent_className[1]];
@@ -85,6 +93,10 @@ function moving_piece_check_own_same_rowCol (own_piece_parent_className, piece_c
             }
 
             if (roohks_parent[1][1][0] == own_piece_parent_className[1][0]){
+                if (id.search('r') != -1 || id.search('v') != -1){
+                    rook_col_row = false;
+                    return true;
+                }
 
                 checkerr = false;
                 sorting = [roohks_parent[1][1], own_piece_parent_className[1]];
@@ -118,6 +130,10 @@ function moving_piece_check_own_same_rowCol (own_piece_parent_className, piece_c
             // between king & piece is empty
 
             if (queen_parent[1][1] == own_piece_parent_className[1][1]){
+                if (id.search('r') != -1 || id.search('v') != -1){
+                    rook_col_row = true;
+                    return true;
+                }
 
                 checkerr = false;
                 sorting = [queen_parent[1], own_piece_parent_className[1]];
@@ -132,6 +148,10 @@ function moving_piece_check_own_same_rowCol (own_piece_parent_className, piece_c
             }
 
             if (roohks_parent[0][1][1] == own_piece_parent_className[1][1]){
+                if (id.search('r') != -1 || id.search('v') != -1){
+                    rook_col_row = true;
+                    return true;
+                }
 
                 checkerr = false;
                 sorting = [roohks_parent[0][1], own_piece_parent_className[1]];
@@ -146,6 +166,10 @@ function moving_piece_check_own_same_rowCol (own_piece_parent_className, piece_c
             }
 
             if (roohks_parent[1][1][1] == own_piece_parent_className[1][1]){
+                if (id.search('r') != -1 || id.search('v') != -1){
+                    rook_col_row = true;
+                    return true;
+                }
 
                 checkerr = false;
                 sorting = [roohks_parent[1][1], own_piece_parent_className[1]];

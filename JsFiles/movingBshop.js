@@ -3,25 +3,28 @@ function moveBshop(id, className, hit_dark_or_white, piece_color){
     let save_the_col = parseInt(className[className.length - 1])
 
     let save_the_row = className.charCodeAt(className.length - 2) - 97;
+
+    if (moving_piece_check_own_same_rowCol(className.split(" "), piece_color, id)){
     
-    doingBishop_logic(-1, -1, save_the_row, save_the_col, hit_dark_or_white, piece_color);
-    doingBishop_logic(-1, 1, save_the_row, save_the_col, hit_dark_or_white, piece_color);
-    doingBishop_logic(1, -1, save_the_row, save_the_col, hit_dark_or_white, piece_color);
-    doingBishop_logic(1, 1, save_the_row, save_the_col, hit_dark_or_white, piece_color);
-    
-    $('.active, .hit').click(function (e) { 
-        e.preventDefault();
+        doingBishop_logic(-1, -1, save_the_row, save_the_col, hit_dark_or_white, piece_color);
+        doingBishop_logic(-1, 1, save_the_row, save_the_col, hit_dark_or_white, piece_color);
+        doingBishop_logic(1, -1, save_the_row, save_the_col, hit_dark_or_white, piece_color);
+        doingBishop_logic(1, 1, save_the_row, save_the_col, hit_dark_or_white, piece_color);
         
-        // the class & id object should go
-        let class_name = e.target.className.split(" ");
-        let id_obj = e.target.id;
+        $('.active, .hit').click(function (e) { 
+            e.preventDefault();
+            
+            // the class & id object should go
+            let class_name = e.target.className.split(" ");
+            let id_obj = e.target.id;
 
-        if (class_name.length < 2 || class_name[1] == 'second-move'){
-            class_name = $(`#${id_obj}`).parent().attr('class').split(" ");
-        }
+            if (class_name.length < 2 || class_name[1] == 'second-move'){
+                class_name = $(`#${id_obj}`).parent().attr('class').split(" ");
+            }
 
-        animatingMoves(className, class_name, id, piece_color, '♝', '')
-    });
+            animatingMoves(className, class_name, id, piece_color, '♝', '')
+        });
+    }
 }
 
 function doingBishop_logic(zaribI, zaribJ, save_the_row, save_the_col, hit_dark_or_white, piece_color){

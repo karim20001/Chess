@@ -5,19 +5,22 @@ function moveSoldier(id, className, dark_or_white, hit_dark_or_white, piece_colo
         let save_the_row = className.charCodeAt(className.length - 2) - 97;
 
         let temp = $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col - 1}`);
+        let state = true;
 
         // check soldier can hit dark chess piece & not white ones
-        if (save_the_col != 1)
-            if ( temp.html() != '' && $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col - 1}`).children().attr('class').search(`${hit_dark_or_white}`) != -1){
-                if ($(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col - 1}`).children().attr('id').search('k') == -1)
-                    temp.addClass('hit')
-            }
-                    
-        if (save_the_col != 8)
-            if ( $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col + 1}`).html() != '' && $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col + 1}`).children().attr('class').search(`${hit_dark_or_white}`) != -1){
-                if ($(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col + 1}`).children().attr('id').search('k') == -1)
-                    $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col + 1}`).addClass('hit')
-            }
+        if (moving_piece_check_own_same_rowCol(className.split(" "), piece_color, id)){
+            if (save_the_col != 1)
+                if ( temp.html() != '' && $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col - 1}`).children().attr('class').search(`${hit_dark_or_white}`) != -1){
+                    if ($(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col - 1}`).children().attr('id').search('k') == -1)
+                        temp.addClass('hit')
+                }
+                        
+            if (save_the_col != 8)
+                if ( $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col + 1}`).html() != '' && $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col + 1}`).children().attr('class').search(`${hit_dark_or_white}`) != -1){
+                    if ($(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col + 1}`).children().attr('id').search('k') == -1)
+                        $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col + 1}`).addClass('hit')
+                }
+        }
         //-------------------------------------------
 
         // check soldier can move forward

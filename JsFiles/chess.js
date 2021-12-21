@@ -103,7 +103,7 @@ function light_clicked(event){
             moveSoldier(id, _parent_className, 1, 'dark-mohre', 'light-mohre')
             break;
         case "r":
-            moveRokh(id, _parent_className, 'dark-mohre', 'light-mohre')
+            moveRokh(id, _parent_className, 'dark-mohre', 'light-mohre', false, false)
             break;
         case "h":
             moveHorse(id, _parent_className, 'dark-mohre', 'light-mohre')
@@ -112,7 +112,7 @@ function light_clicked(event){
             moveBshop(id, _parent_className, 'dark-mohre', 'light-mohre')
             break;
         case "v":
-            moveQueen(id, _parent_className, 'dark-mohre', 'light-mohre')
+            moveQueen(id, _parent_className, 'dark-mohre', 'light-mohre', false)
             break;
         case "k":
             moveKing(id, _parent_className, 'dark-mohre', 'light-mohre')
@@ -144,7 +144,7 @@ function dark_clicked(event){
             moveSoldier(id, _parent_className, -1, 'light-mohre', 'dark-mohre')
             break;
         case "r":
-            moveRokh(id, _parent_className, 'light-mohre', 'dark-mohre')
+            moveRokh(id, _parent_className, 'light-mohre', 'dark-mohre', false, false)
             break;
         case "h":
             moveHorse(id, _parent_className, 'light-mohre', 'dark-mohre');
@@ -153,7 +153,7 @@ function dark_clicked(event){
             moveBshop(id, _parent_className, 'light-mohre', 'dark-mohre')
             break;
         case "v":
-            moveQueen(id, _parent_className, 'light-mohre', 'dark-mohre')
+            moveQueen(id, _parent_className, 'light-mohre', 'dark-mohre', false)
             break;
         case "k":
             moveKing(id, _parent_className, 'light-mohre', 'dark-mohre')
