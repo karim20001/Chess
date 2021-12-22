@@ -26,12 +26,13 @@ function moveKing (id, className, hit_dark_or_white, piece_color){
                         temp.html('')
                     }
                     if (cheker && temp.children().attr('class').search(`${hit_dark_or_white}`) != -1){
-                        if ($(`.${rows[j]}${k}`).children().attr('id').search('k') == -1){
+                        if (temp.children().attr('id').search('k') == -1){
+                            let save_the_place = temp.html();
                             temp.html(`<p class = "${piece_color}" id = ${id}>♚</p>`);
                             if (if_check(temp.attr('class').split(" "), hit_dark_or_white, piece_color))
                                 temp.addClass('hit');
 
-                            temp.html('');
+                            temp.html(save_the_place);
                         }
                     }
                 }
