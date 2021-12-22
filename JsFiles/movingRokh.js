@@ -1,7 +1,7 @@
 const check_secondRookh_move = [false, false, false, false];
 let rook_col_row = undefined;
 
-function moveRokh(id, className, hit_dark_or_white, piece_color, check_oppenet, check_possible_kish_moves){
+function moveRokh(id, className, hit_dark_or_white, piece_color, check_mate){
 
     let save_the_col = parseInt(className[className.length - 1]);
 
@@ -10,12 +10,7 @@ function moveRokh(id, className, hit_dark_or_white, piece_color, check_oppenet, 
     let saver = $(`#${id}`).parent();
     $(`#${id}`).parent().html('');
     
-
-    if (piece_color == 'white-mohre')
-        kish = kish_white;
-    else 
-        kish = kish_black;
-    
+    let check_for_check_mate = false;
     
     // if (moving_piece_notIn_same_col(className.split(" "), piece_color) && moving_piece_check_own_same_rowCol(className.split(" "), piece_color, id)  && !check_oppenet){
     //     if (rook_col_row){
@@ -27,20 +22,16 @@ function moveRokh(id, className, hit_dark_or_white, piece_color, check_oppenet, 
     //         doingRokh_logic(save_the_row, save_the_col, 0, 1, hit_dark_or_white, piece_color, className, id);
     //     }
     //     if (rook_col_row == undefined){
-        if (!check_oppenet){
+        if (!check_mate){
             
-            doingRokh_logic(save_the_row, save_the_col, 0, -1, hit_dark_or_white, piece_color, false, false);
-            doingRokh_logic(save_the_row, save_the_col, 0, 1, hit_dark_or_white, piece_color, false, false);
-            doingRokh_logic(save_the_row, save_the_col, -1, 0, hit_dark_or_white, piece_color, false, false);
-            doingRokh_logic(save_the_row, save_the_col, 1, 0, hit_dark_or_white, piece_color, false, false);
+            doingRokh_logic(save_the_row, save_the_col, 0, -1, hit_dark_or_white, piece_color, false);
+            doingRokh_logic(save_the_row, save_the_col, 0, 1, hit_dark_or_white, piece_color, false);
+            doingRokh_logic(save_the_row, save_the_col, -1, 0, hit_dark_or_white, piece_color, false);
+            doingRokh_logic(save_the_row, save_the_col, 1, 0, hit_dark_or_white, piece_color, false);
         }
-        if (check_oppenet){
+        if (check_mate){
             
-            doingRokh_logic(save_the_row, save_the_col, 0, -1, hit_dark_or_white, piece_color, true, check_possible_kish_moves);
-                doingRokh_logic(save_the_row, save_the_col, 0, 1, hit_dark_or_white, piece_color, true, check_possible_kish_moves);
-                doingRokh_logic(save_the_row, save_the_col, -1, 0, hit_dark_or_white, piece_color, true, check_possible_kish_moves);
-                doingRokh_logic(save_the_row, save_the_col, 1, 0, hit_dark_or_white, piece_color, true, check_possible_kish_moves);
-                
+            check_for_check_mate = (doingRokh_logic(save_the_row, save_the_col, 0, -1, hit_dark_or_white, piece_color, true) || doingRokh_logic(save_the_row, save_the_col, 0, 1, hit_dark_or_white, piece_color, true) || doingRokh_logic(save_the_row, save_the_col, -1, 0, hit_dark_or_white, piece_color, true) || doingRokh_logic(save_the_row, save_the_col, 1, 0, hit_dark_or_white, piece_color, true));
         }
         saver.html(`<p class = "${piece_color}" id = ${id}>♜</p>`);
         if (piece_color === 'light-mohre'){
@@ -51,6 +42,8 @@ function moveRokh(id, className, hit_dark_or_white, piece_color, check_oppenet, 
             $(".dark-mohre").prop("onclick", null).off("click");
             $(".dark-mohre").click(dark_clicked)
         }
+        if (check_mate)
+            return check_for_check_mate;
        // }
     //     rook_col_row = undefined;
     // }
@@ -60,6 +53,8 @@ function moveRokh(id, className, hit_dark_or_white, piece_color, check_oppenet, 
         $('.active, .hit').click(function (e) { 
             e.preventDefault();
             // set second move for rookh
+            kish = false;
+
             let tempory = 0;
             if (piece_color == 'dark-mohre')
                 tempory = 2;
@@ -75,8 +70,7 @@ function moveRokh(id, className, hit_dark_or_white, piece_color, check_oppenet, 
             animatingMoves(className, class_name, id, piece_color, '♜', '')
             
             setTimeout (function (){
-                if (!check_oppenet)
-                        if_check(id, hit_dark_or_white, piece_color)
+                if_check_then_checkMate(id, hit_dark_or_white, piece_color)
             }, 500)
             
         });
@@ -84,7 +78,7 @@ function moveRokh(id, className, hit_dark_or_white, piece_color, check_oppenet, 
     
 }
 
-function doingRokh_logic (save_the_row, save_the_col, is_row, is_col, hit_dark_or_white, piece_color, id, check_possible_kish_moves){
+function doingRokh_logic (save_the_row, save_the_col, is_row, is_col, hit_dark_or_white, piece_color, check_mate){
 
         let cheker;
 
@@ -98,7 +92,10 @@ function doingRokh_logic (save_the_row, save_the_col, is_row, is_col, hit_dark_o
                     // if (true){
                         
                         if (if_check(temp.attr('class').split(" "), hit_dark_or_white, piece_color)){
-                            temp.addClass('active');
+                            if (!check_mate)
+                                temp.addClass('active');
+                            else
+                                return true;
                             cheker = false;
                         }
                         else
@@ -118,15 +115,13 @@ function doingRokh_logic (save_the_row, save_the_col, is_row, is_col, hit_dark_o
                 // if (true){
 
                     if (if_check(temp.attr('class').split(" "), hit_dark_or_white, piece_color)){
-                        if (temp.children().attr('id').search('k') == -1 && !id)
-                            temp.addClass('hit');
-                        if (temp.children().attr('id').search('k') != -1 && id){
-                            if (piece_color == 'white-mohre')
-                                kish_white = true;
+                        if (temp.children().attr('id').search('k') == -1){
+                            if (!check_mate)
+                                temp.addClass('hit');
                             else
-                                kish_black = true;
-                            return false;
+                                return true;
                         }
+                        
                     } 
                 // }
                 // else {
@@ -147,6 +142,5 @@ function doingRokh_logic (save_the_row, save_the_col, is_row, is_col, hit_dark_o
             if (cheker && temp.children().attr('class').search(`${piece_color}`) != -1)
                 break;
         }
-        return true;
-    
+        return false;
 }

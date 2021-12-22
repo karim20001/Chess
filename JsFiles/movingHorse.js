@@ -1,4 +1,4 @@
-function moveHorse (id, className, hit_dark_or_white, piece_color){
+function moveHorse (id, className, hit_dark_or_white, piece_color, check_mate){
 
     // save col position of horse
     let save_the_col = parseInt(className[className.length - 1]);
@@ -8,6 +8,7 @@ function moveHorse (id, className, hit_dark_or_white, piece_color){
     $(`#${id}`).parent().html('');
     //--------------------------
 
+    let check_for_check_mate = false;
     // if (moving_piece_notIn_same_col(className.split(" "), piece_color, id) && moving_piece_check_own_same_rowCol(className.split(" "), piece_color, id))
 
     //check wich homes horse can go
@@ -21,11 +22,19 @@ function moveHorse (id, className, hit_dark_or_white, piece_color){
 
                     if ( k != parseInt(className[className.length - 1]) && (Math.abs(k - save_the_col) < 2 || Math.abs(j - save_the_row) < 2) && (Math.abs(k - save_the_col) != 1 || Math.abs(j - save_the_row) != 1)){
                         if (if_check($(`.${rows[j]}${k}`).attr('class').split(" "), hit_dark_or_white, piece_color)){
-                            if ($(`.${rows[j]}${k}`).html() == '')
-                                $(`.${rows[j]}${k}`).addClass('active')
+                            if ($(`.${rows[j]}${k}`).html() == ''){
+                                if (!check_mate)
+                                    $(`.${rows[j]}${k}`).addClass('active')
+                                else 
+                                    check_for_check_mate = true;
+                            }
                             else if ($(`.${rows[j]}${k}`).children().attr('class').search(`${hit_dark_or_white}`) != -1){
-                                if ($(`.${rows[j]}${k}`).children().attr('id').search('k') == -1)
-                                    $(`.${rows[j]}${k}`).addClass('hit')
+                                if ($(`.${rows[j]}${k}`).children().attr('id').search('k') == -1){
+                                    if (!check_mate)
+                                        $(`.${rows[j]}${k}`).addClass('hit')
+                                    else
+                                        check_for_check_mate = true;
+                                }
                             }
                         }
                     }
@@ -46,12 +55,16 @@ function moveHorse (id, className, hit_dark_or_white, piece_color){
         $(".dark-mohre").prop("onclick", null).off("click");
         $(".dark-mohre").click(dark_clicked)
     }
+
+    if (check_mate)
+        return check_for_check_mate;
     //---------------------------------------------
     //animating
 
     $('.active, .hit').click(function (e) { 
         e.preventDefault();
         
+        kish = false;
         let class_name = e.target.className.split(" ");
         let id_obj = e.target.id;
 
@@ -60,6 +73,9 @@ function moveHorse (id, className, hit_dark_or_white, piece_color){
         }
 
         animatingMoves(className, class_name, id, piece_color, '♞', '');
+        setTimeout (function (){
+            if_check_then_checkMate(id, hit_dark_or_white, piece_color)
+        }, 500)
 
     });
 }

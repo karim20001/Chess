@@ -1,5 +1,5 @@
 const king_second_move = [false, false]
-function moveKing (id, className, hit_dark_or_white, piece_color){
+function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
 
     let save_the_col = parseInt(className[className.length - 1]);
     let save_the_row = className[className.length - 2].charCodeAt(0) - 97;
@@ -7,6 +7,8 @@ function moveKing (id, className, hit_dark_or_white, piece_color){
 
     let saver = $(`#${id}`).parent();
     $(`#${id}`).parent().html('');
+
+    let check_for_check_mate = false;
 
     for (let i = save_the_row - 1; i < save_the_row + 2; i++){
         
@@ -20,7 +22,10 @@ function moveKing (id, className, hit_dark_or_white, piece_color){
                     if ( temp.html() == ''){
                         temp.html(`<p class = "${piece_color}" id = ${id}>♚</p>`);
                         if (if_check(temp.attr('class').split(" "), hit_dark_or_white, piece_color)){
-                            temp.addClass('active');
+                            if (!check_mate)
+                                temp.addClass('active');
+                            else 
+                                check_for_check_mate = true;
                         }
                         cheker = false;
                         temp.html('')
@@ -29,8 +34,12 @@ function moveKing (id, className, hit_dark_or_white, piece_color){
                         if (temp.children().attr('id').search('k') == -1){
                             let save_the_place = temp.html();
                             temp.html(`<p class = "${piece_color}" id = ${id}>♚</p>`);
-                            if (if_check(temp.attr('class').split(" "), hit_dark_or_white, piece_color))
-                                temp.addClass('hit');
+                            if (if_check(temp.attr('class').split(" "), hit_dark_or_white, piece_color)){
+                                if (!check_mate)
+                                    temp.addClass('hit');
+                                else
+                                    check_for_check_mate = true;
+                            }
 
                             temp.html(save_the_place);
                         }
@@ -40,37 +49,41 @@ function moveKing (id, className, hit_dark_or_white, piece_color){
         }
     }
 
-    // check cascading with rookhs
     let tempory = 0;
     let tempory_for_king = 0;
-    if (piece_color == 'dark-mohre'){
-        tempory = 2;
-        tempory_for_king = 1;
-    }
 
-    for (let i = save_the_col - 1; i > 0; i--){
-        let moving_obj = $(`.${rows[save_the_row]}${i}`);
-
-        if (moving_obj.html() != '' && i > 1)
-            break;
-
-        if (i == 1 && !check_secondRookh_move[0 + tempory] && !king_second_move[tempory_for_king]){
-            if (if_check(moving_obj.attr('class').split(" "), hit_dark_or_white, piece_color))
-                moving_obj.addClass('cascade');
+    if (!kish){
+        // check cascading with rookhs
+        
+        if (piece_color == 'dark-mohre'){
+            tempory = 2;
+            tempory_for_king = 1;
         }
 
-    }
-    for (let i = save_the_col + 1; i < 9; i++){
-        let moving_obj = $(`.${rows[save_the_row]}${i}`);
+        for (let i = save_the_col - 1; i > 0; i--){
+            let moving_obj = $(`.${rows[save_the_row]}${i}`);
 
-        if (moving_obj.html() != '' && i < 8)
-            break;
+            if (moving_obj.html() != '' && i > 1)
+                break;
 
-        if (i == 8 && !check_secondRookh_move[0 + tempory] && !king_second_move[tempory_for_king]){
-            if (if_check(moving_obj.attr('class').split(" "), hit_dark_or_white, piece_color))
-                moving_obj.addClass('cascade');
+            if (i == 1 && !check_secondRookh_move[0 + tempory] && !king_second_move[tempory_for_king]){
+                if (if_check(moving_obj.attr('class').split(" "), hit_dark_or_white, piece_color))
+                    moving_obj.addClass('cascade');
+            }
+
         }
+        for (let i = save_the_col + 1; i < 9; i++){
+            let moving_obj = $(`.${rows[save_the_row]}${i}`);
 
+            if (moving_obj.html() != '' && i < 8)
+                break;
+
+            if (i == 8 && !check_secondRookh_move[0 + tempory] && !king_second_move[tempory_for_king]){
+                if (if_check(moving_obj.attr('class').split(" "), hit_dark_or_white, piece_color))
+                    moving_obj.addClass('cascade');
+            }
+
+        }
     }
 
     saver.html(`<p class = "${piece_color}" id = ${id}>♚</p>`);
@@ -83,11 +96,15 @@ function moveKing (id, className, hit_dark_or_white, piece_color){
         $(".dark-mohre").click(dark_clicked)
     }
 
+    if (check_mate)
+        return check_for_check_mate;
+
     //-----------------------------------------------------
 
     $('.active, .hit').click(function (e) { 
         e.preventDefault();
 
+        kish = false;
         king_second_move[tempory_for_king] = true;
         
         // the class & id object should go

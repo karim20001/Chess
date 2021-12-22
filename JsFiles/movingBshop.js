@@ -1,4 +1,4 @@
-function moveBshop(id, className, hit_dark_or_white, piece_color){
+function moveBshop(id, className, hit_dark_or_white, piece_color, check_mate){
 
     let save_the_col = parseInt(className[className.length - 1])
 
@@ -6,13 +6,18 @@ function moveBshop(id, className, hit_dark_or_white, piece_color){
 
     let saver = $(`#${id}`).parent();
     $(`#${id}`).parent().html('');
+    let check_for_check_mate = false;
 
     // if (moving_piece_check_own_same_rowCol(className.split(" "), piece_color, id)){
-    
-        doingBishop_logic(-1, -1, save_the_row, save_the_col, hit_dark_or_white, piece_color);
-        doingBishop_logic(-1, 1, save_the_row, save_the_col, hit_dark_or_white, piece_color);
-        doingBishop_logic(1, -1, save_the_row, save_the_col, hit_dark_or_white, piece_color);
-        doingBishop_logic(1, 1, save_the_row, save_the_col, hit_dark_or_white, piece_color);
+    if (!check_mate){
+        doingBishop_logic(-1, -1, save_the_row, save_the_col, hit_dark_or_white, piece_color, false);
+        doingBishop_logic(-1, 1, save_the_row, save_the_col, hit_dark_or_white, piece_color, false);
+        doingBishop_logic(1, -1, save_the_row, save_the_col, hit_dark_or_white, piece_color, false);
+        doingBishop_logic(1, 1, save_the_row, save_the_col, hit_dark_or_white, piece_color, false);
+    }
+    else {
+        check_for_check_mate = (doingBishop_logic(-1, -1, save_the_row, save_the_col, hit_dark_or_white, piece_color, true)|| doingBishop_logic(-1, 1, save_the_row, save_the_col, hit_dark_or_white, piece_color, true) || doingBishop_logic(1, -1, save_the_row, save_the_col, hit_dark_or_white, piece_color, true) || doingBishop_logic(1, 1, save_the_row, save_the_col, hit_dark_or_white, piece_color, true));
+    }
 
         saver.html(`<p class = "${piece_color}" id = ${id}>♝</p>`);
         if (piece_color === 'light-mohre'){
@@ -23,9 +28,14 @@ function moveBshop(id, className, hit_dark_or_white, piece_color){
             $(".dark-mohre").prop("onclick", null).off("click");
             $(".dark-mohre").click(dark_clicked)
         }
+
+        if (check_mate)
+            return check_for_check_mate;
         
         $('.active, .hit').click(function (e) { 
             e.preventDefault();
+
+            kish = false;
             
             // the class & id object should go
             let class_name = e.target.className.split(" ");
@@ -36,11 +46,18 @@ function moveBshop(id, className, hit_dark_or_white, piece_color){
             }
 
             animatingMoves(className, class_name, id, piece_color, '♝', '')
+
+            setTimeout (function (){
+                if_check_then_checkMate(id, hit_dark_or_white, piece_color)
+            }, 500)
+            
+            
         });
     // }
+    
 }
 
-function doingBishop_logic(zaribI, zaribJ, save_the_row, save_the_col, hit_dark_or_white, piece_color){
+function doingBishop_logic(zaribI, zaribJ, save_the_row, save_the_col, hit_dark_or_white, piece_color, check_mate){
 
     let cheker;
 
@@ -49,25 +66,27 @@ function doingBishop_logic(zaribI, zaribJ, save_the_row, save_the_col, hit_dark_
         var temp = $(`.${rows[i]}${j}`);
 
         if ( temp.html() == ''){
-            if (if_check(temp.attr('class').split(" "), hit_dark_or_white, piece_color))
-                temp.addClass('active');
+            if (if_check(temp.attr('class').split(" "), hit_dark_or_white, piece_color)){
+                if (!check_mate)
+                    temp.addClass('active');
+                else 
+                    return true;
+            }
             cheker = false;
         }
         else if (temp.children().attr('class').search(`${hit_dark_or_white}`) != -1){
             if (if_check(temp.attr('class').split(" "), hit_dark_or_white, piece_color))
-                if (temp.children().attr('id').search('k') == -1)
-                    temp.addClass('hit');
-                    if (temp.children().attr('id').search('k') != -1){
-                        if (piece_color == 'white-mohre')
-                            kish_white = true;
-                        else
-                            kish_black = true;
-                        return false;
-                    }
+                if (temp.children().attr('id').search('k') == -1){
+                    if (!check_mate)
+                        temp.addClass('hit');
+                    else
+                        return true;
+                }
+                    
             break;
         }
         if (cheker && temp.children().attr('class').search(`${piece_color}`) != -1)
             break;
     }
-    return;
+    return false;
 }
