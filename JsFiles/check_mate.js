@@ -24,12 +24,14 @@ function if_check (id, hit_dark_or_white, piece_color){
 
                 case "r":
                     
-                    let temp = true;
+                    temp = true;
                     if ($(`.${id[1]}`).html() == '')
                         $(`.${id[1]}`).html(`<p class = ${piece_color}>rr</p>`)
                         
-                    if (id[1] != $(`#${_all_opennet[i].id}`).parent().attr('class').split(" ")[1])
-                        temp = check_mate_rook(_all_opennet[i].id, $(`#${_all_opennet[i].id}`).parent().attr('class'), hit_dark_or_white, piece_color)
+                    if (id[1] != $(`#${_all_opennet[i].id}`).parent().attr('class').split(" ")[1]){
+                        temp = check_mate_rook($(`#${_all_opennet[i].id}`).parent().attr('class').split(" "), hit_dark_or_white, piece_color)
+                        // console.log(id[1])
+                    }
 
                     if ($(`.${id[1]}`).children().html() == 'rr')
                         $(`.${id[1]}`).html('')
@@ -43,6 +45,18 @@ function if_check (id, hit_dark_or_white, piece_color){
                 case 'h':
                     break;
                 case 'e':
+                    temp = true;
+                    if ($(`.${id[1]}`).html() == '')
+                        $(`.${id[1]}`).html(`<p class = ${piece_color}>rr</p>`)
+                        
+                    if (id[1] != $(`#${_all_opennet[i].id}`).parent().attr('class').split(" ")[1])
+                        temp = bishop_check_mate($(`#${_all_opennet[i].id}`).parent().attr('class').split(" "), hit_dark_or_white, piece_color)
+
+                    if ($(`.${id[1]}`).children().html() == 'rr')
+                        $(`.${id[1]}`).html('')
+
+                    if (!temp)
+                        return false;
                     break;
                 case 'v':
                     break;
@@ -88,36 +102,67 @@ function if_check (id, hit_dark_or_white, piece_color){
     }
 }
 
-function check_mate_rook (id, className, hit_dark_or_white, piece_color){
+function check_mate_rook (className, hit_dark_or_white, piece_color){
     
-    let save_the_col = parseInt(className[className.length - 1]);
-    let save_the_row = className[className.length - 2].charCodeAt(0) - 97;
+    let save_the_col = parseInt(className[1][1]);
+    let save_the_row = className[1].charCodeAt(0) - 97;
 
 
         return(ww(1, 0) && ww(-1, 0) && ww(0, 1) && ww(0, -1))
 
-            function ww (is_row, is_col){
+        function ww (is_row, is_col){
+            
+            for (let i = save_the_row + is_row, j = save_the_col + is_col; i >= 0 && i < 8 && j > 0 && j < 9; i += is_row, j += is_col){
+                let cheker = true;
+                var temp = $(`.${rows[i]}${j}`);
                 
-                for (let i = save_the_row + is_row, j = save_the_col + is_col; i >= 0 && i < 8 && j > 0 && j < 9; i += is_row, j += is_col){
-                    let cheker = true;
-                    var temp = $(`.${rows[i]}${j}`);
-                    
-                    if ( temp.html() == ''){
-                        cheker = false
-                    }
-                    
-                    
-
-                    else if (temp.children().attr('class').search(hit_dark_or_white) != -1){
-                        
-                        if (temp.children().attr('id').search('k') != -1){
-                            return false;
-                        }
-                        break;
-                    }
-                    if (cheker && temp.children().attr('class').search(`${piece_color}`) != -1)
-                        break;
+                if ( temp.html() == ''){
+                    cheker = false
                 }
-                return true;
+                
+                
+
+                else if (temp.children().attr('class').search(hit_dark_or_white) != -1){
+                    
+                    if (temp.children().attr('id').search('k') != -1){
+                        return false;
+                    }
+                    break;
+                }
+                if (cheker && temp.children().attr('class').search(`${piece_color}`) != -1)
+                    break;
             }
+            return true;
+        }
+}
+
+function bishop_check_mate (className, hit_dark_or_white, piece_color){
+
+    let save_the_col = parseInt(className[1][1]);
+    let save_the_row = className[1].charCodeAt(0) - 97;
+    console.log(className)
+    // console.log(save_the_col)
+
+    return ( logic(-1, -1) && logic(-1, 1) && logic(1, -1) && logic(1, 1) );
+
+    function logic(zaribI, zaribJ){
+
+        for (let i = save_the_row + zaribI, j = save_the_col + zaribJ; i >= 0 && i < 8 && j > 0 && j < 9; j += zaribJ, i += zaribI){
+            cheker = true;
+            var temp = $(`.${rows[i]}${j}`);
+    
+            if ( temp.html() == ''){
+                cheker = false;
+            }
+            else if (temp.children().attr('class').search(`${hit_dark_or_white}`) != -1){
+                if (temp.children().attr('id').search('k') != -1){
+                    return false;
+                }
+                break;
+            }
+            if (cheker && temp.children().attr('class').search(`${piece_color}`) != -1)
+                break;
+        }
+        return true;
+    }
 }
