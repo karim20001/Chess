@@ -72,6 +72,8 @@ function if_check (id, hit_dark_or_white, piece_color){
     
                     break;
                 case 'k':
+                    if (id[1] != $(`#${_all_opennet[i].id}`).parent().attr('class').split(" ")[1])
+                        temp = king_check_mate($(`#${_all_opennet[i].id}`).parent().attr('class').split(" "), hit_dark_or_white)
                     break;
             }
             if ($(`.${id[1]}`).children().html() == 'rr')
@@ -254,4 +256,28 @@ function soldier_check_mate (className, hit_dark_or_white){
         //     }
         // }
         //-------------------------------------------
+}
+
+function king_check_mate (className, hit_dark_or_white){
+
+    let save_the_col = parseInt(className[1][1]);
+    let save_the_row = className[1].charCodeAt(0) - 97;
+
+    for (let i = save_the_row - 1; i < save_the_row + 2; i++){
+        
+        if (i < 8 && i >= 0){
+            for (let j = save_the_col - 1; j < save_the_col + 2; j++){
+
+                if (j < 9 && j > 0){
+                    var temp = $(`.${rows[i]}${j}`);
+
+                    if (temp.html() != '' && cheker && temp.children().attr('class').search(`${hit_dark_or_white}`) != -1){
+                        if (temp.children().attr('id').search('k') != -1)
+                            return false;
+                    }
+                }
+            }
+            return true;
+        }
+    }
 }

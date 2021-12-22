@@ -5,21 +5,34 @@ function moveKing (id, className, hit_dark_or_white, piece_color){
     let save_the_row = className[className.length - 2].charCodeAt(0) - 97;
     let cheker;
 
+    let saver = $(`#${id}`).parent();
+    $(`#${id}`).parent().html('');
+
     for (let i = save_the_row - 1; i < save_the_row + 2; i++){
         
         if (i < 8 && i >= 0){
             for (let j = save_the_col - 1; j < save_the_col + 2; j++){
 
-                if (j < 9 && j > 0){
+                if (j < 9 && j > 0 && (i != save_the_row || j != save_the_col)){
                     cheker = true;
                     var temp = $(`.${rows[i]}${j}`);
 
                     if ( temp.html() == ''){
+                        temp.html(`<p class = "${piece_color}" id = ${id}>♚</p>`);
+                        if (if_check(temp.attr('class').split(" "), hit_dark_or_white, piece_color)){
                             temp.addClass('active');
-                            cheker = false;
+                        }
+                        cheker = false;
+                        temp.html('')
                     }
                     if (cheker && temp.children().attr('class').search(`${hit_dark_or_white}`) != -1){
-                        temp.addClass('hit');
+                        if ($(`.${rows[j]}${k}`).children().attr('id').search('k') == -1){
+                            temp.html(`<p class = "${piece_color}" id = ${id}>♚</p>`);
+                            if (if_check(temp.attr('class').split(" "), hit_dark_or_white, piece_color))
+                                temp.addClass('hit');
+
+                            temp.html('');
+                        }
                     }
                 }
             }
@@ -41,7 +54,8 @@ function moveKing (id, className, hit_dark_or_white, piece_color){
             break;
 
         if (i == 1 && !check_secondRookh_move[0 + tempory] && !king_second_move[tempory_for_king]){
-            moving_obj.addClass('cascade');
+            if (if_check(moving_obj.attr('class').split(" "), hit_dark_or_white, piece_color))
+                moving_obj.addClass('cascade');
         }
 
     }
@@ -52,10 +66,13 @@ function moveKing (id, className, hit_dark_or_white, piece_color){
             break;
 
         if (i == 8 && !check_secondRookh_move[0 + tempory] && !king_second_move[tempory_for_king]){
-            moving_obj.addClass('cascade');
+            if (if_check(moving_obj.attr('class').split(" "), hit_dark_or_white, piece_color))
+                moving_obj.addClass('cascade');
         }
 
     }
+
+    saver.html(`<p class = "${piece_color}" id = ${id}>♚</p>`);
 
     //-----------------------------------------------------
 
