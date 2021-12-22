@@ -7,11 +7,15 @@ function moveRokh(id, className, hit_dark_or_white, piece_color, check_oppenet, 
 
     let save_the_row = className[className.length - 2].charCodeAt(0) - 97;
 
+    let saver = $(`#${id}`).parent();
+    $(`#${id}`).parent().html('');
+    
+
     if (piece_color == 'white-mohre')
         kish = kish_white;
     else 
         kish = kish_black;
-    console.log(kish)
+    
     
     // if (moving_piece_notIn_same_col(className.split(" "), piece_color) && moving_piece_check_own_same_rowCol(className.split(" "), piece_color, id)  && !check_oppenet){
     //     if (rook_col_row){
@@ -38,6 +42,7 @@ function moveRokh(id, className, hit_dark_or_white, piece_color, check_oppenet, 
                 doingRokh_logic(save_the_row, save_the_col, 1, 0, hit_dark_or_white, piece_color, true, check_possible_kish_moves);
                 
         }
+        saver.html(`<p class = "${piece_color}" id = ${id}>♜</p>`);
        // }
     //     rook_col_row = undefined;
     // }
@@ -81,8 +86,8 @@ function doingRokh_logic (save_the_row, save_the_col, is_row, is_col, hit_dark_o
 
             
             if ( temp.html() == ''){
-                if (!id && !check_possible_kish_moves){
-                    if (kish){
+                // if (!id && !check_possible_kish_moves){
+                    // if (true){
                         
                         if (if_check(temp.attr('class').split(" "), hit_dark_or_white, piece_color)){
                             temp.addClass('active');
@@ -90,19 +95,19 @@ function doingRokh_logic (save_the_row, save_the_col, is_row, is_col, hit_dark_o
                         }
                         else
                             cheker = false
-                    }
+                    // }
                     
-                    else {
-                        temp.addClass('active');
-                        cheker = false;
-                    }
-                }
-                else 
-                cheker = false
+                    // else {
+                    //     temp.addClass('active');
+                    //     cheker = false;
+                    // }
+                // }
+                // else 
+                // cheker = false
             }
             else if (temp.children().attr('class').search(`${hit_dark_or_white}`) != -1){
 
-                if (kish){
+                // if (true){
 
                     if (if_check(temp.attr('class').split(" "), hit_dark_or_white, piece_color)){
                         if (temp.children().attr('id').search('k') == -1 && !id)
@@ -115,18 +120,18 @@ function doingRokh_logic (save_the_row, save_the_col, is_row, is_col, hit_dark_o
                             return false;
                         }
                     } 
-                }
-                else {
-                    if (temp.children().attr('id').search('k') == -1 && !id)
-                            temp.addClass('hit');
-                        if (temp.children().attr('id').search('k') != -1 && id){
-                            if (piece_color == 'white-mohre')
-                                kish_white = true;
-                            else
-                                kish_black = true;
-                            return false;
-                        }
-                }
+                // }
+                // else {
+                //     if (temp.children().attr('id').search('k') == -1 && !id)
+                //             temp.addClass('hit');
+                //         if (temp.children().attr('id').search('k') != -1 && id){
+                //             if (piece_color == 'white-mohre')
+                //                 kish_white = true;
+                //             else
+                //                 kish_black = true;
+                //             return false;
+                //         }
+                // }
                     
                 
                 break;

@@ -6,7 +6,7 @@ function if_check (id, hit_dark_or_white, piece_color){
 
     
     let temp;
-    if (kish){
+    if (true){
         if (piece_color == 'dark-mohre'){
             piece_color = 'light-mohre'
             hit_dark_or_white = 'dark-mohre'
@@ -20,22 +20,23 @@ function if_check (id, hit_dark_or_white, piece_color){
 
         for (let i = 0; i < _all_opennet.length; i++){
             
-            // console.log(_all_opennet[i].id[0])
-            console.log(_all_opennet[9].id[0])
             switch (_all_opennet[i].id[0]){
 
                 case "r":
                     
+                    let temp = true;
                     if ($(`.${id[1]}`).html() == '')
                         $(`.${id[1]}`).html(`<p class = ${piece_color}>rr</p>`)
-                        console.log(_all_opennet[9].id[0])
                         
-                    let temp = check_mate_rook(_all_opennet[i].id, $(`#${_all_opennet[i].id}`).parent().attr('class'), hit_dark_or_white, piece_color)
+                    if (id[1] != $(`#${_all_opennet[i].id}`).parent().attr('class').split(" ")[1])
+                        temp = check_mate_rook(_all_opennet[i].id, $(`#${_all_opennet[i].id}`).parent().attr('class'), hit_dark_or_white, piece_color)
 
                     if ($(`.${id[1]}`).children().html() == 'rr')
                         $(`.${id[1]}`).html('')
+
                     if (!temp)
                         return false;
+
                     break;
                 case 's':
                     break;
@@ -88,12 +89,10 @@ function if_check (id, hit_dark_or_white, piece_color){
 }
 
 function check_mate_rook (id, className, hit_dark_or_white, piece_color){
+    
     let save_the_col = parseInt(className[className.length - 1]);
-
     let save_the_row = className[className.length - 2].charCodeAt(0) - 97;
 
-    // console.log(save_the_col)
-    // console.log(save_the_row)
 
         return(ww(1, 0) && ww(-1, 0) && ww(0, 1) && ww(0, -1))
 
@@ -110,7 +109,7 @@ function check_mate_rook (id, className, hit_dark_or_white, piece_color){
                     
 
                     else if (temp.children().attr('class').search(hit_dark_or_white) != -1){
-                        // console.log(temp.children().attr('id'))
+                        
                         if (temp.children().attr('id').search('k') != -1){
                             return false;
                         }
