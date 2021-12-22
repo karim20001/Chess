@@ -73,6 +73,14 @@ function moveKing (id, className, hit_dark_or_white, piece_color){
     }
 
     saver.html(`<p class = "${piece_color}" id = ${id}>♚</p>`);
+    if (piece_color == 'light-mohre'){
+        $(".light-mohre").prop("onclick", null).off("click");
+        $(`.${piece_color}`).click(light_clicked)
+    }
+    else {
+        $(".dark-mohre").prop("onclick", null).off("click");
+        $(`.${piece_color}`).click(dark_clicked)
+    }
 
     //-----------------------------------------------------
 
