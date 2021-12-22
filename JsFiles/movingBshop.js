@@ -49,7 +49,7 @@ function doingBishop_logic(zaribI, zaribJ, save_the_row, save_the_col, hit_dark_
             if (if_check(temp.attr('class').split(" "), hit_dark_or_white, piece_color))
                 if (temp.children().attr('id').search('k') == -1)
                     temp.addClass('hit');
-                    if (temp.children().attr('id').search('k') != -1 && id){
+                    if (temp.children().attr('id').search('k') != -1){
                         if (piece_color == 'white-mohre')
                             kish_white = true;
                         else

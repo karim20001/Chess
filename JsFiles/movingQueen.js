@@ -5,28 +5,33 @@ function moveQueen (id , className, hit_dark_or_white, piece_color, check_oppene
 
     // using rookh and bshop logic for queen
 
-    if (moving_piece_notIn_same_col(className.split(" "), piece_color) && moving_piece_check_own_same_rowCol(className.split(" "), piece_color, id) && !check_oppenet){
-        if (rook_col_row){
-            doingRokh_logic(save_the_row, save_the_col, -1, 0, hit_dark_or_white, piece_color, className, id);
-            doingRokh_logic(save_the_row, save_the_col, 1, 0, hit_dark_or_white, piece_color, className, id);
-        }
-        if (!rook_col_row) {
-            doingRokh_logic(save_the_row, save_the_col, 0, -1, hit_dark_or_white, piece_color,className, id);
-            doingRokh_logic(save_the_row, save_the_col, 0, 1, hit_dark_or_white, piece_color, className, id);
-        }
-        if (rook_col_row == undefined){
-            doingRokh_logic(save_the_row, save_the_col, 0, -1, hit_dark_or_white, piece_color,className, id);
-            doingRokh_logic(save_the_row, save_the_col, 0, 1, hit_dark_or_white, piece_color, className, id);
-            doingRokh_logic(save_the_row, save_the_col, -1, 0, hit_dark_or_white, piece_color, className, id);
-            doingRokh_logic(save_the_row, save_the_col, 1, 0, hit_dark_or_white, piece_color, className, id);
-        }
-        rook_col_row = undefined;
-    }
-
+    // if (moving_piece_notIn_same_col(className.split(" "), piece_color) && moving_piece_check_own_same_rowCol(className.split(" "), piece_color, id) && !check_oppenet){
+        // if (rook_col_row){
+        //     doingRokh_logic(save_the_row, save_the_col, -1, 0, hit_dark_or_white, piece_color, className, id);
+        //     doingRokh_logic(save_the_row, save_the_col, 1, 0, hit_dark_or_white, piece_color, className, id);
+        // }
+        // if (!rook_col_row) {
+        //     doingRokh_logic(save_the_row, save_the_col, 0, -1, hit_dark_or_white, piece_color,className, id);
+        //     doingRokh_logic(save_the_row, save_the_col, 0, 1, hit_dark_or_white, piece_color, className, id);
+        // }
+        // if (rook_col_row == undefined){
+            let saver = $(`#${id}`).parent();
+            $(`#${id}`).parent().html(''); 
+            doingRokh_logic(save_the_row, save_the_col, 0, -1, hit_dark_or_white, piece_color,false);
+            doingRokh_logic(save_the_row, save_the_col, 0, 1, hit_dark_or_white, piece_color, false);
+            doingRokh_logic(save_the_row, save_the_col, -1, 0, hit_dark_or_white, piece_color, false);
+            doingRokh_logic(save_the_row, save_the_col, 1, 0, hit_dark_or_white, piece_color, false);
+        // }
+        // saver.html(`<p class = "${piece_color}" id = ${id}>♛</p>`);
+        // rook_col_row = undefined;
+    // }
+    // $(`#${id}`).parent().html('');
     doingBishop_logic(-1, -1, save_the_row, save_the_col, hit_dark_or_white, piece_color);
     doingBishop_logic(-1, 1, save_the_row, save_the_col, hit_dark_or_white, piece_color);
     doingBishop_logic(1, -1, save_the_row, save_the_col, hit_dark_or_white, piece_color);
     doingBishop_logic(1, 1, save_the_row, save_the_col, hit_dark_or_white, piece_color);
+    saver.html(`<p class = "${piece_color}" id = ${id}>♛</p>`);
+    
 
     //------------------------------------------------------
 

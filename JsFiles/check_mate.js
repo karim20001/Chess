@@ -19,50 +19,66 @@ function if_check (id, hit_dark_or_white, piece_color){
         const _all_opennet = $(`.${piece_color}`);
 
         for (let i = 0; i < _all_opennet.length; i++){
+
+            temp = true;
+            if ($(`.${id[1]}`).html() == '')
+                $(`.${id[1]}`).html(`<p class = ${piece_color}>rr</p>`)
             
             switch (_all_opennet[i].id[0]){
 
                 case "r":
-                    
-                    temp = true;
-                    if ($(`.${id[1]}`).html() == '')
-                        $(`.${id[1]}`).html(`<p class = ${piece_color}>rr</p>`)
-                        
+                     
                     if (id[1] != $(`#${_all_opennet[i].id}`).parent().attr('class').split(" ")[1]){
                         temp = check_mate_rook($(`#${_all_opennet[i].id}`).parent().attr('class').split(" "), hit_dark_or_white, piece_color)
                         // console.log(id[1])
                     }
 
-                    if ($(`.${id[1]}`).children().html() == 'rr')
-                        $(`.${id[1]}`).html('')
-
-                    if (!temp)
-                        return false;
-
                     break;
                 case 's':
+                    if (id[1] != $(`#${_all_opennet[i].id}`).parent().attr('class').split(" ")[1]){
+                        temp = soldier_check_mate($(`#${_all_opennet[i].id}`).parent().attr('class').split(" "), hit_dark_or_white)
+                        // console.log(id[1])
+                    }
                     break;
                 case 'h':
+                        
+                    if (id[1] != $(`#${_all_opennet[i].id}`).parent().attr('class').split(" ")[1]){
+                        temp = horse_check_mate($(`#${_all_opennet[i].id}`).parent().attr('class').split(" "), hit_dark_or_white)
+                        // console.log(id[1])
+                    }
                     break;
                 case 'e':
-                    temp = true;
-                    if ($(`.${id[1]}`).html() == '')
-                        $(`.${id[1]}`).html(`<p class = ${piece_color}>rr</p>`)
                         
                     if (id[1] != $(`#${_all_opennet[i].id}`).parent().attr('class').split(" ")[1])
                         temp = bishop_check_mate($(`#${_all_opennet[i].id}`).parent().attr('class').split(" "), hit_dark_or_white, piece_color)
 
+                    break;
+                case 'v':
+                    
+                    if (id[1] != $(`#${_all_opennet[i].id}`).parent().attr('class').split(" ")[1]){
+                        temp = check_mate_rook($(`#${_all_opennet[i].id}`).parent().attr('class').split(" "), hit_dark_or_white, piece_color)
+                    }
+                    else
+                        return true;
+
                     if ($(`.${id[1]}`).children().html() == 'rr')
                         $(`.${id[1]}`).html('')
 
                     if (!temp)
                         return false;
-                    break;
-                case 'v':
+                            
+                    if (id[1] != $(`#${_all_opennet[i].id}`).parent().attr('class').split(" ")[1])
+                        temp = bishop_check_mate($(`#${_all_opennet[i].id}`).parent().attr('class').split(" "), hit_dark_or_white, piece_color)
+    
                     break;
                 case 'k':
                     break;
             }
+            if ($(`.${id[1]}`).children().html() == 'rr')
+                $(`.${id[1]}`).html('')
+
+            if (!temp)
+                return false;
         }
         return true;
     }
@@ -140,7 +156,6 @@ function bishop_check_mate (className, hit_dark_or_white, piece_color){
 
     let save_the_col = parseInt(className[1][1]);
     let save_the_row = className[1].charCodeAt(0) - 97;
-    console.log(className)
     // console.log(save_the_col)
 
     return ( logic(-1, -1) && logic(-1, 1) && logic(1, -1) && logic(1, 1) );
@@ -165,4 +180,78 @@ function bishop_check_mate (className, hit_dark_or_white, piece_color){
         }
         return true;
     }
+}
+
+function horse_check_mate (className, hit_dark_or_white){
+    let save_the_col = parseInt(className[1][1]);
+    let save_the_row = className[1].charCodeAt(0) - 97;
+
+    for (let j = save_the_row - 2; j <= save_the_row + 2; j++){
+
+        if (j >= 0 && j < 8 && j != save_the_row){
+
+            for (let k = save_the_col - 2; k <= save_the_col + 2; k++){
+
+                if (k > 0 && k < 9){
+                    
+                    if ( k != parseInt(className[1][1]) && (Math.abs(k - save_the_col) < 2 || Math.abs(j - save_the_row) < 2) && (Math.abs(k - save_the_col) != 1 || Math.abs(j - save_the_row) != 1)){
+                        if ($(`.${rows[j]}${k}`).html() != '' && $(`.${rows[j]}${k}`).children().attr('class').search(`${hit_dark_or_white}`) != -1){
+                            if ($(`.${rows[j]}${k}`).children().attr('id').search('k') != -1)
+                                return false
+                        }
+                    }
+                }
+
+                    // if ($(`.${rows[j]}${k}`).children().attr('class').search('dark-mohre') != -1 && k != parseInt(className[className.length - 1]) && (Math.abs(k - save_the_col) < 2 || Math.abs(j - i) < 2)){
+                    //     $(`.${rows[j]}${k}`).addClass('hit')
+                    // }
+            }
+        }
+    }
+    return true;
+}
+
+function soldier_check_mate (className, hit_dark_or_white){
+
+    let save_the_col = parseInt(className[1][1]);
+    let save_the_row = className[1].charCodeAt(0) - 97;
+    let dark_or_white;
+    if (hit_dark_or_white == 'light-mohre')
+        dark_or_white = -1;
+    else
+        dark_or_white = 1;
+
+    let temp = $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col - 1}`);
+
+        // check soldier can hit dark chess piece & not white ones
+        // if (moving_piece_check_own_same_rowCol(className.split(" "), piece_color, id)){
+            if (save_the_col != 1)
+                if ( temp.html() != '' && $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col - 1}`).children().attr('class').search(`${hit_dark_or_white}`) != -1){
+                    if ($(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col - 1}`).children().attr('id').search('k') != -1)
+                        return false
+                }
+                        
+            if (save_the_col != 8)
+                if ( $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col + 1}`).html() != '' && $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col + 1}`).children().attr('class').search(`${hit_dark_or_white}`) != -1){
+                    if ($(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col + 1}`).children().attr('id').search('k') != -1)
+                        return false;
+                }
+        // }
+        return true;
+        //-------------------------------------------
+
+        // check soldier can move forward
+        // let temp1 = $(`.${rows[save_the_row - (1 * dark_or_white)]}${className[className.length - 1]}`)
+        // let temp2 = $(`.${rows[save_the_row - (2 * dark_or_white)]}${className[className.length - 1]}`)
+                
+        // if (temp1.html() == ''){
+
+        //     temp1.addClass('active');
+
+        //     if (temp2.html() == '' && ($(`#${id}`).attr('class') === 'light-mohre' || $(`#${id}`).attr('class') === 'dark-mohre')){
+                        
+        //         temp2.addClass('active');
+        //     }
+        // }
+        //-------------------------------------------
 }
