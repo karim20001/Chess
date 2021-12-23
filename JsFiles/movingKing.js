@@ -66,8 +66,8 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
             if (moving_obj.html() != '' && i > 1)
                 break;
 
-            if (i == 1 && !check_secondRookh_move[0 + tempory] && !king_second_move[tempory_for_king]){
-                if (if_check(moving_obj.attr('class').split(" "), hit_dark_or_white, piece_color))
+            if (i == 1 && !check_secondRookh_move[0 + tempory] && !king_second_move[tempory_for_king] && moving_obj.html() != ''){
+                if (if_check(moving_obj.attr('class').split(" "), hit_dark_or_white, piece_color) && if_check($(`.${rows[save_the_row]}3`).attr('class').split(" "), hit_dark_or_white, piece_color))
                     moving_obj.addClass('cascade');
             }
 
@@ -78,8 +78,8 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
             if (moving_obj.html() != '' && i < 8)
                 break;
 
-            if (i == 8 && !check_secondRookh_move[0 + tempory] && !king_second_move[tempory_for_king]){
-                if (if_check(moving_obj.attr('class').split(" "), hit_dark_or_white, piece_color))
+            if (i == 8 && !check_secondRookh_move[0 + tempory] && !king_second_move[tempory_for_king] && moving_obj.html() != ''){
+                if (if_check(moving_obj.attr('class').split(" "), hit_dark_or_white, piece_color) && if_check($(`.${rows[save_the_row]}7`).attr('class').split(" "), hit_dark_or_white, piece_color))
                     moving_obj.addClass('cascade');
             }
 

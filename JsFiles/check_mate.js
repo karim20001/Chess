@@ -343,7 +343,7 @@ function if_check_then_checkMate(id, hit_dark_or_white, piece_color) {
                     // console.log(hit_dark_or_white)
                     break;
                 case "v":
-                    moveQueen(mohre_id, parent_class, piece_color, hit_dark_or_white, true)
+                    temp = moveQueen(mohre_id, parent_class, piece_color, hit_dark_or_white, true)
                     
                     break;
                 case "k":
