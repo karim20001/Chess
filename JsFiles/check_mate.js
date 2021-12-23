@@ -225,19 +225,24 @@ function soldier_check_mate(className, hit_dark_or_white) {
         dark_or_white = 1;
 
     let temp = $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col - 1}`);
+    // console.log($(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col - 1}`))
 
     // check soldier can hit dark chess piece & not white ones
     // if (moving_piece_check_own_same_rowCol(className.split(" "), piece_color, id)){
-    if (save_the_col != 1)
-        if (temp.html() != '' && $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col - 1}`).children().attr('class').search(`${hit_dark_or_white}`) != -1) {
-            if ($(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col - 1}`).children().attr('id').search('k') != -1)
-                return false
-        }
 
     if (save_the_col != 8)
         if ($(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col + 1}`).html() != '' && $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col + 1}`).children().attr('class').search(`${hit_dark_or_white}`) != -1) {
             if ($(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col + 1}`).children().attr('id').search('k') != -1)
                 return false;
+        }
+
+        if (save_the_col != 1){
+            // let rr = temp.children().attr('class')
+            // let u = temp.children().attr('id')
+            if ($(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col - 1}`).html() != '' && $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col - 1}`).children().attr('class').search(`${hit_dark_or_white}`) != -1) {
+                if ($(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col - 1}`).children().attr('id').search('k') != -1)
+                    return false;
+            }
         }
     // }
     return true;
