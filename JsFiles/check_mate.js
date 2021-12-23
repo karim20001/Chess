@@ -344,12 +344,10 @@ function if_check_then_checkMate(id, hit_dark_or_white, piece_color) {
                     break;
                 case "v":
                     moveQueen(mohre_id, parent_class, piece_color, hit_dark_or_white, true)
-                    // temp = moveRokh(mohre_id, parent_class, piece_color, hit_dark_or_white, true)
-                    // if (temp)
-                    //     return;
-                    // temp = moveBshop(mohre_id, parent_class, piece_color, hit_dark_or_white, true)
-                    // break;
+                    
+                    break;
                 case "k":
+                    console.log(mohre_id)
                     temp = moveKing(mohre_id, parent_class, piece_color, hit_dark_or_white, true)
             }
             if (temp)
