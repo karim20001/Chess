@@ -116,7 +116,13 @@ header {
 }
 .chess-board .light { background: #718091; }
 .chess-board .dark { background: #a4aebb; }
-.light-mohre{ color: #FFFFFF; }
+.light-mohre {
+    color: #FFFFFF;
+    text-shadow: 0 0 3px #411111, 0 0 5px #25217b;
+}
+.dark-mohre {
+    text-shadow: 0 0 3px #d7ebcf, 0 0 5px #bbede2;
+}
 
 #start {
     background-color: aquamarine;
