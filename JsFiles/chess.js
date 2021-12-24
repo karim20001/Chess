@@ -19,6 +19,8 @@ let check_side_move = true, firstClicked_or_second = true, bullshit_stuff_with_i
 // $('.c3').removeClass('active');
 var second = 30;
 
+const whitePieces_number = [2, 2, 2, 1];
+const blackPieces_number = [2, 2, 2, 1];
 
 function counter(){
     let switcher = document.getElementById('turn')
@@ -87,7 +89,7 @@ function counter(){
 
 function light_clicked(event){
     
-    let id = event.target.id
+    let id = event.target.id;
     let _parent_className = $(`#${id}`).parent().attr('class');
     // remove active classes & off onclick for them every time clicked
     $('.active').prop('onclick', null).off('click')
@@ -210,5 +212,119 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
             // console.log($(`.${temp}`).children())
             // $('.light-mohre').click(light_clicked)
             // $('.dark-mohre').click(dark_clicked)
+            if (id[0] == 's'){
+                if (dark_or_white == 'light-mohre' && temp[0] == 'a'){
+                    soldier_reached_end(temp, id, dark_or_white)
+                }
+                if (dark_or_white == 'dark-mohre' && temp[0] == 'h'){
+                    soldier_reached_end(temp, id, dark_or_white)
+                }
+            }
         }, 495)
+
+}
+
+//soldier_reached_end(true, true)
+
+function soldier_reached_end (parent_class, id, dark_or_white){
+
+    // remove listener of active & hit classes
+    $('.active').prop('onclick', null).off('click')
+    $('.hit').prop('onclick', null).off('click')
+    $('.cascade').prop('onclick', null).off('click');
+
+    // remove active from all elements
+    $('.light, .dark').removeClass('active');
+    $('.light, .dark').removeClass('hit');
+    $('.light, .dark').removeClass('cascade');
+
+    clearInterval(interval)
+
+    $("body").append(`<div class='soldier-end'>
+                        <h2>Choose your piece to replace</h2>
+                        <p class='selected-option' id='r'>Rook</p>
+                        <p class='selected-option' id='h'>Horse</p>
+                        <p class='selected-option' id='b'>Bishop</p>
+                        <p class='selected-option' id='q'>Queen</p>
+                    </div>`);
+    $('.to-disable').css("opacity", ".4");
+
+    let temp;
+    let hit;
+    if (dark_or_white == 'light-mohre')
+        hit = 'dark-mohre';
+    else 
+        hit = 'light-mohre'
+
+    $('.selected-option').click(function (e) { 
+        e.preventDefault();
+        
+        let clicked_id = e.target.id;
+        let number;
+
+        $('.soldier-end').remove();
+        $(`#${id}`).remove();
+        $('.to-disable').css("opacity", "1");
+        temp = id[1]
+
+        switch (clicked_id){
+
+            case 'r':
+                if (dark_or_white == 'light-mohre'){
+                    number = whitePieces_number[0] + 1;
+                    whitePieces_number[0] += 1;
+                }
+                else{
+                    number = blackPieces_number[0] + 1;
+                    blackPieces_number[0] += 1;
+                }
+                set_instead_soldier('r', '♜', number)
+                break;
+
+            case 'h':
+                if (dark_or_white == 'light-mohre'){
+                    number = whitePieces_number[1] + 1;
+                    whitePieces_number[1] += 1;
+                }
+                else{
+                    number = blackPieces_number[1] + 1;
+                    blackPieces_number[1] += 1;
+                }
+                set_instead_soldier('h', '♞', number)
+                break;
+
+            case 'b':
+                if (dark_or_white == 'light-mohre'){
+                    number = whitePieces_number[2] + 1;
+                    whitePieces_number[2] += 1;
+                }
+                else{
+                    number = blackPieces_number[2] + 1;
+                    blackPieces_number[2] += 1;
+                }
+                set_instead_soldier('e', '♝', number)
+                break;
+
+            case 'q':
+                if (dark_or_white == 'light-mohre'){
+                    number = whitePieces_number[3] + 1;
+                    whitePieces_number[3] += 1;
+                }
+                else{
+                    number = blackPieces_number[3] + 1;
+                    blackPieces_number[3] += 1;
+                }
+                set_instead_soldier('v', '♛', number);
+                break;
+        }
+    });
+    
+    function set_instead_soldier (char, kindOfPiece, number_for_id){
+        $(`.${parent_class}`).html(`<p class="${dark_or_white}" id="${char}${temp}${number_for_id}">${kindOfPiece}</p>`);
+            if_check_then_checkMate(`${char}${temp}${number_for_id}`, hit, dark_or_white);
+            console.log($(`.${parent_class}`).html())
+            start();
+        
+        
+    }
 }

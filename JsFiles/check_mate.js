@@ -54,12 +54,10 @@ function if_check(id, hit_dark_or_white, piece_color) {
 
                     break;
                 case 'v':
-
+                    // console.log(_all_opennet[i].id)
                     if (id[1] != $(`#${_all_opennet[i].id}`).parent().attr('class').split(" ")[1]) {
                         temp = check_mate_rook($(`#${_all_opennet[i].id}`).parent().attr('class').split(" "), hit_dark_or_white, piece_color)
                     }
-                    else
-                        return true;
 
                     if ($(`.${id[1]}`).children().html() == 'rr')
                         $(`.${id[1]}`).html('')
@@ -230,6 +228,7 @@ function soldier_check_mate(className, hit_dark_or_white) {
     // check soldier can hit dark chess piece & not white ones
     // if (moving_piece_check_own_same_rowCol(className.split(" "), piece_color, id)){
 
+    // console.log(save_the_row)
     if (save_the_col != 8)
         if ($(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col + 1}`).html() != '' && $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col + 1}`).children().attr('class').search(`${hit_dark_or_white}`) != -1) {
             if ($(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col + 1}`).children().attr('id').search('k') != -1)
@@ -291,30 +290,41 @@ function king_check_mate(className, hit_dark_or_white) {
 function if_check_then_checkMate(id, hit_dark_or_white, piece_color) {
 
     let temp = false;
-    switch (id[0]) {
+    const _all_of_pieces_own = $(`.${piece_color}`);
 
-        case "s":
-            temp = soldier_check_mate($(`#${id}`).parent().attr('class').split(" "), hit_dark_or_white)
-            break;
-        case "r":
-            temp = check_mate_rook($(`#${id}`).parent().attr('class').split(" "), hit_dark_or_white, piece_color)
-            break;
-        case "h":
-            temp = horse_check_mate($(`#${id}`).parent().attr('class').split(" "), hit_dark_or_white)
-            break;
-        case "e":
-            temp = bishop_check_mate($(`#${id}`).parent().attr('class').split(" "), hit_dark_or_white, piece_color)
-            // console.log(hit_dark_or_white)
-            break;
-        case "v":
-            temp = check_mate_rook($(`#${id}`).parent().attr('class').split(" "), hit_dark_or_white, piece_color)
-            if (!temp)
+    for (let i = 0; i < _all_of_pieces_own.length; i++){
+
+        let mohre_id = _all_of_pieces_own[i].id
+        switch (mohre_id[0]) {
+
+            case "s":
+                temp = soldier_check_mate($(`#${mohre_id}`).parent().attr('class').split(" "), hit_dark_or_white)
                 break;
-            temp = bishop_check_mate($(`#${id}`).parent().attr('class').split(" "), hit_dark_or_white, piece_color)
+            case "r":
+                temp = check_mate_rook($(`#${mohre_id}`).parent().attr('class').split(" "), hit_dark_or_white, piece_color)
+                break;
+            case "h":
+                temp = horse_check_mate($(`#${mohre_id}`).parent().attr('class').split(" "), hit_dark_or_white)
+                break;
+            case "e":
+                temp = bishop_check_mate($(`#${mohre_id}`).parent().attr('class').split(" "), hit_dark_or_white, piece_color)
+                // console.log(hit_dark_or_white)
+                break;
+            case "v":
+
+                temp = check_mate_rook($(`#${mohre_id}`).parent().attr('class').split(" "), hit_dark_or_white, piece_color)
+                if (!temp)
+                    break;
+                temp = bishop_check_mate($(`#${mohre_id}`).parent().attr('class').split(" "), hit_dark_or_white, piece_color)
+                break;
+        }
+        if (!temp){
             break;
+        }
     }
     if (!temp){
 
+        
         kish = true;
         const _all_own = $(`.${hit_dark_or_white}`)
 
@@ -347,7 +357,6 @@ function if_check_then_checkMate(id, hit_dark_or_white, piece_color) {
                     
                     break;
                 case "k":
-                    console.log(mohre_id)
                     temp = moveKing(mohre_id, parent_class, piece_color, hit_dark_or_white, true)
             }
             if (temp)

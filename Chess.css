@@ -134,6 +134,27 @@ header {
     color: white;
 }
 
+.soldier-end {
+    position: absolute;
+    z-index: 1;
+    padding: 25px;
+    border-radius: 5px;
+    top: 9%;
+    text-align: center;
+    background-color: rgb(43, 83, 104);
+    left: 33%;
+}
 
+.selected-option {
+    background-color: greenyellow;
+    border-radius: 5px;
+    margin: 35px;
+    padding: 5px;
+    font-size: x-large;
+}
 
-    
+.selected-option:hover {
+    background-color: green;
+    transform: scale(1.06);
+    cursor: pointer;
+}

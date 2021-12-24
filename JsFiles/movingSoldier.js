@@ -96,8 +96,19 @@ function moveSoldier(id, className, dark_or_white, hit_dark_or_white, piece_colo
 
             animatingMoves(className, class_name, id, piece_color, '♟', ' second-move');
 
-            setTimeout (function (){
-                if_check_then_checkMate(id, hit_dark_or_white, piece_color)
-            }, 500)
+            if (piece_color == 'light-mohre'){
+                if (className[5] != 'b'){
+                    setTimeout (function (){
+                        if_check_then_checkMate(id, hit_dark_or_white, piece_color)
+                    }, 500)
+                }
+            }
+            else {
+                if (className[5] != 'g'){
+                    setTimeout (function (){
+                        if_check_then_checkMate(id, hit_dark_or_white, piece_color)
+                    }, 500)
+                }
+            }
         });
 }
