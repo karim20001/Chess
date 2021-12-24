@@ -321,10 +321,9 @@ function soldier_reached_end (parent_class, id, dark_or_white){
     
     function set_instead_soldier (char, kindOfPiece, number_for_id){
         $(`.${parent_class}`).html(`<p class="${dark_or_white}" id="${char}${temp}${number_for_id}">${kindOfPiece}</p>`);
+        setTimeout(function (){
             if_check_then_checkMate(`${char}${temp}${number_for_id}`, hit, dark_or_white);
-            console.log($(`.${parent_class}`).html())
             start();
-        
-        
+        }, 50)
     }
 }
