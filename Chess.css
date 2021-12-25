@@ -43,7 +43,7 @@ header {
 
 #deleted-white {
     height : 50px;
-    width : 200px;
+    width : 170px;
     background-color: #000000;
     margin-right: 12px;
     color: #ffffff;
@@ -52,7 +52,7 @@ header {
 
 #deleted-black {
     height : 50px;
-    width : 200px;
+    width : 170px;
     background-color: #ffffff;
     margin-left: 12px;
     text-align: center;

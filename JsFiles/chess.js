@@ -1,11 +1,17 @@
 const start_button = document.getElementById('start')
 //const _all_ = document.getElementsByTagName('td');
 const rows = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+<<<<<<< HEAD
 
 //undo redo history
 const undo = new Stack();
 const redo = new Stack();
 
+=======
+// undo redo history
+const undo = new Stack();
+const redo = new Stack();
+>>>>>>> wwe
 //switch between dark & white in 30s
 var interval;
 
@@ -15,7 +21,10 @@ function start(){
     start_button.style.display = 'none'
     
     interval = setInterval(counter, 1000)
+<<<<<<< HEAD
 
+=======
+>>>>>>> wwe
 }
 
 let check_side_move = true, firstClicked_or_second = true, bullshit_stuff_with_interval = true;
@@ -211,6 +220,7 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
             $(`.${temp}`).html('');
             temp = class_name[1];
 
+<<<<<<< HEAD
             let action;
             
             if ($(`.${temp}`).html() != ''){
@@ -222,6 +232,33 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
             }
             
             $(`.${temp}`).html(`<p class="${dark_or_white}${second_move}" id=${id}>${Char}</p>`)
+=======
+            // delete mohre
+            let action;
+            if ($(`.${temp}`).html() != ''){
+
+                let deleted_child = $(`.${temp}`).children().html();
+                let deleted_child_id = $(`.${temp}`).children().attr('id');
+                if (dark_or_white == 'light-mohre')
+                    document.getElementById('white1').innerHTML += deleted_child;
+                else 
+                    document.getElementById('black1').innerHTML += deleted_child;
+
+                action = new Action(id, className.split(" ")[1], class_name[1], deleted_child_id)
+            }
+
+            else {
+                action = new Action(id, className.split(" ")[1], class_name[1], null)
+            }
+            // save moves
+            undo.push(action)
+            // if (action.deleted != null){
+                // to_undo()
+            // }
+
+            $(`.${temp}`).html(`<p class="${dark_or_white}${second_move}" id=${id}>${Char}</p>`);
+
+>>>>>>> wwe
             // console.log($(`.${temp}`).children())
             // $('.light-mohre').click(light_clicked)
             // $('.dark-mohre').click(dark_clicked)

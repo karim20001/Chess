@@ -12,6 +12,8 @@ function moveSoldier(id, className, dark_or_white, hit_dark_or_white, piece_colo
         let saver = $(`#${id}`).parent();
         $(`#${id}`).parent().html('');
 
+        let sss = $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col - 1}`);
+
         let check_for_check_mate = false;
         // check soldier can hit dark chess piece & not white ones
         // if (moving_piece_check_own_same_rowCol(className.split(" "), piece_color, id)){
@@ -33,11 +35,11 @@ function moveSoldier(id, className, dark_or_white, hit_dark_or_white, piece_colo
                     // let rr = temp.children().attr('class')
                     // let u = temp.children().attr('id')
                     // alert(rr)
-                    if ($(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col - 1}`).html() != '' && $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col - 1}`).children().attr('class').search(`${hit_dark_or_white}`) != -1){
-                        if ($(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col - 1}`).children().attr('id').search('k') == -1)
-                        if (if_check($(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col - 1}`).attr('class').split(" "), hit_dark_or_white, piece_color)){
+                    if (sss.html() != '' && sss.children().attr('class').search(`${hit_dark_or_white}`) != -1){
+                        if (sss.children().attr('id').search('k') == -1)
+                        if (if_check(sss.attr('class').split(" "), hit_dark_or_white, piece_color)){
                             if (!check_mate)
-                            $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col - 1}`).addClass('hit')
+                            sss.addClass('hit')
                             else 
                                 check_for_check_mate = true;
                         }
@@ -69,14 +71,15 @@ function moveSoldier(id, className, dark_or_white, hit_dark_or_white, piece_colo
         //-------------------------------------------
         // console.log(id)
         saver.html(`<p class="${child_class}" id=${id}>♟</p>`);
-        if (child_class === 'light-mohre'){
-            $(".light-mohre").prop("onclick", null).off("click");
-            $("light-mohre").click(light_clicked)
-        }
-        else {
-            $(".dark-mohre").prop("onclick", null).off("click");
-            $(".dark-mohre").click(dark_clicked)
-        }
+
+        // if (child_class === 'light-mohre'){
+        //     $(".light-mohre").prop("onclick", null).off("click");
+        //     $(`.${child_class}`).click(light_clicked)
+        // }
+        // else {
+        //     $(".dark-mohre").prop("onclick", null).off("click");
+        //     $(".dark-mohre").click(dark_clicked)
+        // }
         if (check_mate)
             return check_for_check_mate;
         //animating moves
