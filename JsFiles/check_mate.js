@@ -54,20 +54,31 @@ function if_check(id, hit_dark_or_white, piece_color) {
 
                     break;
                 case 'v':
-                    // console.log(_all_opennet[i].id)
+
                     if (id[1] != $(`#${_all_opennet[i].id}`).parent().attr('class').split(" ")[1]) {
                         temp = check_mate_rook($(`#${_all_opennet[i].id}`).parent().attr('class').split(" "), hit_dark_or_white, piece_color)
                     }
+                    
+                    // console.log(_all_opennet[i].id)
+                    
 
-                    if ($(`.${id[1]}`).children().html() == 'rr')
-                        $(`.${id[1]}`).html('')
+                   
 
-                    if (!temp)
+                    if (!temp){
+                        if ($(`.${id[1]}`).children().html() == 'rr'){
+                            $(`.${id[1]}`).html('')
+                        }
                         return false;
+                    }
 
+                        
                     if (id[1] != $(`#${_all_opennet[i].id}`).parent().attr('class').split(" ")[1])
-                        temp = bishop_check_mate($(`#${_all_opennet[i].id}`).parent().attr('class').split(" "), hit_dark_or_white, piece_color)
+                    temp  = bishop_check_mate($(`#${_all_opennet[i].id}`).parent().attr('class').split(" "), hit_dark_or_white, piece_color)
+                    let temp1;
+                    
 
+                    // if (temp1)
+                    //     temp = temp1;
                     break;
                 case 'k':
                     if (id[1] != $(`#${_all_opennet[i].id}`).parent().attr('class').split(" ")[1])
@@ -170,7 +181,7 @@ function bishop_check_mate(className, hit_dark_or_white, piece_color) {
                 cheker = false;
             }
             
-            else if (temp.children().attr('class').search(`${hit_dark_or_white}`) != -1) {
+            else if (temp.children().attr('class').search(hit_dark_or_white) != -1) {
                 if (temp.children().attr('id').search('k') != -1) {
                     return false;
                 }
