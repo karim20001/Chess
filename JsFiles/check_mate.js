@@ -301,6 +301,7 @@ function king_check_mate(className, hit_dark_or_white) {
 function if_check_then_checkMate(id, hit_dark_or_white, piece_color) {
 
     let temp = false;
+    let checkMate_or_pat = true;
     const _all_of_pieces_own = $(`.${piece_color}`);
 
     for (let i = 0; i < _all_of_pieces_own.length; i++){
@@ -330,10 +331,11 @@ function if_check_then_checkMate(id, hit_dark_or_white, piece_color) {
                 break;
         }
         if (!temp){
+            checkMate_or_pat = temp;
             break;
         }
     }
-    if (!temp){
+    if (true){
 
         
         kish = true;
@@ -373,7 +375,10 @@ function if_check_then_checkMate(id, hit_dark_or_white, piece_color) {
             if (temp)
                 return;
         }
-        alert("game finished!!!")
+        if (!checkMate_or_pat)
+            alert("check mate!!!")
+        else 
+            alert ("pat !!!")
         return;
 
     }
