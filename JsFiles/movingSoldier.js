@@ -71,7 +71,7 @@ function moveSoldier(id, className, dark_or_white, hit_dark_or_white, piece_colo
         saver.html(`<p class="${child_class}" id=${id}>♟</p>`);
         if (child_class === 'light-mohre'){
             $(".light-mohre").prop("onclick", null).off("click");
-            $(`.${child_class}`).click(light_clicked)
+            $("light-mohre").click(light_clicked)
         }
         else {
             $(".dark-mohre").prop("onclick", null).off("click");

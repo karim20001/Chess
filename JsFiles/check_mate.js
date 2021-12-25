@@ -59,11 +59,14 @@ function if_check(id, hit_dark_or_white, piece_color) {
                         temp = check_mate_rook($(`#${_all_opennet[i].id}`).parent().attr('class').split(" "), hit_dark_or_white, piece_color)
                     }
 
-                    if ($(`.${id[1]}`).children().html() == 'rr')
-                        $(`.${id[1]}`).html('')
+                    
 
-                    if (!temp)
+                    if (!temp){
+                        if ($(`.${id[1]}`).children().html() == 'rr')
+                        $(`.${id[1]}`).html('')
                         return false;
+                    }
+                        
 
                     if (id[1] != $(`#${_all_opennet[i].id}`).parent().attr('class').split(" ")[1])
                         temp = bishop_check_mate($(`#${_all_opennet[i].id}`).parent().attr('class').split(" "), hit_dark_or_white, piece_color)
@@ -290,6 +293,7 @@ function king_check_mate(className, hit_dark_or_white) {
 function if_check_then_checkMate(id, hit_dark_or_white, piece_color) {
 
     let temp = false;
+    let checkMate_or_pat = true;
     const _all_of_pieces_own = $(`.${piece_color}`);
 
     for (let i = 0; i < _all_of_pieces_own.length; i++){
@@ -319,10 +323,11 @@ function if_check_then_checkMate(id, hit_dark_or_white, piece_color) {
                 break;
         }
         if (!temp){
+            checkMate_or_pat = temp;
             break;
         }
     }
-    if (!temp){
+    if (true){
 
         
         kish = true;
@@ -362,7 +367,10 @@ function if_check_then_checkMate(id, hit_dark_or_white, piece_color) {
             if (temp)
                 return;
         }
-        alert("game finished!!!")
+        if (!checkMate_or_pat)
+            alert("game finished!!!")
+        else
+            alert("pat !!!")
         return;
 
     }

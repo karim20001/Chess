@@ -106,6 +106,9 @@ header {
     border-collapse: collapse;
   
 }
+td {
+    z-index: 1;
+}
 .chess-board th { padding: .5em; }
 .chess-board th + th { border-bottom: 1px solid #000; }
 .chess-board th:first-child,

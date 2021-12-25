@@ -2,6 +2,10 @@ const start_button = document.getElementById('start')
 //const _all_ = document.getElementsByTagName('td');
 const rows = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
+//undo redo history
+const undo = new Stack();
+const redo = new Stack();
+
 //switch between dark & white in 30s
 var interval;
 
@@ -12,7 +16,6 @@ function start(){
     
     interval = setInterval(counter, 1000)
 
-    actions = new Stack();
 }
 
 let check_side_move = true, firstClicked_or_second = true, bullshit_stuff_with_interval = true;
@@ -207,6 +210,16 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
             // alert(temp)
             $(`.${temp}`).html('');
             temp = class_name[1];
+
+            let action;
+            
+            if ($(`.${temp}`).html() != ''){
+                let deleted_child = $(`.${temp}`).children().attr('id');
+                action = new Action(id, className.split(" ")[1], temp, deleted_child);
+            }
+            else {
+                action = new Action(id, className.split(" ")[1], temp, null);
+            }
             
             $(`.${temp}`).html(`<p class="${dark_or_white}${second_move}" id=${id}>${Char}</p>`)
             // console.log($(`.${temp}`).children())
