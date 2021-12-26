@@ -338,8 +338,10 @@ function if_check_then_checkMate(id, hit_dark_or_white, piece_color) {
     }
     if (true){
 
-        
-        kish = true;
+        if (!temp)
+            kish = true;
+        else 
+            kish = false;
         const _all_own = $(`.${hit_dark_or_white}`)
 
         for (let i = 0; i < _all_own.length; i++){
@@ -373,8 +375,9 @@ function if_check_then_checkMate(id, hit_dark_or_white, piece_color) {
                 case "k":
                     temp = moveKing(mohre_id, parent_class, piece_color, hit_dark_or_white, true)
             }
-            if (temp)
+            if (temp){
                 return;
+            }
         }
         if (!checkMate_or_pat)
 

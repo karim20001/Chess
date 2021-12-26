@@ -132,5 +132,7 @@ function to_redo (){
 
     let temp = 'null ' + move.origin; 
     let temp1 = [null, move.destination];
-    animatingMoves(temp, temp1, move.mohre, piece_color, piece_shape, second_move)
+
+    // if (move.last_soldier != null)
+        animatingMoves(temp, temp1, move.mohre, piece_color, piece_shape, second_move, true);
 }

@@ -72,11 +72,14 @@ function moveSoldier(id, className, dark_or_white, hit_dark_or_white, piece_colo
     // console.log(id)
     saver.html(`<p class="${child_class}" id=${id}>♟</p>`);
 
-    if (child_class === 'light-mohre'){
+    if (piece_color == 'light-mohre'){
+        // console.log(666)
+        $(".dark-mohre").prop("onclick", null).off("click");
         $(".light-mohre").prop("onclick", null).off("click");
         $(".light-mohre").click(light_clicked)
     }
     else {
+        $(".light-mohre").prop("onclick", null).off("click");
         $(".dark-mohre").prop("onclick", null).off("click");
         $(".dark-mohre").click(dark_clicked)
     }
@@ -103,14 +106,15 @@ function moveSoldier(id, className, dark_or_white, hit_dark_or_white, piece_colo
         animatingMoves(className, class_name, id, piece_color, '♟', ' second-move');
 
         if (piece_color == 'light-mohre'){
-            if (className[5] != 'b'){
+            console.log(className.split(" ")[1][0])
+            if (className.split(" ")[1][0] != 'b'){
                 setTimeout (function (){
                     if_check_then_checkMate(id, hit_dark_or_white, piece_color)
                 }, 500)
             }
         }
         else {
-            if (className[5] != 'g'){
+            if (className.split(" ")[1][0] != 'g'){
                 setTimeout (function (){
                     if_check_then_checkMate(id, hit_dark_or_white, piece_color)
                 }, 500)

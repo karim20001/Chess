@@ -179,7 +179,7 @@ function dark_clicked(event){
     
 }
 
-function animatingMoves(className, class_name, id, dark_or_white, Char, second_move){
+function animatingMoves(className, class_name, id, dark_or_white, Char, second_move, Redo_last_soldier){
 
         let Top = 0;
         let Left = 0;
@@ -226,11 +226,11 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
                 else 
                     document.getElementById('black1').innerHTML += deleted_child;
 
-                action = new Action(id, className.split(" ")[1], class_name[1], deleted_child_id)
+                action = new Action(id, className.split(" ")[1], class_name[1], deleted_child_id, null)
             }
 
             else {
-                action = new Action(id, className.split(" ")[1], class_name[1], null)
+                action = new Action(id, className.split(" ")[1], class_name[1], null, null)
             }
             // save moves
             undo.push(action)
@@ -243,12 +243,14 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
             // console.log($(`.${temp}`).children())
             // $('.light-mohre').click(light_clicked)
             // $('.dark-mohre').click(dark_clicked)
-            if (id[0] == 's'){
+            if (id[0] == 's' && !Redo_last_soldier){
                 if (dark_or_white == 'light-mohre' && temp[0] == 'a'){
-                    soldier_reached_end(temp, id, dark_or_white)
+                    soldier_reached_end(temp, id, dark_or_white);
+                    
                 }
                 if (dark_or_white == 'dark-mohre' && temp[0] == 'h'){
-                    soldier_reached_end(temp, id, dark_or_white)
+                    soldier_reached_end(temp, id, dark_or_white);
+
                 }
             }
         }, 495)
@@ -351,7 +353,16 @@ function soldier_reached_end (parent_class, id, dark_or_white){
     });
     
     function set_instead_soldier (char, kindOfPiece, number_for_id){
+
+        let upgrade = undo.pop();
+        let origin = upgrade.origin;
+        upgrade = upgrade.deleted;
+
+        let action = new Action(id, origin, temp, upgrade, `${char} ${kindOfPiece}`)
+        undo.push(action);
+
         $(`.${parent_class}`).html(`<p class="${dark_or_white}" id="${char}${temp}${number_for_id}">${kindOfPiece}</p>`);
+        undo.push()
         setTimeout(function (){
             if_check_then_checkMate(`${char}${temp}${number_for_id}`, hit, dark_or_white);
             start();

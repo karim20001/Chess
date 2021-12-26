@@ -20,11 +20,14 @@ function moveBshop(id, className, hit_dark_or_white, piece_color, check_mate){
     }
 
     saver.html(`<p class = "${piece_color}" id = ${id}>♝</p>`);
-    if (piece_color === 'light-mohre'){
+    if (piece_color == 'light-mohre'){
+        // console.log(666)
+        $(".dark-mohre").prop("onclick", null).off("click");
         $(".light-mohre").prop("onclick", null).off("click");
         $(".light-mohre").click(light_clicked)
     }
     else {
+        $(".light-mohre").prop("onclick", null).off("click");
         $(".dark-mohre").prop("onclick", null).off("click");
         $(".dark-mohre").click(dark_clicked)
     }
