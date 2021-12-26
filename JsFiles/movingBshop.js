@@ -19,40 +19,42 @@ function moveBshop(id, className, hit_dark_or_white, piece_color, check_mate){
         check_for_check_mate = (doingBishop_logic(-1, -1, save_the_row, save_the_col, hit_dark_or_white, piece_color, true)|| doingBishop_logic(-1, 1, save_the_row, save_the_col, hit_dark_or_white, piece_color, true) || doingBishop_logic(1, -1, save_the_row, save_the_col, hit_dark_or_white, piece_color, true) || doingBishop_logic(1, 1, save_the_row, save_the_col, hit_dark_or_white, piece_color, true));
     }
 
-        saver.html(`<p class = "${piece_color}" id = ${id}>♝</p>`);
-        if (piece_color === 'light-mohre'){
-            $(".light-mohre").prop("onclick", null).off("click");
-            $(".light-mohre").click(light_clicked)
-        }
-        else {
-            $(".dark-mohre").prop("onclick", null).off("click");
-            $(".dark-mohre").click(dark_clicked)
-        }
+    saver.html(`<p class = "${piece_color}" id = ${id}>♝</p>`);
+    if (piece_color === 'light-mohre'){
+        $(".light-mohre").prop("onclick", null).off("click");
+        $(".light-mohre").click(light_clicked)
+    }
+    else {
+        $(".dark-mohre").prop("onclick", null).off("click");
+        $(".dark-mohre").click(dark_clicked)
+    }
 
-        if (check_mate)
-            return check_for_check_mate;
+    if (check_mate)
+        return check_for_check_mate;
+    
+    $('.active, .hit').click(function (e) { 
+        e.preventDefault();
+
+        kish = false;
+        if (pressed_undo)
+            redo.makeNull();
         
-        $('.active, .hit').click(function (e) { 
-            e.preventDefault();
+        // the class & id object should go
+        let class_name = e.target.className.split(" ");
+        let id_obj = e.target.id;
 
-            kish = false;
-            
-            // the class & id object should go
-            let class_name = e.target.className.split(" ");
-            let id_obj = e.target.id;
+        if (class_name.length < 2 || class_name[1] == 'second-move'){
+            class_name = $(`#${id_obj}`).parent().attr('class').split(" ");
+        }
 
-            if (class_name.length < 2 || class_name[1] == 'second-move'){
-                class_name = $(`#${id_obj}`).parent().attr('class').split(" ");
-            }
+        animatingMoves(className, class_name, id, piece_color, '♝', '')
 
-            animatingMoves(className, class_name, id, piece_color, '♝', '')
-
-            setTimeout (function (){
-                if_check_then_checkMate(id, hit_dark_or_white, piece_color)
-            }, 500)
-            
-            
-        });
+        setTimeout (function (){
+            if_check_then_checkMate(id, hit_dark_or_white, piece_color)
+        }, 500)
+        
+        
+    });
     // }
     
 }

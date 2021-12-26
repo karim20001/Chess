@@ -55,6 +55,9 @@ function moveRokh(id, className, hit_dark_or_white, piece_color, check_mate){
             // set second move for rookh
             kish = false;
 
+            if (pressed_undo)
+                redo.makeNull();
+
             let tempory = 0;
             if (piece_color == 'dark-mohre')
                 tempory = 2;

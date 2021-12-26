@@ -4,6 +4,7 @@ function to_undo (){
 
     const move = undo.pop();
     redo.push(move);
+    pressed_undo = true;
 
     second = 0;
     counter();
@@ -81,6 +82,55 @@ function to_undo (){
 }
 
 function to_redo (){
-    if (redo.pop())
+    if (redo.peek() == undefined)
         return;
+
+    const move = redo.pop();
+    // undo.push(move);
+
+    let second_move = '';
+    if (move.mohre[0] == 's'){
+
+        if (move.mohre[1] == 'w'){
+
+            if (move.origin[0] != 'b'){
+                second_move = ' second-move';
+            }
+        }
+        else {
+            if (move.origin[0] != 'g'){
+                second_move = ' second-move';
+            }
+        }
+    }
+
+    let piece_color;
+    // console.log(move.mohre[1])
+    if (move.mohre[1] == 'w')
+        piece_color = 'light-mohre';
+    else 
+        piece_color = 'dark-mohre';
+
+    let piece_shape;
+    switch (move.mohre[0]){
+        case 's':
+            piece_shape = '♟'
+            break;
+        case 'r':
+            piece_shape = '♜'
+            break;
+        case 'h':
+            piece_shape = '♞';
+            break;
+        case 'e':
+            piece_shape = '♝';
+            break;
+        case 'v':
+            piece_shape = '♛'
+            break;
+    }
+
+    let temp = 'null ' + move.origin; 
+    let temp1 = [null, move.destination];
+    animatingMoves(temp, temp1, move.mohre, piece_color, piece_shape, second_move)
 }

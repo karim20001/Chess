@@ -106,6 +106,9 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
 
         kish = false;
         king_second_move[tempory_for_king] = true;
+
+        if (pressed_undo)
+            redo.makeNull();
         
         // the class & id object should go
         let class_name = e.target.className.split(" ");
@@ -127,6 +130,9 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
 
         second = 0;
         counter();
+
+        if (pressed_undo)
+            redo.makeNull();
 
         let rookh_id = e.target.id;
         let rookh_parent_class;

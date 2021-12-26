@@ -66,6 +66,8 @@ function moveQueen (id , className, hit_dark_or_white, piece_color, check_mate){
         e.preventDefault();
 
         kish = false;
+        if (pressed_undo)
+            redo.makeNull();
         
         // the class & id object should go
         let class_name = e.target.className.split(" ");

@@ -37,4 +37,8 @@ class Stack {
     size () {
         return this.top;
     }
+
+    makeNull(){
+        this.elements = [];
+    }
 }
