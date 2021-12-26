@@ -63,7 +63,6 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
         for (let i = save_the_col - 1; i > 0; i--){
             let moving_obj = $(`.${rows[save_the_row]}${i}`);
 
-            console.log(5445)
             if (moving_obj.html() != '' && i > 1)
                 break;
 

@@ -7,6 +7,7 @@ const rows = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 // undo redo history
 const undo = new Stack();
 const redo = new Stack();
+const history = new LinkedList();
 let pressed_undo = false;
 //switch between dark & white in 30s
 var interval;

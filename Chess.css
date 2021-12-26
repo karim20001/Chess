@@ -198,3 +198,46 @@ button:hover {
     transform: scale(1.06);
     cursor: pointer;
 }
+
+.history-container {
+    position: absolute;
+    display: grid;
+    right: 0;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: 100%;
+}
+
+.history-section {
+    height: 200px;
+    width: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    text-align: center;
+    border-radius: 10px;
+    margin-right: 30px;
+    background-color: #25217b;
+}
+
+.history-section p {
+    color: white;
+    margin: 5px;
+    padding: 5px;
+    font-size: 17px;
+}
+
+.history-section p:hover{
+    transform: scale(1.05);
+    color: #80d8c5;
+}
+
+h2 {
+    display: grid;
+    color: rgb(42, 165, 46);
+    font-size: 20px;
+    margin-bottom: 255px;
+    right: 165px;
+    position: absolute;
+    /* margin-left: 100px; */
+}
