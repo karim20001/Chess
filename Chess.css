@@ -127,7 +127,31 @@ td {
     text-shadow: 0 0 3px #d7ebcf, 0 0 5px #bbede2;
 }
 
-#start {
+.button-container {
+    display: flex;
+    margin: 10px;
+    align-items: center;
+    /* justify-content: center; */
+    /* width: 424px; */
+}
+
+button {
+    cursor: pointer;
+    width : 60px;
+    height : 30px;
+    background-color: aquamarine;
+    font-size: larger;
+    border: none;
+    margin : 15px auto;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: rgb(73, 184, 147);
+    color: white;
+}
+
+/* #start {
     background-color: aquamarine;
     font-size: larger;
     border: none;
@@ -136,11 +160,18 @@ td {
     cursor: pointer;
     width : 60px;
     height : 30px;
-}
+} */
 
-#start:hover {
+/* #start:hover {
     background-color: rgb(73, 184, 147);
     color: white;
+} */
+
+#undo {
+    display: none;
+}
+#redo {
+    display: none;
 }
 
 .soldier-end {

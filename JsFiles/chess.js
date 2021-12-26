@@ -1,4 +1,6 @@
-const start_button = document.getElementById('start')
+const start_button = document.getElementById('start');
+const redo_button = document.getElementById('redo');
+const undo_button = document.getElementById('undo');
 //const _all_ = document.getElementsByTagName('td');
 const rows = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
@@ -11,8 +13,12 @@ var interval;
 start_button.addEventListener('click',start)
 
 function start(){
-    start_button.style.display = 'none'
-    
+    start_button.style.display = 'none';
+    redo_button.style.display = 'block';
+    undo_button.style.display = 'block';
+    redo_button.addEventListener('click', to_redo);
+    undo_button.addEventListener('click', to_undo);
+
     interval = setInterval(counter, 1000)
 }
 
