@@ -14,11 +14,13 @@ var interval;
 start_button.addEventListener('click',start)
 
 function start(){
-    start_button.style.display = 'none';
-    redo_button.style.display = 'block';
-    undo_button.style.display = 'block';
-    redo_button.addEventListener('click', to_redo);
-    undo_button.addEventListener('click', to_undo);
+    if (start_button.style.display != 'none'){
+        start_button.style.display = 'none';
+        redo_button.style.display = 'block';
+        undo_button.style.display = 'block';
+        redo_button.addEventListener('click', to_redo);
+        undo_button.addEventListener('click', to_undo);
+    }
 
     interval = setInterval(counter, 1000)
 }
@@ -355,14 +357,15 @@ function soldier_reached_end (parent_class, id, dark_or_white){
     function set_instead_soldier (char, kindOfPiece, number_for_id){
 
         let upgrade = undo.pop();
+        
         let origin = upgrade.origin;
+        let destination = upgrade.destination;
         upgrade = upgrade.deleted;
 
-        let action = new Action(id, origin, temp, upgrade, `${char} ${kindOfPiece}`)
+        let action = new Action(id, origin, destination, upgrade, `${char}${temp}${number_for_id} ${kindOfPiece}`)
         undo.push(action);
-
+        console.log(action)
         $(`.${parent_class}`).html(`<p class="${dark_or_white}" id="${char}${temp}${number_for_id}">${kindOfPiece}</p>`);
-        undo.push()
         setTimeout(function (){
             if_check_then_checkMate(`${char}${temp}${number_for_id}`, hit, dark_or_white);
             start();

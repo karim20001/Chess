@@ -106,7 +106,7 @@ function moveSoldier(id, className, dark_or_white, hit_dark_or_white, piece_colo
         animatingMoves(className, class_name, id, piece_color, '♟', ' second-move');
 
         if (piece_color == 'light-mohre'){
-            console.log(className.split(" ")[1][0])
+            
             if (className.split(" ")[1][0] != 'b'){
                 setTimeout (function (){
                     if_check_then_checkMate(id, hit_dark_or_white, piece_color)

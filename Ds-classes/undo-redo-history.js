@@ -1,4 +1,5 @@
 function to_undo (){
+
     if (undo.peek() == undefined)
         return;
 
@@ -132,7 +133,19 @@ function to_redo (){
 
     let temp = 'null ' + move.origin; 
     let temp1 = [null, move.destination];
+    animatingMoves(temp, temp1, move.mohre, piece_color, piece_shape, second_move, true);
 
-    // if (move.last_soldier != null)
-        animatingMoves(temp, temp1, move.mohre, piece_color, piece_shape, second_move, true);
+    let color;
+    if (move.mohre[1] == 'w'){
+        color = 'light-mohre';
+    }
+    else {
+        color = 'dark-mohre';
+    }
+    setTimeout( function(){
+        if (move.last_soldier != null){
+            let soldier = move.last_soldier.split(" ");
+            $(`.${move.destination}`).html(`<p class="${color}" id="${soldier[0]}">${soldier[1]}</p>`)
+        }
+    }, 505);
 }
