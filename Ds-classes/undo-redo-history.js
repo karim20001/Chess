@@ -149,3 +149,47 @@ function to_redo (){
         }
     }, 505);
 }
+
+var history_counter = 1;
+
+function showHistory_on_browser (the_log){
+    let history_section = $(".history-section").html();
+    let white_player_or_dark;
+    if (the_log.mohre[1] == 'w'){
+        white_player_or_dark = 'white';
+    }
+    else
+        white_player_or_dark = 'black';
+    let shape;
+    switch(the_log.mohre[0]){
+        case 's':
+            shape = 'soldier'
+            break;
+        case 'r':
+            shape = 'rook'
+            break;
+        case 'h':
+            shape = 'horse';
+            break;
+        case 'e':
+            shape = 'bishop';
+            break;
+        case 'v':
+            shape = 'queen'
+            break;
+        case 'k':
+            shape = 'king';
+            break;
+    }
+    let new_log = `<p class="history-click" id="${history_counter}">${history_counter}. ${white_player_or_dark} ${shape} ${the_log.destination}</p>`
+    history_counter++;
+
+    history_section += new_log;
+    $(".history-section").html(history_section);
+    $('.history-click').prop('onclick', null).off('click');
+    $(".history-click").click(show_history_on_board)
+}
+
+function show_history_on_board (){
+
+}

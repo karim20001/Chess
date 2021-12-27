@@ -7,7 +7,7 @@ const rows = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 // undo redo history
 const undo = new Stack();
 const redo = new Stack();
-const history = new LinkedList();
+const Log = new LinkedList();
 let pressed_undo = false;
 //switch between dark & white in 30s
 var interval;
@@ -203,6 +203,8 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
             left: `+=${Left}px`
         }, 500)
 
+        // document.getElementById('sliding').onload
+
         // remove listener of active & hit classes
         $('.active').prop('onclick', null).off('click')
         $('.hit').prop('onclick', null).off('click')
@@ -237,6 +239,18 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
             }
             // save moves
             undo.push(action)
+            let position = Log.head;
+            while (position != null){
+                if (position.next == null)
+                    break;
+                position = position.next;
+                
+            }
+            Log.insert(position, action)
+            if (!Redo_last_soldier)
+                showHistory_on_browser(action)
+            // if (Log.head.next != null)
+            // console.log(Log.head.next.data)
             // if (action.deleted != null){
                 // to_undo()
             // }
