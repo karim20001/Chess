@@ -1,6 +1,7 @@
 const king_second_move = [false, false]
 function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
 
+    $('.cascade').prop('onclick', null).off('click');
     let save_the_col = parseInt(className[className.length - 1]);
     let save_the_row = className[className.length - 2].charCodeAt(0) - 97;
     let cheker;
@@ -88,11 +89,14 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
     }
 
     saver.html(`<p class = "${piece_color}" id = ${id}>♚</p>`);
-    if (piece_color === 'light-mohre'){
+    if (piece_color == 'light-mohre'){
+        // console.log(666)
+        $(".dark-mohre").prop("onclick", null).off("click");
         $(".light-mohre").prop("onclick", null).off("click");
         $(".light-mohre").click(light_clicked)
     }
     else {
+        $(".light-mohre").prop("onclick", null).off("click");
         $(".dark-mohre").prop("onclick", null).off("click");
         $(".dark-mohre").click(dark_clicked)
     }
@@ -126,7 +130,7 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
     // $('.cascade').prop('onclick', null).off('click');
     // $('.active').prop('onclick', null).off('click')
     //     $('.hit').prop('onclick', null).off('click')
-        $('.cascade').prop('onclick', null).off('click');
+        // $('.cascade').prop('onclick', null).off('click');
 
         // remove active from all elements
         // $('.light, .dark').removeClass('active');
@@ -144,7 +148,7 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
         // remove active from all elements
         $('.light, .dark').removeClass('active');
         $('.light, .dark').removeClass('hit');
-        // $('.light, .dark').removeClass('cascade');
+        $('.light, .dark').removeClass('cascade');
 
         castling(e.target.id, e.target.className.split(" "), tempory_for_king, id, className, save_the_row, save_the_col, piece_color, false);
         console.log(444)

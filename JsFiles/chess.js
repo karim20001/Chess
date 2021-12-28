@@ -106,6 +106,8 @@ function light_clicked(event){
     // remove active classes & off onclick for them every time clicked
     $('.active').prop('onclick', null).off('click')
     $('.hit').prop('onclick', null).off('click')
+    if (id[0] != 'r')
+        $('.cascade').prop('onclick', null).off('click')
     $('.light, .dark').removeClass('active');
     $('.light, .dark').removeClass('hit');
     $('.light, .dark').removeClass('cascade');
@@ -148,6 +150,8 @@ function dark_clicked(event){
     // remove active classes & off onclick for them every time clicked
     $('.active').prop('onclick', null).off('click')
     $('.hit').prop('onclick', null).off('click')
+    if (id[0] == 'r')
+        $('.cascade').prop('onclick', null).off('click')
     $('.light, .dark').removeClass('active');
     $('.light, .dark').removeClass('hit');
     $('.light, .dark').removeClass('cascade');
