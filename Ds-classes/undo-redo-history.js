@@ -157,6 +157,9 @@ function to_redo (history_obj, if_history){
             case 'v':
                 piece_shape = '♛'
                 break;
+            case 'k':
+                piece_shape = '♚'
+                break;
         }
 
         let temp = 'null ' + move.origin;
@@ -294,6 +297,7 @@ function show_history_on_board (event){
     
     for (let i = 0; i < 2; ++i){
         let search = specified_pos.data.mohre.split(" ")[0];
+        
 
         if (i == 1)
             search = specified_pos.data.deleted;
@@ -324,6 +328,7 @@ function show_history_on_board (event){
     }
     let colors = [];
 
+    console.log(piece_shape[0])
     if (specified_pos.data.mohre.split(" ")[0][1] == 'w'){
 
         colors[0] = 'light-mohre';
