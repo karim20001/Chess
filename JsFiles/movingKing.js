@@ -123,46 +123,18 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
     });
 
     //---------------------------------------------------------------
+    // $('.cascade').prop('onclick', null).off('click');
+    // $('.active').prop('onclick', null).off('click')
+    //     $('.hit').prop('onclick', null).off('click')
+        $('.cascade').prop('onclick', null).off('click');
+
+        // remove active from all elements
+        // $('.light, .dark').removeClass('active');
+        // // $('.light, .dark').removeClass('hit');
+        // $('.light, .dark').removeClass('cascade');
 
     $('.cascade').click(function (e) { 
         e.preventDefault();
-
-        king_second_move[tempory_for_king] = true;
-
-        second = 0;
-        counter();
-
-        if (pressed_undo)
-            redo.makeNull();
-
-        let rookh_id = e.target.id;
-        let rookh_parent_class;
-        // console.log(rookh_id)
-        if (rookh_id != '')
-            rookh_parent_class = $(`#${rookh_id}`).parent().attr('class').split(" ");
-        else{
-            rookh_parent_class = e.target.className.split(" ")
-            rookh_id = $(`.${rookh_parent_class[1]}`).children().attr('id');
-        }
-        
-        let king_going_position, rookh_going_position;
-
-        if (rookh_id[2] == '1'){
-            king_going_position = -2 * 53;
-            rookh_going_position = 3 * 53;
-        }
-        else {
-            king_going_position = +2 * 53;
-            rookh_going_position = -2 * 53;
-        }
-
-        $(`#${id}`).animate({
-            left: `+=${king_going_position}`
-        }, 500)
-
-        $(`#${rookh_id}`).animate({
-            left: `+=${rookh_going_position}`
-        }, 500)
 
         // remove listener of active & hit classes
         $('.active').prop('onclick', null).off('click')
@@ -172,22 +144,93 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
         // remove active from all elements
         $('.light, .dark').removeClass('active');
         $('.light, .dark').removeClass('hit');
-        $('.light, .dark').removeClass('cascade');
+        // $('.light, .dark').removeClass('cascade');
 
-        setTimeout(function(){
-            let temp = className.substring(className.length - 2)
+        castling(e.target.id, e.target.className.split(" "), tempory_for_king, id, className, save_the_row, save_the_col, piece_color, false);
+        console.log(444)
+        // $('.cascade').prop('onclick', null).off('click');
 
-            $(`.${temp}`).html('');
-            temp = `${rows[save_the_row]}${parseInt(save_the_col) + king_going_position / 53}`;
-            
-            $(`.${temp}`).html(`<p class="${piece_color}" id=${id}>♚</p>`)
+        return;
+    })
+}
 
-            $(`.${rookh_parent_class[1]}`).html('');
-            
-            temp = `${rows[save_the_row]}${parseInt(rookh_parent_class[1][1]) + rookh_going_position / 53}`
-            $(`.${temp}`).html(`<p class="${piece_color}" id=${rookh_id}>♜</p>`)
+function castling (e, rook_parent, tempory_for_king, id, className, save_the_row, save_the_col, piece_color, redoing){
+    king_second_move[tempory_for_king] = true;
+
+    second = 0;
+    counter();
+
+    if (pressed_undo)
+        redo.makeNull();
+
+    let rookh_id = e;
+    let rookh_parent_class;
+    // console.log(rookh_id)
+    if (rookh_id != '')
+        rookh_parent_class = $(`#${rookh_id}`).parent().attr('class').split(" ");
+    else{
+        rookh_parent_class = rook_parent;
+        rookh_id = $(`.${rookh_parent_class[1]}`).children().attr('id');
+    }
+    
+    let king_going_position, rookh_going_position;
+
+    if (rookh_id[2] == '1'){
+        king_going_position = -2 * 53;
+        rookh_going_position = 3 * 53;
+    }
+    else {
+        king_going_position = +2 * 53;
+        rookh_going_position = -2 * 53;
+    }
+
+    $(`#${id}`).animate({
+        left: `+=${king_going_position}`
+    }, 500)
+
+    $(`#${rookh_id}`).animate({
+        left: `+=${rookh_going_position}`
+    }, 500)
+
+    // remove listener of active & hit classes
+    // $('.active').prop('onclick', null).off('click')
+    // $('.hit').prop('onclick', null).off('click')
+    // $('.cascade').prop('onclick', null).off('click');
+
+    // // remove active from all elements
+    // $('.light, .dark').removeClass('active');
+    // $('.light, .dark').removeClass('hit');
+    // $('.light, .dark').removeClass('cascade');
+
+    setTimeout(function(){
+        let temp = className.substring(className.length - 2)
+
+        $(`.${temp}`).html('');
+        temp = `${rows[save_the_row]}${parseInt(save_the_col) + king_going_position / 53}`;
+        let saver = temp;
         
-        }, 495)
+        $(`.${temp}`).html(`<p class="${piece_color}" id=${id}>♚</p>`)
 
-    });
+        $(`.${rookh_parent_class[1]}`).html('');
+        
+        temp = `${rows[save_the_row]}${parseInt(rookh_parent_class[1][1]) + rookh_going_position / 53}`
+        $(`.${temp}`).html(`<p class="${piece_color}" id=${rookh_id}>♜</p>`)
+
+        let action = new Action(`${id} ${rookh_id}`, `${className.split(" ")[1]} ${rookh_parent_class[1]}`, `${saver} ${temp}`, null, null)
+        let position = Log.head;
+    
+        while (position != null){
+            if (position.next == null)
+                break;
+            position = position.next;
+            
+        }
+
+        undo.push(action);
+        if (!redoing){
+            Log.insert(position, action);
+            showHistory_on_browser(action);
+        }
+    }, 495)
+
 }
