@@ -15,13 +15,14 @@ var interval;
 start_button.addEventListener('click',start)
 
 function start(){
-    if (start_button.style.display != 'none'){
+    // if (start_button.style.display != 'none'){
         start_button.style.display = 'none';
         redo_button.style.display = 'block';
         undo_button.style.display = 'block';
+        $('.history-click').css('cursor', 'pointer');
         redo_button.addEventListener('click', to_redo);
         undo_button.addEventListener('click', to_undo);
-    }
+    // }
 
     interval = setInterval(counter, 1000)
 }
@@ -182,17 +183,21 @@ function dark_clicked(event){
     
 }
 
-function animatingMoves(className, class_name, id, dark_or_white, Char, second_move, Redo_last_soldier){
+function animatingMoves(className, class_name, id, dark_or_white, Char, second_move, Redo_last_soldier, animate_histoy){
 
         let Top = 0;
         let Left = 0;
 
-        second = 0;
-        counter();
+        if (!animate_histoy){
+            second = 0;
+            counter();
+
+            $(".dark-mohre").prop("onclick", null).off("click");
+            $(".light-mohre").prop("onclick", null).off("click");
+        }
 
         
-        $(".dark-mohre").prop("onclick", null).off("click");
-        $(".light-mohre").prop("onclick", null).off("click");
+        
 
         Top = (class_name[1].charCodeAt(0) - className[className.length - 2].charCodeAt(0)) * 53;
         Left = (parseInt(class_name[1][1]) - parseInt(className[className.length - 1])) * 53;
@@ -206,14 +211,16 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
         // document.getElementById('sliding').onload
 
         // remove listener of active & hit classes
-        $('.active').prop('onclick', null).off('click')
-        $('.hit').prop('onclick', null).off('click')
-        $('.cascade').prop('onclick', null).off('click');
+        if (!animate_histoy){
+            $('.active').prop('onclick', null).off('click')
+            $('.hit').prop('onclick', null).off('click')
+            $('.cascade').prop('onclick', null).off('click');
 
-        // remove active from all elements
-        $('.light, .dark').removeClass('active');
-        $('.light, .dark').removeClass('hit');
-        $('.light, .dark').removeClass('cascade');
+            // remove active from all elements
+            $('.light, .dark').removeClass('active');
+            $('.light, .dark').removeClass('hit');
+            $('.light, .dark').removeClass('cascade');
+        }
 
         setTimeout(function(){
             let temp = className.substring(className.length - 2)
@@ -238,17 +245,28 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
                 action = new Action(id, className.split(" ")[1], class_name[1], null, null)
             }
             // save moves
-            undo.push(action)
             let position = Log.head;
-            while (position != null){
-                if (position.next == null)
-                    break;
-                position = position.next;
-                
+            if (!animate_histoy){
+                undo.push(action)
+                while (position != null){
+                    if (position.next == null)
+                        break;
+                    position = position.next;
+                    
+                }
+                if (!Redo_last_soldier){
+                    if (id[0] == 's'){
+                        if (temp[0] != 'a' && temp[0] != 'h'){
+                            Log.insert(position, action)
+                            showHistory_on_browser(action)
+                        }
+                    }
+                    else {
+                        Log.insert(position, action);
+                        showHistory_on_browser(action);
+                    }
+                }
             }
-            Log.insert(position, action)
-            if (!Redo_last_soldier)
-                showHistory_on_browser(action)
             // if (Log.head.next != null)
             // console.log(Log.head.next.data)
             // if (action.deleted != null){
@@ -262,11 +280,11 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
             // $('.dark-mohre').click(dark_clicked)
             if (id[0] == 's' && !Redo_last_soldier){
                 if (dark_or_white == 'light-mohre' && temp[0] == 'a'){
-                    soldier_reached_end(temp, id, dark_or_white);
+                    soldier_reached_end(temp, id, dark_or_white, position);
                     
                 }
                 if (dark_or_white == 'dark-mohre' && temp[0] == 'h'){
-                    soldier_reached_end(temp, id, dark_or_white);
+                    soldier_reached_end(temp, id, dark_or_white, position);
 
                 }
             }
@@ -276,12 +294,16 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
 
 //soldier_reached_end(true, true)
 
-function soldier_reached_end (parent_class, id, dark_or_white){
+function soldier_reached_end (parent_class, id, dark_or_white, position){
 
     // remove listener of active & hit classes
     $('.active').prop('onclick', null).off('click')
     $('.hit').prop('onclick', null).off('click')
     $('.cascade').prop('onclick', null).off('click');
+    $('.history-click').prop('onclick', null).off('click');
+    $('.history-click').css('cursor', 'unset');
+    redo_button.removeEventListener('click', to_redo);
+    undo_button.removeEventListener('click', to_undo);
 
     // remove active from all elements
     $('.light, .dark').removeClass('active');
@@ -291,7 +313,7 @@ function soldier_reached_end (parent_class, id, dark_or_white){
     clearInterval(interval)
 
     $("body").append(`<div class='soldier-end'>
-                        <h2>Choose your piece to replace</h2>
+                        <h3>Choose your piece to replace</h3>
                         <p class='selected-option' id='r'>Rook</p>
                         <p class='selected-option' id='h'>Horse</p>
                         <p class='selected-option' id='b'>Bishop</p>
@@ -377,9 +399,12 @@ function soldier_reached_end (parent_class, id, dark_or_white){
         let destination = upgrade.destination;
         upgrade = upgrade.deleted;
 
-        let action = new Action(id, origin, destination, upgrade, `${char}${temp}${number_for_id} ${kindOfPiece}`)
+        let action = new Action(id, origin, destination, upgrade, `${char}${temp}${number_for_id} ${kindOfPiece}`);
+
         undo.push(action);
-        console.log(action)
+        Log.insert(position, action);
+        showHistory_on_browser(action);
+
         $(`.${parent_class}`).html(`<p class="${dark_or_white}" id="${char}${temp}${number_for_id}">${kindOfPiece}</p>`);
         setTimeout(function (){
             if_check_then_checkMate(`${char}${temp}${number_for_id}`, hit, dark_or_white);

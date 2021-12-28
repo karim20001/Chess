@@ -82,27 +82,38 @@ function to_undo (){
 
 }
 
-function to_redo (){
-    if (redo.peek() == undefined)
+function to_redo (history_obj, if_history){
+    
+
+    let move;
+    let second_move;
+    if (!if_history){
+
+        if (redo.peek() == undefined)
         return;
 
-    const move = redo.pop();
-    // undo.push(move);
+        move = redo.pop();
+        // undo.push(move);
 
-    let second_move = '';
-    if (move.mohre[0] == 's'){
+        second_move = '';
+        if (move.mohre[0] == 's'){
 
-        if (move.mohre[1] == 'w'){
+            if (move.mohre[1] == 'w'){
 
-            if (move.origin[0] != 'b'){
-                second_move = ' second-move';
+                if (move.origin[0] != 'b'){
+                    second_move = ' second-move';
+                }
+            }
+            else {
+                if (move.origin[0] != 'g'){
+                    second_move = ' second-move';
+                }
             }
         }
-        else {
-            if (move.origin[0] != 'g'){
-                second_move = ' second-move';
-            }
-        }
+    }
+    else {
+        move = history_obj;
+        second_move = '';
     }
 
     let piece_color;
@@ -131,9 +142,9 @@ function to_redo (){
             break;
     }
 
-    let temp = 'null ' + move.origin; 
+    let temp = 'null ' + move.origin;
     let temp1 = [null, move.destination];
-    animatingMoves(temp, temp1, move.mohre, piece_color, piece_shape, second_move, true);
+    animatingMoves(temp, temp1, move.mohre, piece_color, piece_shape, second_move, true, if_history);
 
     let color;
     if (move.mohre[1] == 'w'){
@@ -144,6 +155,7 @@ function to_redo (){
     }
     setTimeout( function(){
         if (move.last_soldier != null){
+            console.log(445)
             let soldier = move.last_soldier.split(" ");
             $(`.${move.destination}`).html(`<p class="${color}" id="${soldier[0]}">${soldier[1]}</p>`)
         }
@@ -190,6 +202,86 @@ function showHistory_on_browser (the_log){
     $(".history-click").click(show_history_on_board)
 }
 
-function show_history_on_board (){
+function show_history_on_board (event){
 
+    history_id = parseInt(event.target.id);
+    let specified_pos = Log.head;
+
+    for (let i = 0; i < history_id - 1; i++){
+        specified_pos = specified_pos.next;
+    }
+
+    let current_saver = specified_pos.data.mohre;
+    let current_origin_parent = $(`#${current_saver}`).parent();
+    let current_origin = current_origin_parent.html();
+    let current_destination = $(`.${specified_pos.data.destination}`).html();
+
+    $(`#${current_saver}`).parent().html('');
+    let prev_origin = $(`.${specified_pos.data.origin}`).html();
+    
+    let piece_shape = [];
+    
+    for (let i = 0; i < 2; ++i){
+        let search = specified_pos.data.mohre;
+
+        if (i == 1)
+            search = specified_pos.data.deleted;
+        if (search == null){
+            piece_shape[1] = null;
+            break;
+        }
+        switch(search[0]){
+            case 's':
+                piece_shape[i] = '♟'
+                break;
+            case 'r':
+                piece_shape[i] = '♜'
+                break;
+            case 'h':
+                piece_shape[i] = '♞';
+                break;
+            case 'e':
+                piece_shape[i] = '♝';
+                break;
+            case 'v':
+                piece_shape[i] = '♛'
+                break;
+            case 'k':
+                piece_shape[i] = '♚';
+                break;
+        }
+    }
+    let colors = [];
+
+    if (specified_pos.data.mohre[1] == 'w'){
+
+        colors[0] = 'light-mohre';
+        if (piece_shape[1] != null){
+            colors[1] = 'dark-mohre';
+        }
+    }
+    else {
+        colors[0] = 'dark-mohre';
+        if (piece_shape[1] != null){
+            colors[1] = 'light-mohre';
+        }
+    }
+    $(`.${specified_pos.data.origin}`).html(`<p class="${colors[0]}" id="${specified_pos.data.mohre}">${piece_shape[0]}</p>`)
+    if (piece_shape[1] != null)
+        $(`.${specified_pos.data.destination}`).html(`<p id="${specified_pos.data.deleted}" class="${colors[1]}">${piece_shape[1]}</p>`)
+    
+    else {
+        $(`.${specified_pos.data.destination}`).html('');
+    }
+    setTimeout(function (){
+        to_redo(specified_pos.data, true)
+    }, 100)
+
+    setTimeout(function(){
+        $(`.${specified_pos.data.destination}`).html(current_destination);
+        $(`.${specified_pos.data.origin}`).html(prev_origin);
+        current_origin_parent.html(current_origin);
+
+    }, 800)
+    
 }
