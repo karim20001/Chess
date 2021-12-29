@@ -418,11 +418,28 @@ function soldier_reached_end (parent_class, id, dark_or_white, position){
 }
 
 function game_finished (finished_message){
-    document.getElementById('finish').style.display = 'block';
-    $('.to-disable').css('opacity', '0.1')
-    document.getElementById('vid').play();
-    clearInterval(interval)
-    document.getElementById("finished-button").addEventListener('click', function(){
-        location.reload();
-    })
+    writeInFile();
+    
+    setTimeout(function (){
+        document.getElementById('finish').style.display = 'block';
+        $('.to-disable').css('opacity', '0.1')
+        document.getElementById('vid').play();
+        clearInterval(interval)
+        document.getElementById("finished-button").addEventListener('click', function(){
+            location.reload();
+        })
+    }, 1000);
+}
+
+function writeInFile (){
+    let Head = Log.head;
+    var string = Head.data.to_string();
+
+    while (Head.next != null){
+        Head = Head.next;
+        string += Head.data.to_string();
+    }
+
+    var blob = new Blob([string], {type: "text/plain;charset=utf-8"});
+    saveAs(blob, "test.txt");
 }

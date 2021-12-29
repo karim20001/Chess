@@ -6,6 +6,9 @@ class Action {
         this.deleted = deleted;
         this.last_soldier = last_soldier;
     }
+    to_string(){
+        return this.mohre + " " + this.origin + " " + this.destination + " " + this.deleted + " " + this.last_soldier + "\n";
+    }
 }
 
 function moving_piece_check_own_same_rowCol (own_piece_parent_className, piece_color, id){
