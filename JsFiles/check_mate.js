@@ -379,9 +379,13 @@ function if_check_then_checkMate(id, hit_dark_or_white, piece_color) {
                 return;
             }
         }
-        if (!checkMate_or_pat)
+        if (!checkMate_or_pat){
+            let player_win = white_player;
+            if (piece_color == 'dark-mohre')
+                player_win = black_player;
+            game_finished(player_win)
+        }
 
-            game_finished('checkmate')
         else 
             alert ("pat !!!")
         return;

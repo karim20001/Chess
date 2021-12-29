@@ -4,6 +4,11 @@ const undo_button = document.getElementById('undo');
 //const _all_ = document.getElementsByTagName('td');
 const rows = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
+// get names
+
+const white_player = prompt("white player name?");
+const black_player = prompt("black player name?");
+
 // undo redo history
 const undo = new Stack();
 const redo = new Stack();
@@ -31,6 +36,7 @@ let check_side_move = true, firstClicked_or_second = true, bullshit_stuff_with_i
 // $('.c3').removeClass('active');
 var second = 30;
 
+// for set id to new pieces (soldier reached end)
 const whitePieces_number = [2, 2, 2, 1];
 const blackPieces_number = [2, 2, 2, 1];
 
@@ -39,7 +45,7 @@ function counter(){
     let seconds = document.getElementById('second-counter');
 
     if (check_side_move){
-        switcher.innerHTML = 'White'
+        switcher.innerHTML = white_player;
         $('.dark-mohre').css('cursor', '');
         $('.light-mohre').css('cursor', 'pointer');
         $(".dark-mohre").prop("onclick", null).off("click");
@@ -52,7 +58,7 @@ function counter(){
     }
     
     else {
-        switcher.innerHTML = 'Black'
+        switcher.innerHTML = black_player;
         $('.light-mohre').css('cursor', '');
         $('.dark-mohre').css('cursor', 'pointer');
         $(".light-mohre").prop("onclick", null).off("click");
@@ -417,18 +423,37 @@ function soldier_reached_end (parent_class, id, dark_or_white, position){
     }
 }
 
-function game_finished (finished_message){
+function game_finished (player_win){
     writeInFile();
-    
+    clearInterval(interval);
+    $(".light-mohre").prop("onclick", null).off("click");
+    $(".dark-mohre").prop("onclick", null).off("click");
+
+    let saver = [];
+    let winner_length = Math.ceil(player_win.length / 3);
+
+    for (let i = 0, j= 0; i < 3; i++, j += winner_length){
+        saver[i] = player_win.slice(j, j + winner_length);
+        saver[i] = saver[i].split("").join(" ");
+    }
+
+    const set_the_winner = document.getElementsByClassName("winner");
+    for (let i = 0; i < 3; i++){
+        if (i == 0)
+            set_the_winner[i].innerHTML = saver[i];
+        else
+            set_the_winner[i].innerHTML = saver[i];
+    }
+
     setTimeout(function (){
         document.getElementById('finish').style.display = 'block';
         $('.to-disable').css('opacity', '0.1')
         document.getElementById('vid').play();
-        clearInterval(interval)
+        
         document.getElementById("finished-button").addEventListener('click', function(){
             location.reload();
         })
-    }, 1000);
+    }, 3000);
 }
 
 function writeInFile (){

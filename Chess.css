@@ -240,6 +240,7 @@ pointer-events: none;
     grid-area: w;
 }
 #first {
+    margin-right: 5px;
     font-size: 30px;
     animation-delay: 2.5s;
 }
@@ -266,6 +267,7 @@ pointer-events: none;
 }
 
 #third{
+    margin-left: 5px;
     font-size: 30px;
     animation-delay: 4.5s;
 }
