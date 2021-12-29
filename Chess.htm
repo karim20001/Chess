@@ -22,6 +22,7 @@
     <title>Chess</title>
 </head>
 <body>
+    
     <header class="to-disable">
         <p class="chess-head" id="turn"></p>
 
@@ -29,9 +30,23 @@
 
     </header>
 
+    <div id="finish">
+        <video id="vid" src="smoke.mp4" muted></video>
+        
+        <!-- <span class="note" id="the-winner">fdh</span> -->
+        <section class="tt">
+            <span class="note">The winner</span><br><br>
+            <span id="first" class="note">a m i</span>
+            <span id="second" class="note"> r r e</span>
+            <span id="third" class="note"> z a</span>
+        </section>
+       
+        <input type="submit" value="Reset The Game" id="finished-button">
+    </div>
+
     <div class="flex-container">
     <!-- <div class="to-disable" id="deleted-mohre"> -->
-        <div class="" id="deleted-white">
+        <div class="to-disable" id="deleted-white">
 
             <p id="white1"></p>
         </div>
@@ -40,9 +55,6 @@
         
 
         <div class="middle to-disable">
-
-            
-
 
             <table class="chess-board">
                 <tbody>
@@ -138,7 +150,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="flex-container" id="deleted-black">
+        <div class="flex-container to-disable" id="deleted-black">
             <p id="black1"></p>
         </div>
         <div class="history-container to-disable">

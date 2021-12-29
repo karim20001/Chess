@@ -416,3 +416,13 @@ function soldier_reached_end (parent_class, id, dark_or_white, position){
         }, 50)
     }
 }
+
+function game_finished (finished_message){
+    document.getElementById('finish').style.display = 'block';
+    $('.to-disable').css('opacity', '0.1')
+    document.getElementById('vid').play();
+    clearInterval(interval)
+    document.getElementById("finished-button").addEventListener('click', function(){
+        location.reload();
+    })
+}

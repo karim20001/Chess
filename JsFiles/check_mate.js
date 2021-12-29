@@ -381,7 +381,7 @@ function if_check_then_checkMate(id, hit_dark_or_white, piece_color) {
         }
         if (!checkMate_or_pat)
 
-            alert("check mate!!!")
+            game_finished('checkmate')
         else 
             alert ("pat !!!")
         return;

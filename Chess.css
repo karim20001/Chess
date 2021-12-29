@@ -9,7 +9,21 @@ body {
     user-select: none;
     display: grid;
     align-items: center;
+    /* overflow: hidden; */
     justify-content: center;
+}
+
+video {
+    /* object-fit: cover; */
+    top: -45%;
+    left: 5%;
+    border-radius: 5px;
+    /* z-index: 1; */
+    /* margin-left: 50px; */
+    width: 600px;
+    height: 350px;
+    transform: skew(0);
+    position: absolute;
 }
 
 .flex-container {
@@ -119,6 +133,169 @@ header {
     outline: 3px solid goldenrod;
 }
 
+#finish {
+    text-align: center;
+    display: grid;
+    /* border: 1px solid black; */
+    /* border-radius: 10px; */
+    /* grid-template-areas:
+    "w u i"
+    "e d f"; */
+    /* "a b c"; */
+    position: absolute;
+    left: 25%;
+    width: 600px;
+    height: 200px;
+    /* margin-left: 100px; */
+    /* background-color: #21637b; */
+    display: none;
+}
+
+.tt {
+    /* grid-area: u; */
+    align-self: center;
+    margin-left: 50px;
+    font-size: 30px;
+}
+
+section{
+    /* transform: skew(-0.06turn, 1deg); */
+    z-index: 500;
+    /* opacity: 0; */
+}
+
+section::before{
+    /* content:"";
+  width: 100%;
+  height: 750px;
+  position: absolute;
+  top: -200px;
+  left: 10px;
+  transform: rotate(55deg);
+  background: rgba(206,188,155,.7);
+  background: -moz-linear-gradient(left, rgba(206,188,155,.7) 0%, rgba(42,31,25,0) 65%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(206,188,155,.7)), color-stop(65%, rgba(42,31,25,0)));
+  background: -webkit-linear-gradient(left, rgba(206,188,155,.7) 0%, rgba(42,31,25,0) 65%);
+  background: -o-linear-gradient(left, rgba(206,188,155,.7) 0%, rgba(42,31,25,0) 65%);
+  background: -ms-linear-gradient(left, rgba(206,188,155,.7) 0%, rgba(42,31,25,0) 65%);
+  background: linear-gradient(to right, rgba(206,188,155,.7) 0%, rgba(42,31,25,0) 65%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cebc9b', endColorstr='#2a1f19', GradientType=0.7 ); */
+
+content: '';
+position: absolute;
+top: 0;
+left: 5%;
+width: 100%;
+height: 100%;
+background: linear-gradient(to right, #f00, #f00, rgb(251, 255, 0), rgb(30, 255, 0), #ff0, rgb(0, 187, 255), rgb(0, 51, 255), rgb(34, 0, 255));
+mix-blend-mode: color;
+pointer-events: none;
+
+}
+
+.note {
+    z-index: 600;
+    text-shadow: 
+    -1px -1px 1px #efede3, 
+    0px 1px 0 #575519, 
+    0px 2px 0 #5e5c1a, 
+    0px 3px 0 #68651b, 
+    0px 4px 0 #6d6a1c, 
+    0px 5px 0 #726f1c,
+    0px 6px 0 #74711b, 
+    0px 7px 0 #807d1f;
+    /* 0px 8px 0 #202020, 
+    0px 9px 0 #1e1e1e, 
+    0px 10px 0 #1c1c1c, 
+    0px 11px 0 #1a1a1a, 
+    0px 12px 0 #181818, 
+    0px 13px 0 #161616, 
+    0px 14px 0 #141414, 
+    0px 15px 0 #121212,
+    2px 20px 5px rgba(0, 0, 0, 0.9),
+    5px 23px 5px rgba(0, 0, 0, 0.3),
+    8px 27px 8px rgba(0, 0, 0, 0.5),
+    8px 28px 35px rgba(0, 0, 0, 0.9); */
+
+    color: #dfc500;
+    letter-spacing: .15em;
+    transform: translateY(20px);
+    /* width: 100%; */
+  /* margin: 0 auto 0 auto; */
+  font-family: 'Lato', sans-serif;
+  /* line-height: 280px; */
+  /* font-size: 11.5rem; */
+  /* padding: 80px 50px; */
+  text-align: center;
+  text-transform: uppercase;
+  text-rendering: optimizeLegibility;
+  transform: skew(-0.06turn, 18deg);
+  opacity: 0;
+  animation: animate 1.5s linear forwards;
+  display: inline-block;
+
+}
+
+#the-winner {
+    grid-area: w;
+}
+#first {
+    font-size: 30px;
+    animation-delay: 2.5s;
+}
+@keyframes animate {
+    0%
+    {
+        opacity: .5;
+        transform: rotateY(90deg);
+        transform: rotateX(90deg);
+        filter: blur(2px);
+    }
+    100%
+    {
+        opacity: 1;
+        transform: rotateY(0deg);
+        transform: rotateX(0deg);
+        filter: blur(0px);
+    }
+} 
+
+#second{
+    font-size: 30px;
+    animation-delay: 3.5s;
+}
+
+#third{
+    font-size: 30px;
+    animation-delay: 4.5s;
+}
+
+#finished-button{
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: rgb(158, 137, 13);
+    color: #000;
+    /* grid-area: d; */
+    margin-right: 20px;
+    position: absolute;
+    font-size: 18px;
+    margin-left: 250px;
+    height: 40px;
+    width: min-content;
+    bottom: 0;
+    display: block;
+    align-self: end;
+    z-index: 1000;
+    margin-bottom: 0;
+
+}
+
+#finished-button:hover{
+    background-color: rgb(220, 191, 29);
+    transform: scale(1.01);
+    /* border: 1px solid gold; */
+}
 
 .chess-board { 
     width: 424px;
@@ -268,3 +445,4 @@ h2 {
     position: absolute;
     /* margin-left: 100px; */
 }
+
