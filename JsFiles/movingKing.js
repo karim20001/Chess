@@ -1,4 +1,4 @@
-const king_second_move = [false, false]
+const king_second_move = [0, 0]
 function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
 
     $('.cascade').prop('onclick', null).off('click');
@@ -67,7 +67,7 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
             if (moving_obj.html() != '' && i > 1)
                 break;
 
-            if (i == 1 && !check_secondRookh_move[0 + tempory] && !king_second_move[tempory_for_king] && moving_obj.html() != ''){
+            if (i == 1 && check_secondRookh_move[0 + tempory] === 0 && king_second_move[tempory_for_king] === 0 && moving_obj.html() != ''){
                 
                 if (if_check(moving_obj.attr('class').split(" "), hit_dark_or_white, piece_color) && if_check($(`.${rows[save_the_row]}3`).attr('class').split(" "), hit_dark_or_white, piece_color))
                     moving_obj.addClass('cascade');
@@ -80,7 +80,7 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
             if (moving_obj.html() != '' && i < 8)
                 break;
 
-            if (i == 8 && !check_secondRookh_move[0 + tempory] && !king_second_move[tempory_for_king] && moving_obj.html() != ''){
+            if (i == 8 && check_secondRookh_move[1 + tempory] === 0 && king_second_move[tempory_for_king] === 0 && moving_obj.html() != ''){
                 if (if_check(moving_obj.attr('class').split(" "), hit_dark_or_white, piece_color) && if_check($(`.${rows[save_the_row]}7`).attr('class').split(" "), hit_dark_or_white, piece_color))
                     moving_obj.addClass('cascade');
             }
@@ -110,7 +110,7 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
         e.preventDefault();
 
         kish = false;
-        king_second_move[tempory_for_king] = true;
+        king_second_move[tempory_for_king]++;
 
         if (pressed_undo)
             redo.makeNull();
@@ -139,6 +139,7 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
 
     $('.cascade').click(function (e) { 
         e.preventDefault();
+        king_second_move[tempory_for_king]++;
 
         // remove listener of active & hit classes
         $('.active').prop('onclick', null).off('click')
@@ -151,7 +152,6 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
         $('.light, .dark').removeClass('cascade');
 
         castling(e.target.id, e.target.className.split(" "), tempory_for_king, id, className, save_the_row, save_the_col, piece_color, false);
-        console.log(444)
         // $('.cascade').prop('onclick', null).off('click');
 
         return;
@@ -159,7 +159,6 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
 }
 
 function castling (e, rook_parent, tempory_for_king, id, className, save_the_row, save_the_col, piece_color, redoing){
-    king_second_move[tempory_for_king] = true;
 
     if (!redoing){
         second = 0;

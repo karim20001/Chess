@@ -1,4 +1,4 @@
-const check_secondRookh_move = [false, false, false, false];
+const check_secondRookh_move = [0, 0, 0, 0];
 let rook_col_row = undefined;
 
 function moveRokh(id, className, hit_dark_or_white, piece_color, check_mate){
@@ -64,7 +64,8 @@ function moveRokh(id, className, hit_dark_or_white, piece_color, check_mate){
             let tempory = 0;
             if (piece_color == 'dark-mohre')
                 tempory = 2;
-            check_secondRookh_move[parseInt(id[2]) - 1 + tempory] = true;
+            check_secondRookh_move[parseInt(id[2]) - 1 + tempory]++;
+            console.log(check_secondRookh_move[parseInt(id[2]) - 1 + tempory])
             // the class & id object should go
             let class_name = e.target.className.split(" ");
             let id_obj = e.target.id;

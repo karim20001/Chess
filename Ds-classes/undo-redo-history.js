@@ -10,6 +10,20 @@ function to_undo (){
     second = 0;
     counter();
 
+    if (move.mohre[0] == 'r')
+        if (parseInt(move.mohre[2]) < 3){
+            let r = 0;
+            if (move.mohre[1] == 'd')
+                r = 2;
+            check_secondRookh_move[parseInt(move.mohre[2]) - 1 + r]--;
+        }
+
+    if (move.mohre[0] == 'k'){
+            let r = 0;
+            if (move.mohre[1] == 'd')
+                r = 1;
+            king_second_move[r]--;
+    }
     
     let destination = move.destination;
     setTimeout(function (){
@@ -50,7 +64,7 @@ function to_undo (){
                         piece_shape = '♟'
                         break;
                     case 'r':
-                        piece_shape = '♜'
+                        piece_shape = '♜';
                         break;
                     case 'h':
                         piece_shape = '♞';
@@ -146,7 +160,15 @@ function to_redo (history_obj, if_history){
                 piece_shape = '♟'
                 break;
             case 'r':
-                piece_shape = '♜'
+                piece_shape = '♜';
+                if (parseInt(move.mohre[2]) < 3){
+                    if (!if_history){
+                        let r = 0;
+                        if (move.mohre[1] == 'd')
+                            r = 2;
+                        check_secondRookh_move[parseInt(move.mohre[2]) - 1 + r]++;
+                    }
+                }
                 break;
             case 'h':
                 piece_shape = '♞';
@@ -158,7 +180,13 @@ function to_redo (history_obj, if_history){
                 piece_shape = '♛'
                 break;
             case 'k':
-                piece_shape = '♚'
+                if (!if_history){
+                    piece_shape = '♚';
+                    let r = 0;
+                    if (move.mohre[1] == 'd')
+                        r = 1;
+                    king_second_move[r]--;
+                }
                 break;
         }
 
@@ -167,6 +195,23 @@ function to_redo (history_obj, if_history){
         animatingMoves(temp, temp1, move.mohre, piece_color, piece_shape, second_move, true, if_history);
     }
     else {
+
+        if (!if_history){
+            piece_shape = '♚';
+            let r = 0;
+            if (move.mohre[1] == 'd')
+                r = 1;
+            king_second_move[r]--;
+        }
+
+        if (parseInt(move.mohre[2]) < 3){
+            if (!if_history){
+                let r = 0;
+                if (move.mohre[1] == 'd')
+                    r = 2;
+                check_secondRookh_move[parseInt(move.mohre[2]) - 1 + r]++;
+            }
+        }
 
         let rook_id = move.mohre.split(" ")[1];
         let king_id = move.mohre.split(" ")[0];
