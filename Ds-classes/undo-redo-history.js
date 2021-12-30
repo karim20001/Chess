@@ -274,7 +274,7 @@ function to_redo (history_obj, if_history){
         let save_the_col = parseInt(king_class[king_class.length - 1]);
         let save_the_row = king_class[king_class.length - 2].charCodeAt(0) - 97;
 
-        castling(rook_id, rook_class, tempory_for_king, king_id, king_class, save_the_row, save_the_col, piece_color, true)
+        castling(rook_id, rook_class, tempory_for_king, king_id, king_class, save_the_row, save_the_col, piece_color, true, if_history)
         // undo.push(move);
         return;
     }

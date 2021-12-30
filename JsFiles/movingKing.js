@@ -165,13 +165,15 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
     })
 }
 
-function castling (e, rook_parent, tempory_for_king, id, className, save_the_row, save_the_col, piece_color, redoing){
+function castling (e, rook_parent, tempory_for_king, id, className, save_the_row, save_the_col, piece_color, redoing, if_history){
 
-    if (!redoing){
+    if (!if_history){
         second = 0;
         counter();
-        if (pressed_undo)
-        redo.makeNull();
+        if (!redoing){
+            if (pressed_undo)
+            redo.makeNull();
+        }
     }
 
     let rookh_id = e;
