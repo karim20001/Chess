@@ -239,16 +239,28 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
             temp = class_name[1];  
             // delete mohre
             let action;
-            if ($(`.${temp}`).html() != ''){
+            if ($(`.${temp}`).html() != '' || pusan_checker[1]){
+                let deleted_child_id, deleted_child;
 
-                let deleted_child = $(`.${temp}`).children().html();
-                let deleted_child_id = $(`.${temp}`).children().attr('id');
+                if (!pusan_checker[1]){
+                    deleted_child = $(`.${temp}`).children().html();
+                    deleted_child_id = $(`.${temp}`).children().attr('id');
+                }
+                else {
+                    console.log(pusan_checker[0])
+                    deleted_child = $(`.${pusan_checker[0]}`).children().html();
+                    deleted_child_id = $(`.${pusan_checker[0]}`).children().attr('id');
+                    $(`.${pusan_checker[0]}`).html('');
+                }
                 if (dark_or_white == 'light-mohre')
                     document.getElementById('white1').innerHTML += deleted_child;
                 else 
                     document.getElementById('black1').innerHTML += deleted_child;
 
-                action = new Action(id, className.split(" ")[1], class_name[1], deleted_child_id, null)
+                if (!pusan_checker[1])
+                    action = new Action(id, className.split(" ")[1], class_name[1], deleted_child_id, null)
+                else
+                    action = new Action(id, className.split(" ")[1], `${pusan_checker[0]} ${class_name[1]}`, deleted_child_id, null)
             }
 
             else {
@@ -277,6 +289,13 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
                     }
                 }
             }
+            if (Math.abs(Top) == 106 && id[0] == 's'){
+                pusan_checker[0] = class_name[1];
+            }
+            else {
+                pusan_checker[0] = null;
+            }
+            pusan_checker[1] = false;
             // if (Log.head.next != null)
             // console.log(Log.head.next.data)
             // if (action.deleted != null){
@@ -424,7 +443,9 @@ function soldier_reached_end (parent_class, id, dark_or_white, position){
 }
 
 function game_finished (player_win){
+
     writeInFile();
+
     clearInterval(interval);
     $(".light-mohre").prop("onclick", null).off("click");
     $(".dark-mohre").prop("onclick", null).off("click");

@@ -90,6 +90,7 @@ function to_undo (){
                     if (piece_shape == '♟' && destination[0] == 'g')
                         if_soldier = '';
                     $(`.${destination}`).html(`<p class="dark-mohre${if_soldier}" id="${move.deleted}">${piece_shape}</p>`);
+                    
                 }
                 
             }
@@ -98,12 +99,27 @@ function to_undo (){
         else {
             destination = destination.split(" ");
 
-            let temp = $(`.${destination[0]}`).html();
-            $(`.${move.origin.split(" ")[0]}`).html(temp);
-            $(`.${destination[0]}`).html("")
-            temp = $(`.${destination[1]}`).html();
-            $(`.${move.origin.split(" ")[1]}`).html(temp);
-            $(`.${destination[1]}`).html("")
+            if (move.mohre[0][0] == 'k'){
+                let temp = $(`.${destination[0]}`).html();
+                $(`.${move.origin.split(" ")[0]}`).html(temp);
+                $(`.${destination[0]}`).html("")
+                temp = $(`.${destination[1]}`).html();
+                $(`.${move.origin.split(" ")[1]}`).html(temp);
+                $(`.${destination[1]}`).html("")
+            }
+            else {
+                if (move.deleted[1] == 'd'){
+                    document.getElementById('white1').innerHTML = document.getElementById('white1').innerHTML.replace('♟', '')
+                    $(`.${destination[0]}`).html(`<p class="dark-mohre second-move" id="${move.deleted}">♟</p>`);
+                }
+                else {
+                    document.getElementById('black1').innerHTML = document.getElementById('black1').innerHTML.replace('♟', '')
+                    $(`.${destination[0]}`).html(`<p class="light-mohre second-move" id="${move.deleted}">♟</p>`);
+                }
+                let k = $(`.${destination[1]}`).html();
+                $(`.${move.origin}`).html(k);
+                $(`.${destination[1]}`).html('');
+            }
         }
 
     }, 20)
@@ -153,7 +169,7 @@ function to_redo (history_obj, if_history){
     else 
         piece_color = 'dark-mohre';
 
-    if (move.destination.split(" ").length == 1){
+    if (move.destination.split(" ").length == 1 || move.mohre[0] == 's'){
         let piece_shape;
         switch (move.mohre[0]){
             case 's':
@@ -191,8 +207,34 @@ function to_redo (history_obj, if_history){
         }
 
         let temp = 'null ' + move.origin;
-        let temp1 = [null, move.destination];
+        let temp1;
+
+        if (move.destination.split(" ").length == 1)
+            temp1 = [null, move.destination];
+        else {
+
+            temp1 = [null, move.destination.split(" ")[1]];
+            if (!if_history){
+                let deleted_child = $(`.${move.destination.split(" ")[0]}`).children().html();
+                
+                setTimeout(function (){
+                    $(`.${move.destination.split(" ")[0]}`).html('');
+                    if (move.mohre[1] == 'w')
+                        document.getElementById('white1').innerHTML += deleted_child;
+                    else 
+                        document.getElementById('black1').innerHTML += deleted_child;
+                }, 500);
+            }           
+        }
         animatingMoves(temp, temp1, move.mohre, piece_color, piece_shape, second_move, true, if_history);
+        if (!if_history)
+            if (move.destination.split(" ").length != 1){
+                setTimeout(function (){
+                    let r = undo.pop();
+                    undo.push(move)
+                }, 505)
+                
+            }
     }
     else {
 
@@ -311,10 +353,15 @@ function show_history_on_board (event){
     let current_destination;
     let prev_origin, prev_rook, current_rook_destination;
 
-    if (current_saver.split(" ").length == 1){
+    if (current_saver.split(" ").length == 1 ){
         current_origin_parent =  $(`#${current_saver}`).parent();
         current_origin = current_origin_parent.html();
-        current_destination = $(`.${specified_pos.data.destination}`).html();
+        if (specified_pos.data.destination.split(" ") == 1)
+            current_destination = $(`.${specified_pos.data.destination}`).html();
+        else{
+            current_destination = $(`.${specified_pos.data.destination.split(" ")[0]}`).html();
+            current_rook = $(`.${specified_pos.data.destination.split(" ")[1]}`).html();
+        }
         $(`#${current_saver}`).parent().html('');
         prev_origin = $(`.${specified_pos.data.origin}`).html();
     }
@@ -330,7 +377,6 @@ function show_history_on_board (event){
         current_rook = current_rook_parent.html();
         current_rook_destination = $(`.${specified_pos.data.destination.split(" ")[1]}`).html();
         prev_rook = $(`.${specified_pos.data.origin.split(" ")[1]}`).html();
-        console.log(prev_origin)
         $(`#${current_saver[1]}`).parent().html('');
     }
 
@@ -373,7 +419,6 @@ function show_history_on_board (event){
     }
     let colors = [];
 
-    console.log(piece_shape[0])
     if (specified_pos.data.mohre.split(" ")[0][1] == 'w'){
 
         colors[0] = 'light-mohre';
@@ -395,7 +440,12 @@ function show_history_on_board (event){
         $(`.${specified_pos.data.destination.split(" ")[0]}`).html(`<p id="${specified_pos.data.deleted}" class="${colors[1]}">${piece_shape[1]}</p>`)
     
     else {
-        $(`.${specified_pos.data.destination.split(" ")[0]}`).html('');
+        if (current_rook != undefined && specified_pos.data.mohre[0] == 's'){
+            $(`.${specified_pos.data.destination.split(" ")[0]}`).html(`<p class="light-mohre second-move" id="${move.deleted}">♟</p>`);
+            $(`.${specified_pos.data.destination.split(" ")[1]}`).html('');
+        }
+        else
+            $(`.${specified_pos.data.destination.split(" ")[0]}`).html('');
         if (specified_pos.data.origin.split(" ").length > 1){
             $(`.${specified_pos.data.destination.split(" ")[1]}`).html('');
         }
@@ -408,6 +458,10 @@ function show_history_on_board (event){
         $(`.${specified_pos.data.destination.split(" ")[0]}`).html(current_destination);
         $(`.${specified_pos.data.origin.split(" ")[0]}`).html(prev_origin);
         current_origin_parent.html(current_origin);
+
+        if (current_rook != undefined && specified_pos.data.mohre[0] == 's'){
+            $(`.${specified_pos.data.destination.split(" ")[1]}`).html(current_rook);
+        }
        
         if (specified_pos.data.origin.split(" ").length > 1){
             $(`.${specified_pos.data.destination.split(" ")[1]}`).html(current_rook_destination);
