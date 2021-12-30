@@ -252,15 +252,19 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
                     deleted_child_id = $(`.${pusan_checker[0]}`).children().attr('id');
                     $(`.${pusan_checker[0]}`).html('');
                 }
-                if (dark_or_white == 'light-mohre')
-                    document.getElementById('white1').innerHTML += deleted_child;
-                else 
-                    document.getElementById('black1').innerHTML += deleted_child;
+                if (!animate_histoy){
+                    if (dark_or_white == 'light-mohre')
+                        document.getElementById('white1').innerHTML += deleted_child;
+                    else 
+                        document.getElementById('black1').innerHTML += deleted_child;
+                }
 
                 if (!pusan_checker[1])
                     action = new Action(id, className.split(" ")[1], class_name[1], deleted_child_id, null)
-                else
+                else{
                     action = new Action(id, className.split(" ")[1], `${pusan_checker[0]} ${class_name[1]}`, deleted_child_id, null)
+                }
+                document.getElementById("sliding").play();
             }
 
             else {
@@ -436,7 +440,13 @@ function soldier_reached_end (parent_class, id, dark_or_white, position){
 
         $(`.${parent_class}`).html(`<p class="${dark_or_white}" id="${char}${temp}${number_for_id}">${kindOfPiece}</p>`);
         setTimeout(function (){
+            if (temp == 'd')
+                document.getElementById('white1').innerHTML += '♟';
+            else 
+                document.getElementById('black1').innerHTML += '♟';
+
             if_check_then_checkMate(`${char}${temp}${number_for_id}`, hit, dark_or_white);
+
             start();
         }, 50)
     }

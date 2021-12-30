@@ -79,12 +79,14 @@ function to_undo (){
 
                 if (move.deleted[1] == 'w'){
                     document.getElementById('black1').innerHTML = document.getElementById('black1').innerHTML.replace(piece_shape, '')
+                    document.getElementById('white1').innerHTML = document.getElementById('white1').innerHTML.replace('♟', '')
                     let if_soldier = ' second-move';
                     if (piece_shape == '♟' && destination[0] == 'g')
                         if_soldier = '';
                     $(`.${destination}`).html(`<p class="light-mohre${if_soldier}" id="${move.deleted}">${piece_shape}</p>`);
                 }
                 else {
+                    document.getElementById('black1').innerHTML = document.getElementById('black1').innerHTML.replace('♟', '')
                     document.getElementById('white1').innerHTML = document.getElementById('white1').innerHTML.replace(piece_shape, '')
                     let if_soldier = ' second-move';
                     if (piece_shape == '♟' && destination[0] == 'g')
@@ -287,8 +289,17 @@ function to_redo (history_obj, if_history){
     }
     setTimeout( function(){
         if (move.last_soldier != null){
-            console.log(445)
+            
             let soldier = move.last_soldier.split(" ");
+            if (!if_history){
+                if (move.mohre[1] == 'd')
+                    document.getElementById('white1').innerHTML += '♟';
+                else 
+                    document.getElementById('black1').innerHTML += '♟';
+                undo.pop();
+                undo.push(move);
+            }
+            console.log(soldier[1])
             $(`.${move.destination}`).html(`<p class="${color}" id="${soldier[0]}">${soldier[1]}</p>`)
         }
     }, 505);

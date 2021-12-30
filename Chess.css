@@ -415,7 +415,7 @@ button:hover {
 .history-section {
     height: 200px;
     width: 300px;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     text-align: center;
     align-items: center;

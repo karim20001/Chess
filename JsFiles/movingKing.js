@@ -147,7 +147,7 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
         king_second_move[tempory_for_king]++;
 
         // remove listener of active & hit classes
-        $('.cascade').prop('onclick', null).off('click');
+        $('.cascade').prop('onclick', null).off('click')
         $('.active').prop('onclick', null).off('click')
         $('.hit').prop('onclick', null).off('click')
         
