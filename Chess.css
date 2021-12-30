@@ -92,10 +92,12 @@ header {
 }
 
 .active {
+    /* width: auto; */
     /* box-shadow: 0 0 5px 6px rgb(73, 184, 147); */
     outline: 3px solid rgb(16, 175, 16);
+    z-index: 10;
     /* background-image: radial-gradient(red, yellow, green); */
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     cursor: pointer;
 }
 
@@ -448,4 +450,3 @@ h2 {
     position: absolute;
     /* margin-left: 100px; */
 }
-

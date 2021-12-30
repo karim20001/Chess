@@ -206,7 +206,22 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
             $(".light-mohre").prop("onclick", null).off("click");
         }
 
-        
+        if (!kish){
+            if (dark_or_white == 'light-mohre'){
+                let the_parent = $('#kw1').parent();
+                if (the_parent.attr('class').split(" ")[0] == "dark")
+                    the_parent.css('background-color', '#a4aebb')
+                else
+                    the_parent.css('background-color', '#718091')
+            }
+            else {
+                let the_parent = $('#kd1').parent();
+                if (the_parent.attr('class').split(" ")[0] == "dark")
+                    the_parent.css('background-color', '#a4aebb')
+                else
+                    the_parent.css('background-color', '#718091')
+            }
+        }
         
 
         Top = (class_name[1].charCodeAt(0) - className[className.length - 2].charCodeAt(0)) * 53;
@@ -481,11 +496,12 @@ function game_finished (player_win){
         document.getElementById('finish').style.display = 'block';
         $('.to-disable').css('opacity', '0.1')
         document.getElementById('vid').play();
+        document.getElementById("winning").play();
         
         document.getElementById("finished-button").addEventListener('click', function(){
             location.reload();
         })
-    }, 3000);
+    }, 500);
 }
 
 function writeInFile (){

@@ -338,10 +338,21 @@ function if_check_then_checkMate(id, hit_dark_or_white, piece_color) {
     }
     if (true){
 
-        if (!temp)
+        if (!temp){
             kish = true;
-        else 
+            if (piece_color == 'light-mohre'){
+                $('#kd1').parent().css('background-color', 'red')
+            }
+            else {
+                $('#kw1').parent().css('background-color', 'red')
+            }
+            setTimeout(function (){
+                document.getElementById("when-kish").play();
+            }, 200)
+        }
+        else{
             kish = false;
+        }
         const _all_own = $(`.${hit_dark_or_white}`)
 
         for (let i = 0; i < _all_own.length; i++){
