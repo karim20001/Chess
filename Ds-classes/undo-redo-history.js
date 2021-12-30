@@ -196,12 +196,13 @@ function to_redo (history_obj, if_history){
                 piece_shape = '♛'
                 break;
             case 'k':
+                piece_shape = '♚';
                 if (!if_history){
-                    piece_shape = '♚';
+                    
                     let r = 0;
                     if (move.mohre[1] == 'd')
                         r = 1;
-                    king_second_move[r]--;
+                    king_second_move[r]++;
                 }
                 break;
         }
@@ -432,6 +433,7 @@ function show_history_on_board (event){
             colors[1] = 'light-mohre';
         }
     }
+   
     $(`.${specified_pos.data.origin.split(" ")[0]}`).html(`<p class="${colors[0]}" id="${specified_pos.data.mohre.split(" ")[0]}">${piece_shape[0]}</p>`)
     if (specified_pos.data.origin.split(" ").length > 1){
         $(`.${specified_pos.data.origin.split(" ")[1]}`).html(`<p class="${colors[0]}" id="${specified_pos.data.mohre.split(" ")[1]}">♜</p>`)
