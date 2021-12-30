@@ -79,8 +79,9 @@ header {
 }
 
 #deleted-black {
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     height : 420px;
+    color: #000;
     border-radius: 5px;
     font-size: xx-large;
     word-wrap: break-word;
