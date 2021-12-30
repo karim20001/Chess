@@ -216,7 +216,8 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
         $(`#${id}`).animate({
             top: `+=${Top}px`,
             left: `+=${Left}px`
-        }, 500)
+        }, 500);
+        document.getElementById("slide").play();
 
         // document.getElementById('sliding').onload
 
