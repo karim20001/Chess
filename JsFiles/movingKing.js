@@ -68,7 +68,7 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
                 break;
 
             if (i == 1 && check_secondRookh_move[0 + tempory] === 0 && king_second_move[tempory_for_king] === 0 && moving_obj.html() != ''){
-                console.log(king_second_move[tempory_for_king])
+                
                 if (if_check(moving_obj.attr('class').split(" "), hit_dark_or_white, piece_color) && if_check($(`.${rows[save_the_row]}3`).attr('class').split(" "), hit_dark_or_white, piece_color))
                     moving_obj.addClass('cascade');
             }
@@ -106,8 +106,10 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
 
     //-----------------------------------------------------
 
-    $('.active, .hit').click(function (e) { 
+    $('.active, .hit').click(function (e) {
         e.preventDefault();
+        if (piece_color == 'dark-mohre')
+            tempory_for_king = 1;
 
         kish = false;
         king_second_move[tempory_for_king]++;
@@ -139,12 +141,16 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
 
     $('.cascade').click(function (e) { 
         e.preventDefault();
+
+        if (piece_color == 'dark-mohre')
+            tempory_for_king = 1;
         king_second_move[tempory_for_king]++;
 
         // remove listener of active & hit classes
+        $('.cascade').prop('onclick', null).off('click');
         $('.active').prop('onclick', null).off('click')
         $('.hit').prop('onclick', null).off('click')
-        $('.cascade').prop('onclick', null).off('click');
+        
 
         // remove active from all elements
         $('.light, .dark').removeClass('active');
