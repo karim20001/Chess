@@ -510,7 +510,7 @@ function game_finished (player_win){
         document.getElementById("finished-button").addEventListener('click', function(){
             location.reload();
         })
-    }, 500);
+    }, 1000);
 }
 
 function writeInFile (){
