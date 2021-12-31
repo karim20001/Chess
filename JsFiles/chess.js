@@ -518,7 +518,7 @@ function writeInFile (){
     }
 
     var blob = new Blob([string], {type: "text/plain;charset=utf-8"});
-    saveAs(blob, "test.txt");
+    saveAs(blob, "history.txt");
 }
 
 function readFile (){
