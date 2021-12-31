@@ -456,5 +456,20 @@ h2 {
     left: 0;
     top: 0;
     /* background-color: aquamarine; */
-    color: black;
+    color: rgb(238, 238, 238);
+}
+#download-history{
+    position: absolute;
+    display: block;
+    width: 200px;
+    left: 0;
+    top: 40px;
+    background-color: #173f7c;
+    border-radius: 3px;
+    color: orange;
+    font-size: 14px;
+}
+
+#download-history:hover{
+    background-color: #19789b;
 }

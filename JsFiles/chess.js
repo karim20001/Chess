@@ -8,6 +8,11 @@ const rows = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 let input = document.getElementById('file-loader');
 input.addEventListener('change', readFile);
 
+//download file
+
+let download_history = document.getElementById("download-history");
+download_history.addEventListener('click', writeInFile)
+
 // get names
 
 const white_player = prompt("white player name?");
@@ -510,6 +515,8 @@ function game_finished (player_win){
 
 function writeInFile (){
     let Head = Log.head;
+    if (Head == null) return;
+
     var string = Head.data.to_string();
 
     while (Head.next != null){
@@ -558,9 +565,12 @@ function readFile (){
             }
         });
 
+        let set_turn;
         lines.forEach(function (value){
             const words = value.split(" ");
             let words_length = words.length;
+            if (words_length > 4)
+                set_turn = words[0][1];
 
             if (((words_length == 5 && words[4] == 'null') || (words_length == 6 && words[5] == 'null')) && deleted_pieces.find( (val) => val == words[0]) == undefined){
 
@@ -597,6 +607,10 @@ function readFile (){
                 $(`.${words[2]}`).html(`<p id="${words[4]}" class="${className}">${words[5]}</p>`);
             }
         })
+
+        if (set_turn == 'w')
+            check_side_move = false;
+
     }
     reader.readAsText(file);
 }
