@@ -1,6 +1,6 @@
 body {
     background-color: #1a283a;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     -webkit-touch-callout: none; 
     -webkit-user-select: none; 
     -khtml-user-select: none; 
@@ -318,7 +318,7 @@ td {
 .chess-board td:last-child { border-right: 1px solid rgb(0, 0, 0); }
 .chess-board tr:last-child td { border-bottom: 1px solid; }
 .chess-board th:empty { border: none; }
-.chess-board td { width: 1.5em; height: 1.5em; text-align: center; font-size: 32px; line-height: 0;
+.chess-board td { width: 1.5em; height: 1.5em; text-align: center; font-size: 36px; line-height: 0;
 }
 .chess-board .light { background: #718091; }
 .chess-board .dark { background: #a4aebb; }
@@ -405,6 +405,7 @@ button:hover {
 
 .history-container {
     position: absolute;
+    /* justify-self: center; */
     display: grid;
     right: 0;
     margin-left: 50px;
@@ -453,8 +454,8 @@ h2 {
 
 #file-loader {
     position: absolute;
-    left: 0;
-    top: 0;
+    left: 10px;
+    top: 25px;
     /* background-color: aquamarine; */
     color: rgb(238, 238, 238);
 }
@@ -463,7 +464,7 @@ h2 {
     display: block;
     width: 200px;
     left: 0;
-    top: 40px;
+    top: 45px;
     background-color: #173f7c;
     border-radius: 3px;
     color: orange;
@@ -472,4 +473,22 @@ h2 {
 
 #download-history:hover{
     background-color: #19789b;
+}
+label {
+    position: absolute;
+    left: 5px;
+    top: 0;
+    color: orange;
+}
+
+.to-disable {
+    margin-top: 10px;
+}
+
+@media only screen and (max-width: 1250px){
+    .history-container{
+        top: 500px;
+        right: 50%;
+        transform: translateX(54%);
+    }
 }
