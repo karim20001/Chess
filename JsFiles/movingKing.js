@@ -147,16 +147,20 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
         king_second_move[tempory_for_king]++;
 
         // remove listener of active & hit classes
-        $('.cascade').prop('onclick', null).off('click')
+        
+            
         $('.active').prop('onclick', null).off('click')
         $('.hit').prop('onclick', null).off('click')
-        
+        $('.cascade').prop('onclick', null).off('click')
 
+        
         // remove active from all elements
         $('.light, .dark').removeClass('active');
         $('.light, .dark').removeClass('hit');
         $('.light').removeClass('cascade');
         $('.dark').removeClass('cascade');
+        $('.cascade').prop('onclick', null).off('click')
+        
 
         castling(e.target.id, e.target.className.split(" "), tempory_for_king, id, className, save_the_row, save_the_col, piece_color, false);
         // $('.cascade').prop('onclick', null).off('click');
@@ -185,6 +189,8 @@ function castling (e, rook_parent, tempory_for_king, id, className, save_the_row
         rookh_parent_class = rook_parent;
         rookh_id = $(`.${rookh_parent_class[1]}`).children().attr('id');
     }
+
+    $(`.${rookh_parent_class}`).off('click');
     
     let king_going_position, rookh_going_position;
 
