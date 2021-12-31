@@ -72,21 +72,21 @@ header {
     border-radius: 5px;
     word-wrap: break-word;
     font-size: xx-large;
-    background-color: #000000;
+    background-color: #a7bad0;
     margin-right: 12px;
-    color: #ffffff;
+    color: #000000;
     text-align: center;
 }
 
 #deleted-black {
     /* margin-bottom: 20px; */
     height : 420px;
-    color: #000;
+    color: #4b4040;
     border-radius: 5px;
     font-size: xx-large;
     word-wrap: break-word;
     width : 60px;
-    background-color: #ffffff;
+    background-color: #131518;
     margin-left: 12px;
     text-align: center;
 }

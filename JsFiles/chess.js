@@ -555,7 +555,7 @@ function readFile (){
                 deleted_pieces.push(words[3]);
 
                 let shape = deleted.html();
-                if (words[3][1] == 'w'){
+                if (words[3][1] == 'd'){
                     document.getElementById('white1').innerHTML += shape;
                 }
                 else {
@@ -597,11 +597,11 @@ function readFile (){
                 let className;
                 if (words[0][1] == 'd'){
                     className = 'dark-mohre';
-                    document.getElementById('black1').innerHTML += '♟';
+                    document.getElementById('white1').innerHTML += '♟';
                 }
                 else{
                     className = 'light-mohre';
-                    document.getElementById('white1').innerHTML += '♟';
+                    document.getElementById('black1').innerHTML += '♟';
                 }
                 
                 $(`.${words[2]}`).html(`<p id="${words[4]}" class="${className}">${words[5]}</p>`);
