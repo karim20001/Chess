@@ -4,6 +4,10 @@ const undo_button = document.getElementById('undo');
 //const _all_ = document.getElementsByTagName('td');
 const rows = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
+// load file
+let input = document.getElementById('file-loader');
+input.addEventListener('change', readFile);
+
 // get names
 
 const white_player = prompt("white player name?");
@@ -515,4 +519,84 @@ function writeInFile (){
 
     var blob = new Blob([string], {type: "text/plain;charset=utf-8"});
     saveAs(blob, "test.txt");
+}
+
+function readFile (){
+
+    let files = input.files;
+    if (files.length == 0) return;
+    
+    let reader = new FileReader();
+
+    const file = files[0];
+
+    reader.onload = (e) => {
+        
+        const file = e.target.result;
+        const lines = file.split(/\r\n|\n/);
+        const deleted_pieces = [];
+        
+        lines.forEach(function (value) {
+            
+            const words = value.split(' ');
+            let words_length = words.length;
+            
+            if ((words_length == 5 || words_length == 6) && words[words_length - 2] != 'null'){
+
+                let deleted;
+                deleted = $(`#${words[3]}`);
+                deleted_pieces.push(words[3]);
+
+                let shape = deleted.html();
+                if (words[3][1] == 'w'){
+                    document.getElementById('white1').innerHTML += shape;
+                }
+                else {
+                    document.getElementById('black1').innerHTML += shape;
+                }
+                deleted.parent().html("");
+            }
+        });
+
+        lines.forEach(function (value){
+            const words = value.split(" ");
+            let words_length = words.length;
+
+            if (((words_length == 5 && words[4] == 'null') || (words_length == 6 && words[5] == 'null')) && deleted_pieces.find( (val) => val == words[0]) == undefined){
+
+                let mohre = $(`#${words[0]}`).parent().html();
+                $(`#${words[0]}`).parent().html("");
+                $(`.${words[2]}`).html(mohre);
+
+            }
+            if (words_length == 7){
+
+                let king = $(`#${words[0]}`).parent().html();
+                $(`#${words[0]}`).parent().html("");
+                $(`.${words[4]}`).html(king);
+
+                if (deleted_pieces.find( (val) => val == words[1]) == undefined){
+                    let rook = $(`#${words[1]}`).parent().html("");
+                    $(`#${words[1]}`).parent().html("");
+                    $(`.${words[5]}`).html(rook);
+                }
+            }
+            if (words_length == 6 && words[5] != 'null'){
+                $(`#${words[0]}`).parent().html("");
+
+                let className;
+                if (words[0][1] == 'd'){
+                    className = 'dark-mohre';
+                    document.getElementById('black1').innerHTML += '♟';
+                }
+                else{
+                    className = 'light-mohre';
+                    document.getElementById('white1').innerHTML += '♟';
+                }
+                
+                $(`.${words[2]}`).html(`<p id="${words[4]}" class="${className}">${words[5]}</p>`);
+            }
+        })
+    }
+    reader.readAsText(file);
 }

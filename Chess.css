@@ -450,3 +450,11 @@ h2 {
     position: absolute;
     /* margin-left: 100px; */
 }
+
+#file-loader {
+    position: absolute;
+    left: 0;
+    top: 0;
+    /* background-color: aquamarine; */
+    color: black;
+}
