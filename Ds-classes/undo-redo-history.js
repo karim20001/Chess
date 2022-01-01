@@ -487,6 +487,9 @@ function show_history_on_board (event){
 
 function to_replay (){
 
+    let specified_pos = Log.head;
+    if (specified_pos == null) return;
+
     $(".light, .dark").each(function (){
         $(this).html("")
     });
@@ -508,9 +511,6 @@ function to_replay (){
         $(`.h${i}`).html(AllElements[c])
         c++
     }
-
-    let specified_pos = Log.head;
-    if (specified_pos == null) return;
 
     var inr = setInterval(function(){
         to_redo(specified_pos.data, true);
