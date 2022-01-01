@@ -301,7 +301,7 @@ function king_check_mate(className, hit_dark_or_white) {
 
 function if_check_then_checkMate(id, hit_dark_or_white, piece_color) {
 
-    let temp = false;
+    let temp = true;
     let checkMate_or_pat = true;
     const _all_of_pieces_own = $(`.${piece_color}`);
 
@@ -333,6 +333,7 @@ function if_check_then_checkMate(id, hit_dark_or_white, piece_color) {
         }
         if (!temp){
             checkMate_or_pat = temp;
+            console.log(temp)
             break;
         }
     }
@@ -348,7 +349,7 @@ function if_check_then_checkMate(id, hit_dark_or_white, piece_color) {
             }
             setTimeout(function (){
                 document.getElementById("when-kish").play();
-            }, 200)
+            }, 50)
         }
         else{
             kish = false;

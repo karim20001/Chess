@@ -574,11 +574,40 @@ function readFile (){
         });
 
         let set_turn;
+        
         lines.forEach(function (value){
+            let position = Log.head;
+            while (position != null){
+                if (position.next == null)
+                    break;
+                position = position.next;
+                    
+            }
+
+            
             const words = value.split(" ");
             let words_length = words.length;
             if (words_length > 4)
                 set_turn = words[0][1];
+            
+            let action;
+
+            function if_null(the_word){
+                if (the_word == 'null')
+                    return null;
+                return the_word;
+            }
+
+            if (words_length == 5){
+                action = new Action(words[0], words[1], words[2], if_null(words[3]), if_null(words[4]))
+            }
+            if (words_length == 6 && words[5] == 'null'){
+                action = new Action(words[0], words[1], `${words[2]} ${words[3]}`, words[4], null);
+            }
+
+            if (words_length == 6 && words[5] != 'null'){
+                action = new Action(words[0], words[1], words[2], words[3], `${words[4]} ${words[5]}`)
+            }
 
             if (((words_length == 5 && words[4] == 'null') || (words_length == 6 && words[5] == 'null')) && deleted_pieces.find( (val) => val == words[0]) == undefined){
 
@@ -588,6 +617,8 @@ function readFile (){
 
             }
             if (words_length == 8){
+
+                action = new Action(`${words[0]} ${words[1]}`, `${words[2]} ${words[3]}`, `${words[4]} ${words[5]}`, null, null)
 
                 let king = $(`#${words[0]}`).parent().html();
                 $(`#${words[0]}`).parent().html("");
@@ -614,6 +645,7 @@ function readFile (){
                 
                 $(`.${words[2]}`).html(`<p id="${words[4]}" class="${className}">${words[5]}</p>`);
             }
+            Log.insert(position, action);
         })
 
         if (set_turn == 'w')
