@@ -128,17 +128,22 @@ function to_undo (){
 
 }
 
-function to_redo (history_obj, if_history){
+function to_redo (history_obj, if_history, replaying){
     
 
     let move;
     let second_move;
     if (!if_history){
 
-        if (redo.peek() == undefined)
-        return;
+        if (!replaying){
+            if (redo.peek() == undefined)
+            return;
 
-        move = redo.pop();
+            move = redo.pop();
+        }
+        else{
+            move = history_obj;
+        }
         // undo.push(move);
 
         second_move = '';
@@ -512,8 +517,11 @@ function to_replay (){
         c++
     }
 
+    $("#black1").html("");
+    $("#white1").html("");
+
     var inr = setInterval(function(){
-        to_redo(specified_pos.data, true);
+        to_redo(specified_pos.data, false, true);
         specified_pos = specified_pos.next;
         if (specified_pos == null){
             clearInterval(inr)
