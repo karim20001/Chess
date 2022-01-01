@@ -484,3 +484,41 @@ function show_history_on_board (event){
     }, 800)
     
 }
+
+function to_replay (){
+
+    $(".light, .dark").each(function (){
+        $(this).html("")
+    });
+
+    var c = 0;
+    for (let i = 1; i < 9; i++){
+        $(`.a${i}`).html(AllElements[c])
+        c++;
+    }
+    for (let i = 1; i < 9; i++){
+        $(`.b${i}`).html(AllElements[c])
+        c++
+    }
+    for (let i = 1; i < 9; i++){
+        $(`.g${i}`).html(AllElements[c])
+        c++
+    }
+    for (let i = 1; i < 9; i++){
+        $(`.h${i}`).html(AllElements[c])
+        c++
+    }
+
+    let specified_pos = Log.head;
+    if (specified_pos == null) return;
+
+    var inr = setInterval(function(){
+        to_redo(specified_pos.data, true);
+        specified_pos = specified_pos.next;
+        if (specified_pos == null){
+            clearInterval(inr)
+            return;
+        }
+    }, 510);
+    
+}

@@ -11,7 +11,15 @@ input.addEventListener('change', readFile);
 //download file
 
 let download_history = document.getElementById("download-history");
-download_history.addEventListener('click', writeInFile)
+download_history.addEventListener('click', writeInFile);
+
+let replay = document.getElementById("replay");
+replay.addEventListener('click', to_replay);
+
+const AllElements = [];
+$(".dark-mohre, .light-mohre").each(function (){
+    AllElements.push($(this).parent().html());
+})
 
 // get names
 

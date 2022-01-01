@@ -493,3 +493,11 @@ label {
         transform: translateX(54%);
     }
 }
+
+#replay{
+    position: absolute;
+    font-size: 16px;
+    right: 20px;
+    width: 60px;
+    top: 0;
+}
