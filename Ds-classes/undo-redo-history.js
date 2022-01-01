@@ -492,6 +492,10 @@ function show_history_on_board (event){
 
 function to_replay (){
 
+    document.getElementById('finish').style.display = 'none';
+    $('.to-disable').css('opacity', '1')
+    document.getElementById('vid').style.display = 'none';
+
     let specified_pos = Log.head;
     if (specified_pos == null) return;
 
