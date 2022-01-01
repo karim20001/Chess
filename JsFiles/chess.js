@@ -548,7 +548,7 @@ function readFile (){
             const words = value.split(' ');
             let words_length = words.length;
             
-            if ((words_length == 5 || words_length == 6) && words[words_length - 2] != 'null'){
+            if ((words_length == 5 || words_length == 6) && words[3] != 'null'){
 
                 let deleted;
                 deleted = $(`#${words[3]}`);
@@ -579,14 +579,14 @@ function readFile (){
                 $(`.${words[2]}`).html(mohre);
 
             }
-            if (words_length == 7){
+            if (words_length == 8){
 
                 let king = $(`#${words[0]}`).parent().html();
                 $(`#${words[0]}`).parent().html("");
                 $(`.${words[4]}`).html(king);
 
                 if (deleted_pieces.find( (val) => val == words[1]) == undefined){
-                    let rook = $(`#${words[1]}`).parent().html("");
+                    let rook = $(`#${words[1]}`).parent().html();
                     $(`#${words[1]}`).parent().html("");
                     $(`.${words[5]}`).html(rook);
                 }
