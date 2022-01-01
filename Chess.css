@@ -442,6 +442,10 @@ button:hover {
     color: #80d8c5;
 }
 
+.to-disable {
+    margin-top: 10px;
+}
+
 h2 {
     display: grid;
     color: rgb(42, 165, 46);
@@ -463,6 +467,7 @@ h2 {
     position: absolute;
     display: block;
     width: 200px;
+    margin-top: 20px;
     left: 0;
     top: 45px;
     background-color: #173f7c;
@@ -479,10 +484,6 @@ label {
     left: 5px;
     top: 0;
     color: orange;
-}
-
-.to-disable {
-    margin-top: 10px;
 }
 
 @media only screen and (max-width: 1250px){
