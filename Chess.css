@@ -412,7 +412,7 @@ button:hover {
     align-items: center;
     justify-content: center;
     width: auto;
-    height: 100%;
+    /* height: 100%; */
 }
 
 .history-section {
@@ -488,7 +488,7 @@ label {
 
 @media only screen and (max-width: 1250px){
     .history-container{
-        top: 500px;
+        top: 650px;
         right: 50%;
         transform: translateX(54%);
     }

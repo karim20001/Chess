@@ -493,20 +493,20 @@ function show_history_on_board (event){
 function to_replay (){
 
     kish = false;
-    if (dark_or_white == 'light-mohre'){
-        let the_parent = $('#kw1').parent();
-        if (the_parent.attr('class').split(" ")[0] == "dark")
-            the_parent.css('background-color', '#a4aebb')
-        else
-            the_parent.css('background-color', '#718091')
-    }
-    else {
-        let the_parent = $('#kd1').parent();
-        if (the_parent.attr('class').split(" ")[0] == "dark")
-            the_parent.css('background-color', '#a4aebb')
-        else
-            the_parent.css('background-color', '#718091')
-    }
+    
+    let the_parent = $('#kw1').parent();
+    if (the_parent.attr('class').split(" ")[0] == "dark")
+        the_parent.css('background-color', '#a4aebb')
+    else
+        the_parent.css('background-color', '#718091')
+
+
+    the_parent = $('#kd1').parent();
+    if (the_parent.attr('class').split(" ")[0] == "dark")
+        the_parent.css('background-color', '#a4aebb')
+    else
+        the_parent.css('background-color', '#718091')
+    
     
 
     document.getElementById('finish').style.display = 'none';
