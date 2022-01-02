@@ -1,3 +1,8 @@
+// ------------------------------
+    // Amirreza Karimi
+    // Ali Khanpoor
+//-------------------------------
+
 const start_button = document.getElementById('start');
 const redo_button = document.getElementById('redo');
 const undo_button = document.getElementById('undo');
