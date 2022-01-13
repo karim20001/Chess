@@ -91,16 +91,6 @@ header {
     text-align: center;
 }
 
-.active {
-    /* width: auto; */
-    /* box-shadow: 0 0 5px 6px rgb(73, 184, 147); */
-    outline: 3px solid rgb(16, 175, 16);
-    z-index: 10;
-    /* background-image: radial-gradient(red, yellow, green); */
-    /* background-color: aquamarine; */
-    cursor: pointer;
-}
-
 .chess-head {
     margin : 1px auto 5px auto;
 }
@@ -122,18 +112,6 @@ header {
 
 #s1{
     transition: left 0.5s ease-in-out;
-}
-
-
-
-.hit {
-    outline: 3px solid red;
-    cursor: pointer;
-}
-
-.cascade {
-    cursor: pointer;
-    outline: 3px solid goldenrod;
 }
 
 #finish {
@@ -168,22 +146,6 @@ section{
 }
 
 section::before{
-    /* content:"";
-  width: 100%;
-  height: 750px;
-  position: absolute;
-  top: -200px;
-  left: 10px;
-  transform: rotate(55deg);
-  background: rgba(206,188,155,.7);
-  background: -moz-linear-gradient(left, rgba(206,188,155,.7) 0%, rgba(42,31,25,0) 65%);
-  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(206,188,155,.7)), color-stop(65%, rgba(42,31,25,0)));
-  background: -webkit-linear-gradient(left, rgba(206,188,155,.7) 0%, rgba(42,31,25,0) 65%);
-  background: -o-linear-gradient(left, rgba(206,188,155,.7) 0%, rgba(42,31,25,0) 65%);
-  background: -ms-linear-gradient(left, rgba(206,188,155,.7) 0%, rgba(42,31,25,0) 65%);
-  background: linear-gradient(to right, rgba(206,188,155,.7) 0%, rgba(42,31,25,0) 65%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cebc9b', endColorstr='#2a1f19', GradientType=0.7 ); */
-
 content: '';
 position: absolute;
 top: 0;
@@ -207,19 +169,6 @@ pointer-events: none;
     0px 5px 0 #726f1c,
     0px 6px 0 #74711b, 
     0px 7px 0 #807d1f;
-    /* 0px 8px 0 #202020, 
-    0px 9px 0 #1e1e1e, 
-    0px 10px 0 #1c1c1c, 
-    0px 11px 0 #1a1a1a, 
-    0px 12px 0 #181818, 
-    0px 13px 0 #161616, 
-    0px 14px 0 #141414, 
-    0px 15px 0 #121212,
-    2px 20px 5px rgba(0, 0, 0, 0.9),
-    5px 23px 5px rgba(0, 0, 0, 0.3),
-    8px 27px 8px rgba(0, 0, 0, 0.5),
-    8px 28px 35px rgba(0, 0, 0, 0.9); */
-
     color: #dfc500;
     letter-spacing: .15em;
     transform: translateY(20px);
@@ -302,13 +251,6 @@ pointer-events: none;
     /* border: 1px solid gold; */
 }
 
-.chess-board { 
-    width: 424px;
-    height: 424px;
-    border-spacing: 0; 
-    border-collapse: collapse;
-  
-}
 td {
     z-index: 1;
 }
@@ -326,6 +268,19 @@ td {
     color: #FFFFFF;
     text-shadow: 0 0 3px #411111, 0 0 5px #25217b;
 }
+
+.chess-board { 
+    width: 464px;
+    height: 464px;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid rgb(61, 61, 61);
+    border-collapse: collapse;
+}
+
 .dark-mohre {
     text-shadow: 0 0 3px #d7ebcf, 0 0 5px #bbede2;
 }
@@ -435,6 +390,28 @@ button:hover {
     /* width: min-content; */
     padding: 5px;
     font-size: 17px;
+}
+
+
+.chess-board .hit {
+    /* outline: 3px solid red; */
+    background-color: rgb(182, 14, 14);
+    cursor: pointer;
+}
+
+.chess-board .cascade {
+    cursor: pointer;
+    background-color: goldenrod;
+}
+
+.chess-board .active{
+    /* width: auto; */
+    /* box-shadow: 0 0 5px 6px rgb(73, 184, 147); */
+    /* outline: 3px solid rgb(16, 175, 16); */
+    z-index: 10;
+    /* background-image: radial-gradient(red, yellow, green); */
+    background-color: rgb(12, 167, 100);
+    cursor: pointer;
 }
 
 .history-section p:hover{

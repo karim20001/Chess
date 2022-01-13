@@ -246,8 +246,8 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
         }
         
 
-        Top = (class_name[1].charCodeAt(0) - className[className.length - 2].charCodeAt(0)) * 53;
-        Left = (parseInt(class_name[1][1]) - parseInt(className[className.length - 1])) * 53;
+        Top = (class_name[1].charCodeAt(0) - className[className.length - 2].charCodeAt(0)) * 58;
+        Left = (parseInt(class_name[1][1]) - parseInt(className[className.length - 1])) * 58;
         
         // animating part
         $(`#${id}`).animate({
@@ -338,11 +338,6 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
                 pusan_checker[0] = null;
             }
             pusan_checker[1] = false;
-            // if (Log.head.next != null)
-            // console.log(Log.head.next.data)
-            // if (action.deleted != null){
-                // to_undo()
-            // }
 
             $(`.${temp}`).html(`<p class="${dark_or_white}${second_move}" id=${id}>${Char}</p>`);
 
