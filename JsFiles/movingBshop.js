@@ -8,7 +8,6 @@ function moveBshop(id, className, hit_dark_or_white, piece_color, check_mate){
     $(`#${id}`).parent().html('');
     let check_for_check_mate = false;
 
-    // if (moving_piece_check_own_same_rowCol(className.split(" "), piece_color, id)){
     if (!check_mate){
         doingBishop_logic(-1, -1, save_the_row, save_the_col, hit_dark_or_white, piece_color, false);
         doingBishop_logic(-1, 1, save_the_row, save_the_col, hit_dark_or_white, piece_color, false);
@@ -21,7 +20,6 @@ function moveBshop(id, className, hit_dark_or_white, piece_color, check_mate){
 
     saver.html(`<p class = "${piece_color}" id = ${id}>♝</p>`);
     if (piece_color == 'light-mohre'){
-        // console.log(666)
         $(".dark-mohre").prop("onclick", null).off("click");
         $(".light-mohre").prop("onclick", null).off("click");
         $(".light-mohre").click(light_clicked)

@@ -57,7 +57,6 @@ function start(){
 }
 
 let check_side_move = true, firstClicked_or_second = true, bullshit_stuff_with_interval = true;
-// $('.c3').removeClass('active');
 var second = 30;
 
 // for set id to new pieces (soldier reached end)
@@ -257,8 +256,6 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
             left: `+=${Left}px`
         }, 500);
         document.getElementById("slide").play();
-
-        // document.getElementById('sliding').onload
 
         // remove listener of active & hit classes
         if (!animate_histoy){

@@ -9,8 +9,6 @@ function moveHorse (id, className, hit_dark_or_white, piece_color, check_mate){
     //--------------------------
 
     let check_for_check_mate = false;
-    // if (moving_piece_notIn_same_col(className.split(" "), piece_color, id) && moving_piece_check_own_same_rowCol(className.split(" "), piece_color, id))
-
     //check wich homes horse can go
     for (let j = save_the_row - 2; j <= save_the_row + 2; j++){
 
@@ -39,10 +37,6 @@ function moveHorse (id, className, hit_dark_or_white, piece_color, check_mate){
                         }
                     }
                 }
-
-                    // if ($(`.${rows[j]}${k}`).children().attr('class').search('dark-mohre') != -1 && k != parseInt(className[className.length - 1]) && (Math.abs(k - save_the_col) < 2 || Math.abs(j - i) < 2)){
-                    //     $(`.${rows[j]}${k}`).addClass('hit')
-                    // }
             }
         }
     }

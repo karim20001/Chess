@@ -12,16 +12,6 @@ function moveRokh(id, className, hit_dark_or_white, piece_color, check_mate){
     
     let check_for_check_mate = false;
     
-    // if (moving_piece_notIn_same_col(className.split(" "), piece_color) && moving_piece_check_own_same_rowCol(className.split(" "), piece_color, id)  && !check_oppenet){
-    //     if (rook_col_row){
-    //         doingRokh_logic(save_the_row, save_the_col, -1, 0, hit_dark_or_white, piece_color, className, id);
-    //         doingRokh_logic(save_the_row, save_the_col, 1, 0, hit_dark_or_white, piece_color, className, id);
-    //     }
-    //     if (!rook_col_row) {
-    //         doingRokh_logic(save_the_row, save_the_col, 0, -1, hit_dark_or_white, piece_color,className, id);
-    //         doingRokh_logic(save_the_row, save_the_col, 0, 1, hit_dark_or_white, piece_color, className, id);
-    //     }
-    //     if (rook_col_row == undefined){
         if (!check_mate){
             
             doingRokh_logic(save_the_row, save_the_col, 0, -1, hit_dark_or_white, piece_color, false);
@@ -30,12 +20,10 @@ function moveRokh(id, className, hit_dark_or_white, piece_color, check_mate){
             doingRokh_logic(save_the_row, save_the_col, 1, 0, hit_dark_or_white, piece_color, false);
         }
         if (check_mate){
-            
             check_for_check_mate = (doingRokh_logic(save_the_row, save_the_col, 0, -1, hit_dark_or_white, piece_color, true) || doingRokh_logic(save_the_row, save_the_col, 0, 1, hit_dark_or_white, piece_color, true) || doingRokh_logic(save_the_row, save_the_col, -1, 0, hit_dark_or_white, piece_color, true) || doingRokh_logic(save_the_row, save_the_col, 1, 0, hit_dark_or_white, piece_color, true));
         }
         saver.html(`<p class = "${piece_color}" id = ${id}>♜</p>`);
         if (piece_color == 'light-mohre'){
-            // console.log(666)
             $(".dark-mohre").prop("onclick", null).off("click");
             $(".light-mohre").prop("onclick", null).off("click");
             $(".light-mohre").click(light_clicked)
@@ -47,7 +35,7 @@ function moveRokh(id, className, hit_dark_or_white, piece_color, check_mate){
         }
         if (check_mate)
             return check_for_check_mate;
-                
+
         $('.active, .hit').click(function (e) { 
             e.preventDefault();
             // set second move for rookh
@@ -74,9 +62,7 @@ function moveRokh(id, className, hit_dark_or_white, piece_color, check_mate){
                 if_check_then_checkMate(id, hit_dark_or_white, piece_color)
             }, 500)
             
-        });
-    //alert(check_oppenet)
-    
+        });    
 }
 
 function doingRokh_logic (save_the_row, save_the_col, is_row, is_col, hit_dark_or_white, piece_color, check_mate){
@@ -89,54 +75,28 @@ function doingRokh_logic (save_the_row, save_the_col, is_row, is_col, hit_dark_o
 
             
             if ( temp.html() == ''){
-                // if (!id && !check_possible_kish_moves){
-                    // if (true){
-                        
-                        if (if_check(temp.attr('class').split(" "), hit_dark_or_white, piece_color)){
-                            if (!check_mate)
-                                temp.addClass('active');
-                            else
-                                return true;
-                            cheker = false;
-                        }
-                        else
-                            cheker = false
-                    // }
-                    
-                    // else {
-                    //     temp.addClass('active');
-                    //     cheker = false;
-                    // }
-                // }
-                // else 
-                // cheker = false
+                
+                if (if_check(temp.attr('class').split(" "), hit_dark_or_white, piece_color)){
+                    if (!check_mate)
+                        temp.addClass('active');
+                    else
+                        return true;
+                    cheker = false;
+                }
+                else
+                    cheker = false
             }
             else if (temp.children().attr('class').search(`${hit_dark_or_white}`) != -1){
 
-                // if (true){
-
-                    if (if_check(temp.attr('class').split(" "), hit_dark_or_white, piece_color)){
-                        if (temp.children().attr('id').search('k') == -1){
-                            if (!check_mate)
-                                temp.addClass('hit');
-                            else
-                                return true;
-                        }
-                        
-                    } 
-                // }
-                // else {
-                //     if (temp.children().attr('id').search('k') == -1 && !id)
-                //             temp.addClass('hit');
-                //         if (temp.children().attr('id').search('k') != -1 && id){
-                //             if (piece_color == 'white-mohre')
-                //                 kish_white = true;
-                //             else
-                //                 kish_black = true;
-                //             return false;
-                //         }
-                // }
+                if (if_check(temp.attr('class').split(" "), hit_dark_or_white, piece_color)){
+                    if (temp.children().attr('id').search('k') == -1){
+                        if (!check_mate)
+                            temp.addClass('hit');
+                        else
+                            return true;
+                    }
                     
+                }
                 
                 break;
             }

@@ -30,21 +30,18 @@ function if_check(id, hit_dark_or_white, piece_color) {
 
                     if (id[1] != $(`#${_all_opennet[i].id}`).parent().attr('class').split(" ")[1]) {
                         temp = check_mate_rook($(`#${_all_opennet[i].id}`).parent().attr('class').split(" "), hit_dark_or_white, piece_color)
-                        // console.log(id[1])
                     }
 
                     break;
                 case 's':
                     if (id[1] != $(`#${_all_opennet[i].id}`).parent().attr('class').split(" ")[1]) {
                         temp = soldier_check_mate($(`#${_all_opennet[i].id}`).parent().attr('class').split(" "), hit_dark_or_white)
-                        // console.log(id[1])
                     }
                     break;
                 case 'h':
 
                     if (id[1] != $(`#${_all_opennet[i].id}`).parent().attr('class').split(" ")[1]) {
                         temp = horse_check_mate($(`#${_all_opennet[i].id}`).parent().attr('class').split(" "), hit_dark_or_white)
-                        // console.log(id[1])
                     }
                     break;
                 case 'e':
@@ -58,13 +55,7 @@ function if_check(id, hit_dark_or_white, piece_color) {
                     if (id[1] != $(`#${_all_opennet[i].id}`).parent().attr('class').split(" ")[1]) {
                         temp = check_mate_rook($(`#${_all_opennet[i].id}`).parent().attr('class').split(" "), hit_dark_or_white, piece_color)
                     }
-                    
-                    // console.log(_all_opennet[i].id)
-                    
-
-
-                   
-
+               
                     if (!temp){
                         if ($(`.${id[1]}`).children().html() == 'rr'){
                             $(`.${id[1]}`).html('')
@@ -77,9 +68,6 @@ function if_check(id, hit_dark_or_white, piece_color) {
                     temp  = bishop_check_mate($(`#${_all_opennet[i].id}`).parent().attr('class').split(" "), hit_dark_or_white, piece_color)
                     let temp1;
                     
-
-                    // if (temp1)
-                    //     temp = temp1;
                     break;
                 case 'k':
                     if (id[1] != $(`#${_all_opennet[i].id}`).parent().attr('class').split(" ")[1])
@@ -94,40 +82,6 @@ function if_check(id, hit_dark_or_white, piece_color) {
         }
         return true;
     }
-
-    // else {
-    //     let className = $(`#${id}`).parent().attr('class').split(" ");
-
-    //     let ss;
-
-    //     if (piece_color == 'white-mohre'){
-    //         ss = 1;
-    //     }
-    //     else 
-    //         ss = -1;
-    //     switch (id[0]){
-
-    //         case "s":
-    //             temp = moveSoldier(id, className, ss, hit_dark_or_white, piece_color)
-    //             break;
-    //         case "r":
-    //             moveRokh(id, className[1], hit_dark_or_white, piece_color, true, false)
-
-    //             break;
-    //         case "h":
-    //             moveHorse(id, className, hit_dark_or_white, piece_color)
-    //             break;
-    //         case "e":
-    //             moveBshop(id, className, hit_dark_or_white, piece_color)
-    //             break;
-    //         case "v":
-    //            temp = moveQueen(id, className, hit_dark_or_white, piece_color, true, false)
-    //             break;
-    //         case "k":
-    //             moveKing(id, className, hit_dark_or_white, piece_color)
-    //             break;
-    //     }
-    // }
 }
 
 function check_mate_rook(className, hit_dark_or_white, piece_color) {
@@ -168,7 +122,6 @@ function bishop_check_mate(className, hit_dark_or_white, piece_color) {
 
     let save_the_col = parseInt(className[1][1]);
     let save_the_row = className[1].charCodeAt(0) - 97;
-    // console.log(save_the_col)
 
     return (logic(-1, -1) && logic(-1, 1) && logic(1, -1) && logic(1, 1));
 
@@ -214,10 +167,6 @@ function horse_check_mate(className, hit_dark_or_white) {
                         }
                     }
                 }
-
-                // if ($(`.${rows[j]}${k}`).children().attr('class').search('dark-mohre') != -1 && k != parseInt(className[className.length - 1]) && (Math.abs(k - save_the_col) < 2 || Math.abs(j - i) < 2)){
-                //     $(`.${rows[j]}${k}`).addClass('hit')
-                // }
             }
         }
     }
@@ -235,12 +184,7 @@ function soldier_check_mate(className, hit_dark_or_white) {
         dark_or_white = 1;
 
     let temp = $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col - 1}`);
-    // console.log($(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col - 1}`))
-
-    // check soldier can hit dark chess piece & not white ones
-    // if (moving_piece_check_own_same_rowCol(className.split(" "), piece_color, id)){
-
-    // console.log(save_the_row)
+   
     if (save_the_col != 8)
         if ($(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col + 1}`).html() != '' && $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col + 1}`).children().attr('class').search(`${hit_dark_or_white}`) != -1) {
             if ($(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col + 1}`).children().attr('id').search('k') != -1)
@@ -248,31 +192,13 @@ function soldier_check_mate(className, hit_dark_or_white) {
         }
 
         if (save_the_col != 1){
-            // let rr = temp.children().attr('class')
-            // let u = temp.children().attr('id')
+            
             if ($(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col - 1}`).html() != '' && $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col - 1}`).children().attr('class').search(`${hit_dark_or_white}`) != -1) {
                 if ($(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col - 1}`).children().attr('id').search('k') != -1)
                     return false;
             }
         }
-    // }
     return true;
-    //-------------------------------------------
-
-    // check soldier can move forward
-    // let temp1 = $(`.${rows[save_the_row - (1 * dark_or_white)]}${className[className.length - 1]}`)
-    // let temp2 = $(`.${rows[save_the_row - (2 * dark_or_white)]}${className[className.length - 1]}`)
-
-    // if (temp1.html() == ''){
-
-    //     temp1.addClass('active');
-
-    //     if (temp2.html() == '' && ($(`#${id}`).attr('class') === 'light-mohre' || $(`#${id}`).attr('class') === 'dark-mohre')){
-
-    //         temp2.addClass('active');
-    //     }
-    // }
-    //-------------------------------------------
 }
 
 function king_check_mate(className, hit_dark_or_white) {
@@ -321,7 +247,6 @@ function if_check_then_checkMate(id, hit_dark_or_white, piece_color) {
                 break;
             case "e":
                 temp = bishop_check_mate($(`#${mohre_id}`).parent().attr('class').split(" "), hit_dark_or_white, piece_color)
-                // console.log(hit_dark_or_white)
                 break;
             case "v":
 
@@ -377,7 +302,6 @@ function if_check_then_checkMate(id, hit_dark_or_white, piece_color) {
                     break;
                 case "e":
                     temp = moveBshop(mohre_id, parent_class, piece_color, hit_dark_or_white, true)
-                    // console.log(hit_dark_or_white)
                     break;
                 case "v":
                     temp = moveQueen(mohre_id, parent_class, piece_color, hit_dark_or_white, true)
@@ -402,9 +326,6 @@ function if_check_then_checkMate(id, hit_dark_or_white, piece_color) {
         return;
 
     }
-        
     else
         kish = false;
-    
-
 }
