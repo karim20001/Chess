@@ -333,7 +333,7 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
                     }
                 }
             }
-            if (Math.abs(Top) == 106 && id[0] == 's'){
+            if (Math.abs(Top) == 116 && id[0] == 's'){
                 pusan_checker[0] = class_name[1];
             }
             else {

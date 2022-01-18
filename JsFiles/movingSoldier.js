@@ -26,7 +26,8 @@ function moveSoldier(id, className, dark_or_white, hit_dark_or_white, piece_colo
 
             if (!check_mate)
                 y = pusan_checker[0] != null && $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col + 1}`).attr('class').split(" ")[1][1] == pusan_checker[0][1] && rows[rows.findIndex((a) => {return a == pusan_checker[0][0]}) - dark_or_white] == $(`.${rows[save_the_row -  dark_or_white]}${save_the_col + 1}`).attr('class').split(" ")[1][0];
-            
+            console.log(y)
+            console.log(pusan_checker)
             if (y || $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col + 1}`).html() != '' && $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col + 1}`).children().attr('class').search(`${hit_dark_or_white}`) != -1){
                 if ((y && $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col + 1}`).html() == '') || $(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col + 1}`).children().attr('id').search('k') == -1)
                 if (if_check($(`.${rows[save_the_row - (1 * dark_or_white)]}${save_the_col + 1}`).attr('class').split(" "), hit_dark_or_white, piece_color)){
