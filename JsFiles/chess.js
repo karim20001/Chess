@@ -19,7 +19,9 @@ let download_history = document.getElementById("download-history");
 download_history.addEventListener('click', writeInFile);
 
 let replay = document.getElementById("replay");
-replay.addEventListener('click', to_replay);
+replay.addEventListener('click', function (){
+    to_replay(false);
+});
 
 const AllElements = [];
 $(".dark-mohre, .light-mohre").each(function (){
@@ -540,6 +542,11 @@ function readFile (){
 
     let files = input.files;
     if (files.length == 0) return;
+
+    history_counter = 1;
+    $(".history-section").html("");
+    to_replay(true);
+    Log.makeNull();
     
     let reader = new FileReader();
 
@@ -645,7 +652,11 @@ function readFile (){
                 
                 $(`.${words[2]}`).html(`<p id="${words[4]}" class="${className}">${words[5]}</p>`);
             }
-            Log.insert(position, action);
+            
+            if (action != undefined){
+                Log.insert(position, action);
+                showHistory_on_browser(action);
+            }
         })
 
         if (set_turn == 'w')

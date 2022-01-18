@@ -490,7 +490,7 @@ function show_history_on_board (event){
     
 }
 
-function to_replay (){
+function to_replay (clear_table){
 
     kish = false;
     
@@ -541,13 +541,14 @@ function to_replay (){
     $("#black1").html("");
     $("#white1").html("");
 
-    var inr = setInterval(function(){
-        to_redo(specified_pos.data, false, true);
-        specified_pos = specified_pos.next;
-        if (specified_pos == null){
-            clearInterval(inr)
-            return;
-        }
-    }, 510);
-    
+    if (!clear_table){
+        var inr = setInterval(function(){
+            to_redo(specified_pos.data, false, true);
+            specified_pos = specified_pos.next;
+            if (specified_pos == null){
+                clearInterval(inr)
+                return;
+            }
+        }, 510);
+    }
 }
