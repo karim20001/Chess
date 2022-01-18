@@ -54,7 +54,7 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
     let tempory_for_king = 0;
 
     if (!kish){
-        // check cascading with rookhs
+        // check castliing with rooks
         
         if (piece_color == 'dark-mohre'){
             tempory = 2;
@@ -129,15 +129,6 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
     });
 
     //---------------------------------------------------------------
-    // $('.cascade').prop('onclick', null).off('click');
-    // $('.active').prop('onclick', null).off('click')
-    //     $('.hit').prop('onclick', null).off('click')
-        // $('.cascade').prop('onclick', null).off('click');
-
-        // remove active from all elements
-        // $('.light, .dark').removeClass('active');
-        // // $('.light, .dark').removeClass('hit');
-        // $('.light, .dark').removeClass('cascade');
 
     $('.cascade').click(function (e) { 
         e.preventDefault();
@@ -163,8 +154,6 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
         
 
         castling(e.target.id, e.target.className.split(" "), tempory_for_king, id, className, save_the_row, save_the_col, piece_color, false);
-        // $('.cascade').prop('onclick', null).off('click');
-
         return;
     })
 }
@@ -210,16 +199,6 @@ function castling (e, rook_parent, tempory_for_king, id, className, save_the_row
     $(`#${rookh_id}`).animate({
         left: `+=${rookh_going_position}`
     }, 500)
-
-    // remove listener of active & hit classes
-    // $('.active').prop('onclick', null).off('click')
-    // $('.hit').prop('onclick', null).off('click')
-    // $('.cascade').prop('onclick', null).off('click');
-
-    // // remove active from all elements
-    // $('.light, .dark').removeClass('active');
-    // $('.light, .dark').removeClass('hit');
-    // $('.light, .dark').removeClass('cascade');
 
     setTimeout(function(){
         let temp = className.substring(className.length - 2)

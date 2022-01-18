@@ -333,7 +333,6 @@ function if_check_then_checkMate(id, hit_dark_or_white, piece_color) {
         }
         if (!temp){
             checkMate_or_pat = temp;
-            console.log(temp)
             break;
         }
     }

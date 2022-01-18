@@ -343,9 +343,6 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
 
             $(`.${temp}`).html(`<p class="${dark_or_white}${second_move}" id=${id}>${Char}</p>`);
 
-            // console.log($(`.${temp}`).children())
-            // $('.light-mohre').click(light_clicked)
-            // $('.dark-mohre').click(dark_clicked)
             if (id[0] == 's' && !Redo_last_soldier){
                 if (dark_or_white == 'light-mohre' && temp[0] == 'a'){
                     soldier_reached_end(temp, id, dark_or_white, position);

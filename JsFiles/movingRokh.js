@@ -47,12 +47,7 @@ function moveRokh(id, className, hit_dark_or_white, piece_color, check_mate){
         }
         if (check_mate)
             return check_for_check_mate;
-       // }
-    //     rook_col_row = undefined;
-    // }
-
-
-    
+                
         $('.active, .hit').click(function (e) { 
             e.preventDefault();
             // set second move for rookh
@@ -65,7 +60,6 @@ function moveRokh(id, className, hit_dark_or_white, piece_color, check_mate){
             if (piece_color == 'dark-mohre')
                 tempory = 2;
             check_secondRookh_move[parseInt(id[2]) - 1 + tempory]++;
-            console.log(check_secondRookh_move[parseInt(id[2]) - 1 + tempory])
             // the class & id object should go
             let class_name = e.target.className.split(" ");
             let id_obj = e.target.id;
