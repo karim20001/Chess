@@ -266,10 +266,10 @@ function if_check_then_checkMate(id, hit_dark_or_white, piece_color) {
         if (!temp){
             kish = true;
             if (piece_color == 'light-mohre'){
-                $('#kd1').parent().css('background-color', 'red')
+                $('#kd1').parent().addClass('kish');
             }
             else {
-                $('#kw1').parent().css('background-color', 'red')
+                $('#kw1').parent().addClass('kish');
             }
             setTimeout(function (){
                 document.getElementById("when-kish").play();

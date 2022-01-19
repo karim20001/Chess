@@ -230,20 +230,10 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
         }
 
         if (!kish){
-            if (dark_or_white == 'light-mohre'){
-                let the_parent = $('#kw1').parent();
-                if (the_parent.attr('class').split(" ")[0] == "dark")
-                    the_parent.css('background-color', '#a4aebb')
-                else
-                    the_parent.css('background-color', '#718091')
-            }
-            else {
-                let the_parent = $('#kd1').parent();
-                if (the_parent.attr('class').split(" ")[0] == "dark")
-                    the_parent.css('background-color', '#a4aebb')
-                else
-                    the_parent.css('background-color', '#718091')
-            }
+            let the_parent = $('#kw1').parent();
+            the_parent.removeClass('kish');
+            the_parent =  $('#kd1').parent();
+            the_parent.removeClass('kish');
         }
         
 
@@ -272,7 +262,7 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
         setTimeout(function(){
             let temp = className.substring(className.length - 2)
             // alert(temp)
-            $(`.${temp}`).html('');
+            $(`.${temp}`).empty();
             temp = class_name[1];  
             // delete mohre
             let action;
@@ -284,7 +274,6 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
                     deleted_child_id = $(`.${temp}`).children().attr('id');
                 }
                 else {
-                    console.log(pusan_checker[0])
                     deleted_child = $(`.${pusan_checker[0]}`).children().html();
                     deleted_child_id = $(`.${pusan_checker[0]}`).children().attr('id');
                     $(`.${pusan_checker[0]}`).html('');

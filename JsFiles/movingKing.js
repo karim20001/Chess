@@ -1,6 +1,9 @@
 const king_second_move = [0, 0]
 function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
 
+    if (kish)
+        className = className.substring(0, className.length - 5);
+
     $('.cascade').prop('onclick', null).off('click');
     let save_the_col = parseInt(className[className.length - 1]);
     let save_the_row = className[className.length - 2].charCodeAt(0) - 97;
@@ -90,7 +93,6 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
 
     saver.html(`<p class = "${piece_color}" id = ${id}>♚</p>`);
     if (piece_color == 'light-mohre'){
-        // console.log(666)
         $(".dark-mohre").prop("onclick", null).off("click");
         $(".light-mohre").prop("onclick", null).off("click");
         $(".light-mohre").click(light_clicked)
@@ -124,7 +126,6 @@ function moveKing (id, className, hit_dark_or_white, piece_color, check_mate){
         if (class_name.length < 2  || class_name[1] == 'second-move'){
             class_name = $(`#${id_obj}`).parent().attr('class').split(" ");
         }
-
         animatingMoves(className, class_name, id, piece_color, '♚', '')
     });
 

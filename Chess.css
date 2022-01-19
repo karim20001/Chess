@@ -262,8 +262,8 @@ td {
 .chess-board th:empty { border: none; }
 .chess-board td { width: 1.5em; height: 1.5em; text-align: center; font-size: 36px; line-height: 0;
 }
-.chess-board .light { background: #718091; }
-.chess-board .dark { background: #a4aebb; }
+.light { background: #718091; }
+.dark { background: #a4aebb; }
 .light-mohre {
     color: #FFFFFF;
     text-shadow: 0 0 3px #411111, 0 0 5px #25217b;
@@ -404,14 +404,18 @@ button:hover {
     background-color: goldenrod;
 }
 
-.chess-board .active{
+.chess-board .active {
     /* width: auto; */
     /* box-shadow: 0 0 5px 6px rgb(73, 184, 147); */
-    outline: 3px solid rgb(16, 175, 16);
+    /* outline: 3px solid rgb(16, 175, 16); */
     z-index: 10;
     /* background-image: radial-gradient(red, yellow, green); */
-    background-color: rgb(12, 167, 100);
+    background: rgb(12, 167, 100);
     cursor: pointer;
+}
+
+.kish {
+    background-color: red;
 }
 
 .history-section p:hover{
