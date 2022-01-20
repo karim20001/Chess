@@ -1,0 +1,70 @@
+.main {
+    display: none;
+}
+body {
+    display: grid;
+}
+.get-names {
+    display: grid;
+    
+    height: auto;
+    background-color: rgb(21, 77, 97);
+    width: fit-content;
+    margin-top: 20vh;
+    justify-self: center;
+    border-radius: 7px;
+}
+
+
+
+form {
+    display: grid;
+}
+#name2-l{
+    top: auto;
+}
+.name {
+    width: 200px;
+    font-size: larger;
+    margin: 30px;
+    position: relative;
+    border: none;
+    background-color: rgb(21, 77, 97);
+    border-bottom: 2px solid white;
+    transition: border .3s ease-in-out;
+}
+@keyframes animate {
+
+}
+.name:focus {
+    transform: scale(1.05);
+    outline: none;
+    border-bottom: 2px solid blueviolet;
+}
+
+#select-time {
+    margin: 30px;
+}
+#select {
+    margin-left: 5px;
+    background-color: rgb(128, 128, 20);
+    border: none;
+    border-radius: 2px;
+    height: 25px;
+}
+#select:hover {
+    background-color: rgb(153, 153, 28);
+}
+
+#submit {
+    background-color: rgb(20, 146, 81);
+    border-radius: 5px;
+    margin-bottom: 5px;
+    height: 35px;
+    cursor: pointer;
+    border: none;
+}
+#submit:hover {
+    transform: scale(1.01);
+    background-color: rgb(29, 174, 99);
+}

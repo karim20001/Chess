@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Chess.css">
+    <link rel="stylesheet" href="names.css">
     <script src="JsFiles/jquery-3.6.0.js"></script>
     <script src="Ds-classes/FileSaver.js"></script>
     <script src="Ds-classes/oneWayLinkedList.js"></script>
@@ -22,15 +23,37 @@
     <title>Chess</title>
 </head>
 <body>
+    <div class="get-names">
+            <input class="name" id="name1" placeholder="Player1" required type="text">
+            <input class="name" id="name2" placeholder="Player2" required type="text">
+            <div id="select-time"><span>Time: </span><select name="time" id="select">
+                <option value="5">5min</option>
+                <option value="10">10min</option>
+                <option value="15">15min</option>
+                <option value="20">20min</option>
+                <option value="25">25min</option>
+                <option value="30">30min</option>
+            </select></div>
+            <input id="submit" type="submit" name="submit" value="Submit">
+    </div>
+    <div class="main">
     <button id="replay">Replay</button>
     <label class="to-disable" for="file-loader">Load Log</label>
     <button class="to-disable" id="download-history">Download History</button>
     <input class="to-disable" type="file" accept=".txt" id="file-loader">
     <header class="to-disable">
-        <p class="chess-head" id="turn"></p>
-
-        <p class="chess-head" id="second-counter"></p>
-
+        <div class="white-player">
+            <p id="player1">hrthrthtrh</p>
+            <div>
+                <span class="min" id="timer1m">00</span><span>:</span><span class="sec" id="timer1s">00</span>
+            </div>
+        </div>
+        <div class="black-player">
+            <p id="player2">sgsher</p>
+            <div>
+                <span class="min" id="timer2m">00</span><span>:</span><span class="sec" id="timer2s">00</span>
+            </div>
+        </div>
     </header>
 
     <div id="finish">
@@ -172,7 +195,7 @@
     <audio id="slide" src="media/chess slide_2021_12_30_20_05_16_065.aac"></audio>
     <audio id="winning" src="media/Winning_Triumphal_Fanfare_Sounds_Effects_Sound_Bites_Sound_Clips.mp3"></audio>
     <audio id="when-kish" src="media/game-lose-sound-effect-[AudioTrimmer.com]_2.mp3"></audio>
-
+    </div>
     <script src="JsFiles/chess.js"></script>
     <script src="JsFiles/check_mate.js"></script>
     

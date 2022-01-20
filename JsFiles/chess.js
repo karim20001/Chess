@@ -30,8 +30,24 @@ $(".dark-mohre, .light-mohre").each(function (){
 
 // get names
 
-const white_player = prompt("white player name?");
-const black_player = prompt("black player name?");
+let white_player;
+let black_player;
+let time;
+document.getElementById("submit").addEventListener('click', function (){
+    white_player = document.getElementById("name1").value;
+    black_player = document.getElementById("name2").value;
+    time = parseInt(document.getElementById("select").value);
+    document.getElementById("player1").innerHTML = white_player;
+    document.getElementById("player2").innerHTML = black_player;
+    if (time > 5){
+        $(".min").html(time.toString());
+    }
+    else {
+        $(".min").html(`0${time.toString()}`)
+    }
+    $('.get-names').css('display', 'none');
+    $('.main').css('display', 'block');
+})
 
 // undo redo history
 const undo = new Stack();
