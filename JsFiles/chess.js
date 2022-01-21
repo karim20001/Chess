@@ -91,7 +91,6 @@ function counter(){
     let seconds = document.getElementById('second-counter');
 
     if (check_side_move){
-        // switcher.innerHTML = white_player;
         $('.dark-mohre').css('cursor', '');
         $('.light-mohre').css('cursor', 'pointer');
         $(".dark-mohre").prop("onclick", null).off("click");
@@ -105,7 +104,7 @@ function counter(){
             min_white--;
         
         let s_min, s_sec;
-        if (min_black < 10)
+        if (min_white < 10)
             s_min = `0${min_white}`;
         else
             s_min = min_white;
@@ -123,7 +122,6 @@ function counter(){
     }
     
     else {
-        // switcher.innerHTML = black_player;
         $('.light-mohre').css('cursor', '');
         $('.dark-mohre').css('cursor', 'pointer');
         $(".light-mohre").prop("onclick", null).off("click");
@@ -131,7 +129,6 @@ function counter(){
         if (bullshit_stuff_with_interval){
             bullshit_stuff_with_interval = false
             $('.dark-mohre').click(dark_clicked);
-            // $(".dark-mohre").prop("onclick", null).off("click");
         }
         
         if (second_black == 59)
@@ -154,8 +151,6 @@ function counter(){
         second_black--;
     }
     
-    // seconds.innerHTML = second + 's'
-
     switch (min_white){
         case 0:
             if (second_white > 28 && second_white != 59)
