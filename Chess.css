@@ -21,13 +21,15 @@ header {
 header > div {
     padding: 2px;
     color: rgb(218, 218, 218);
-    margin: 0 70px 0 50px;
+    margin: 0 40px 0 50px;
     border-radius: 5px;
     background-color: #0d1215;
     font-size: larger;
     width: 150px;
     display: grid;
     justify-content: center;
+    box-shadow: rgba(174, 212, 228, 0.12) 0px 2px 4px 0px, rgba(160, 201, 218, 0.32) 0px 2px 16px 0px;
+
 }
 
 header > div > div {

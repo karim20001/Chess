@@ -10,6 +10,8 @@
     margin-top: 20vh;
     justify-self: center;
     border-radius: 7px;
+    z-index: 1;
+    box-shadow: rgba(174, 212, 228, 0.12) 0px 2px 4px 0px, rgba(160, 201, 218, 0.32) 0px 2px 16px 0px;
 }
 
 form {
@@ -74,6 +76,6 @@ form {
 }
 @media only screen and (max-width: 600px){
     header {
-        padding-left: 150px;
+        padding-left: 125px;
     }
 }
