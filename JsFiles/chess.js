@@ -32,7 +32,7 @@ $(".dark-mohre, .light-mohre").each(function (){
 
 let white_player;
 let black_player;
-let time;
+let time = 0;
 document.getElementById("submit").addEventListener('click', function (){
     white_player = document.getElementById("name1").value;
     black_player = document.getElementById("name2").value;
@@ -46,7 +46,9 @@ document.getElementById("submit").addEventListener('click', function (){
         $(".min").html(`0${time.toString()}`)
     }
     $('.get-names').css('display', 'none');
-    $('.main').css('display', 'block');
+    $('.main').css('display', 'grid');
+    min_black = time;
+    min_white = time;
 })
 
 // undo redo history
@@ -67,13 +69,18 @@ function start(){
         $('.history-click').css('cursor', 'pointer');
         redo_button.addEventListener('click', to_redo);
         undo_button.addEventListener('click', to_undo);
+        // min_black--;
+        // min_white--;
     // }
 
     interval = setInterval(counter, 1000)
 }
 
 let check_side_move = true, firstClicked_or_second = true, bullshit_stuff_with_interval = true;
-var second = 30;
+var second_white = 59;
+var second_black = 59;
+var min_black;
+var min_white;
 
 // for set id to new pieces (soldier reached end)
 const whitePieces_number = [2, 2, 2, 1];
@@ -84,7 +91,7 @@ function counter(){
     let seconds = document.getElementById('second-counter');
 
     if (check_side_move){
-        switcher.innerHTML = white_player;
+        // switcher.innerHTML = white_player;
         $('.dark-mohre').css('cursor', '');
         $('.light-mohre').css('cursor', 'pointer');
         $(".dark-mohre").prop("onclick", null).off("click");
@@ -94,10 +101,29 @@ function counter(){
             $('.light-mohre').click(light_clicked)
         }
         
+        if (second_white == 59)
+            min_white--;
+        
+        let s_min, s_sec;
+        if (min_black < 10)
+            s_min = `0${min_white}`;
+        else
+            s_min = min_white;
+        if (second_white < 10)
+            s_sec = `0${second_white}`;
+        else
+            s_sec = second_white;
+        $("#timer1s").html(s_sec);
+        $("#timer1m").html(s_min);
+        
+
+        if (second_white == 0)
+            second_white = 60;
+        second_white--;
     }
     
     else {
-        switcher.innerHTML = black_player;
+        // switcher.innerHTML = black_player;
         $('.light-mohre').css('cursor', '');
         $('.dark-mohre').css('cursor', 'pointer');
         $(".light-mohre").prop("onclick", null).off("click");
@@ -108,40 +134,59 @@ function counter(){
             // $(".dark-mohre").prop("onclick", null).off("click");
         }
         
+        if (second_black == 59)
+            min_black--;
+        
+        let s_min, s_sec;
+        if (min_black < 10)
+            s_min = `0${min_black}`;
+        else
+            s_min = min_black;
+        if (second_black < 10 && second_black != 0)
+            s_sec = `0${second_black}`;
+        else
+            s_sec = second_black;
+        $("#timer2m").html(s_min);
+        $("#timer2s").html(s_sec);
+
+        if (second_black == 0)
+            second_black = 60;
+        second_black--;
     }
     
-    seconds.innerHTML = second + 's'
+    // seconds.innerHTML = second + 's'
 
-    switch (second){
-        case 10:
-            seconds.style.color = 'gold';
-            break;
-        case 5: 
-            seconds.style.color = 'red';
-            break;
+    switch (min_white){
         case 0:
-            if (check_side_move)
-                check_side_move = false;
+            if (second_white > 28 && second_white != 59)
+                $(".white-player div").css("color", "gold");
             else
-                check_side_move = true;
-            second = 31;
-            bullshit_stuff_with_interval = true;
-            // remove listener of active & hit classes
-            $('.active').prop('onclick', null).off('click')
-            $('.hit').prop('onclick', null).off('click')
-            $('.cascade').prop('onclick', null).off('click');
-
-            // remove active from all elements
-            $('.light, .dark').removeClass('active');
-            $('.light, .dark').removeClass('hit');
-            $('.light, .dark').removeClass('cascade');
-            
-            seconds.style.color = 'green'
+                $(".white-player div").css("color", "red");
+            if (second_white == 59){
+                game_finished(black_player);
+            }
             break;
     }
+    switch (min_black){
+        
+        case 0:
+            if (second_black > 28 && second_black != 59)
+                $(".black-player div").css("color", "gold");
+            else
+                $(".black-player div").css("color", "red");
+            if (second_black == 59){
+                game_finished(white_player);
+            }
+            break;
+    }
+}
 
-    second -= 1;
-    
+function change_side (){
+    if (check_side_move)
+        check_side_move = false;
+    else
+        check_side_move = true;
+    bullshit_stuff_with_interval = true;
 }
 
 function light_clicked(event){
@@ -238,8 +283,9 @@ function animatingMoves(className, class_name, id, dark_or_white, Char, second_m
         let Left = 0;
 
         if (!animate_histoy){
-            second = 0;
-            counter();
+            // second = 0;
+            // counter();
+            change_side();
 
             $(".dark-mohre").prop("onclick", null).off("click");
             $(".light-mohre").prop("onclick", null).off("click");

@@ -19,7 +19,6 @@ header {
     width: fit-content;
 }
 header > div {
-    /* padding: 10px; */
     padding: 2px;
     color: rgb(218, 218, 218);
     margin: 0 70px 0 50px;
@@ -35,7 +34,6 @@ header > div > div {
     color: rgb(2, 143, 2);
 }
 
-
 video {
     /* object-fit: cover; */
     top: -45%;
@@ -47,6 +45,7 @@ video {
     height: 350px;
     transform: skew(0);
     position: absolute;
+    /* display: none; */
 }
 
 .flex-container {
@@ -147,6 +146,7 @@ header {
     "e d f"; */
     /* "a b c"; */
     position: absolute;
+    top: 30%;
     left: 25%;
     width: 600px;
     height: 200px;
@@ -169,16 +169,15 @@ section{
 }
 
 section::before{
-content: '';
-position: absolute;
-top: 0;
-left: 5%;
-width: 100%;
-height: 100%;
-background: linear-gradient(to right, #f00, #f00, rgb(251, 255, 0), rgb(30, 255, 0), #ff0, rgb(0, 187, 255), rgb(0, 51, 255), rgb(34, 0, 255));
-mix-blend-mode: color;
-pointer-events: none;
-
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 5%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #f00, #f00, rgb(251, 255, 0), rgb(30, 255, 0), #ff0, rgb(0, 187, 255), rgb(0, 51, 255), rgb(34, 0, 255));
+    mix-blend-mode: color;
+    pointer-events: none;
 }
 
 .note {
@@ -265,6 +264,7 @@ pointer-events: none;
     align-self: end;
     z-index: 1000;
     margin-bottom: 0;
+    cursor: pointer;
 
 }
 

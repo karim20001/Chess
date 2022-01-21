@@ -27,6 +27,7 @@
             <input class="name" id="name1" placeholder="Player1" required type="text">
             <input class="name" id="name2" placeholder="Player2" required type="text">
             <div id="select-time"><span>Time: </span><select name="time" id="select">
+                <option value="1">1min</option>
                 <option value="5">5min</option>
                 <option value="10">10min</option>
                 <option value="15">15min</option>
@@ -37,164 +38,163 @@
             <input id="submit" type="submit" name="submit" value="Submit">
     </div>
     <div class="main">
-    <button id="replay">Replay</button>
-    <label class="to-disable" for="file-loader">Load Log</label>
-    <button class="to-disable" id="download-history">Download History</button>
-    <input class="to-disable" type="file" accept=".txt" id="file-loader">
-    <header class="to-disable">
-        <div class="white-player">
-            <p id="player1">hrthrthtrh</p>
-            <div>
-                <span class="min" id="timer1m">00</span><span>:</span><span class="sec" id="timer1s">00</span>
+        <button id="replay">Replay</button>
+        <label class="to-disable" for="file-loader">Load Log</label>
+        <button class="to-disable" id="download-history">Download History</button>
+        <input class="to-disable" type="file" accept=".txt" id="file-loader">
+        <header class="to-disable">
+            <div class="white-player">
+                <p id="player1"></p>
+                <div>
+                    <span class="min" id="timer1m">00</span><span>:</span><span class="sec" id="timer1s">00</span>
+                </div>
+            </div>
+            <div class="black-player">
+                <p id="player2"></p>
+                <div>
+                    <span class="min" id="timer2m">00</span><span>:</span><span class="sec" id="timer2s">00</span>
+                </div>
+            </div>
+        </header>
+
+        <div id="finish">
+            <video id="vid" src="media/smoke.mp4" muted></video>
+            
+            <!-- <span class="note" id="the-winner">fdh</span> -->
+            <section class="tt">
+                <span class="note">The winner</span><br><br>
+                <span id="first" class="note winner">a m i</span>
+                <span id="second" class="note winner"> r r e</span>
+                <span id="third" class="note winner"> z a</span>
+            </section>
+            <input type="submit" value="Reset The Game" id="finished-button">
+        </div>
+
+        <div class="flex-container">
+        <!-- <div class="to-disable" id="deleted-mohre"> -->
+            <div class="to-disable" id="deleted-white">
+
+                <p id="white1"></p>
+            </div>
+            
+            <!-- </div> -->
+            
+
+            <div class="middle to-disable">
+
+                <table class="chess-board">
+                    <tbody>
+                        
+                        <tr>
+                            <td class="light a1"><p class="dark-mohre" id="rd1">♜</p></td>
+                            <td class="dark a2"><p class="dark-mohre" id="hd1">♞</p></td>
+                            <td class="light a3"><p class="dark-mohre" id="ed1">♝</p></td>
+                            <td class="dark a4"><p class="dark-mohre" id="vd1">♛</p></td>
+                            <td class="light a5"><p class="dark-mohre" id="kd1">♚</p></td>
+                            <td class="dark a6"><p class="dark-mohre" id="ed2">♝</p></td>
+                            <td class="light a7"><p class="dark-mohre" id="hd2">♞</p></td>
+                            <td class="dark a8"><p class="dark-mohre" id="rd2">♜</p></td>
+                            
+                        </tr>
+                        <tr>
+                            
+                            <td class="dark b1"><p class="dark-mohre" id="sd1">♟</p></td>
+                            <td class="light b2"><p class="dark-mohre" id="sd2">♟</p></td>
+                            <td class="dark b3"><p class="dark-mohre" id="sd3">♟</p></td>
+                            <td class="light b4"><p class="dark-mohre" id="sd4">♟</p></td>
+                            <td class="dark b5"><p class="dark-mohre" id="sd5">♟</p></td>
+                            <td class="light b6"><p class="dark-mohre" id="sd6">♟</p></td>
+                            <td class="dark b7"><p class="dark-mohre" id="sd7">♟</p></td>
+                            <td class="light b8"><p class="dark-mohre" id="sd8">♟</p></td>
+                        </tr>
+                        <tr>
+                            
+                            <td class="light c1"></td>
+                            <td class="dark c2"></td>
+                            <td class="light c3"></td>
+                            <td class="dark c4"></td>
+                            <td class="light c5"></td>
+                            <td class="dark c6"></td>
+                            <td class="light c7"></td>
+                            <td class="dark c8"></td>
+                        </tr>
+                        <tr>
+                            
+                            <td class="dark d1"></td>
+                            <td class="light d2"></td>
+                            <td class="dark d3"></td>
+                            <td class="light d4"></td>
+                            <td class="dark d5"></td>
+                            <td class="light d6"></td>
+                            <td class="dark d7"></td>
+                            <td class="light d8"></td>
+                        </tr>
+                        <tr>
+                            
+                            <td class="light e1"></td>
+                            <td class="dark e2"></td>
+                            <td class="light e3"></td>
+                            <td class="dark e4"></td>
+                            <td class="light e5"></td>
+                            <td class="dark e6"></td>
+                            <td class="light e7"></td>
+                            <td class="dark e8"></td>
+                        </tr>
+                        <tr>
+                            
+                            <td class="dark f1"></td>
+                            <td class="light f2"></td>
+                            <td class="dark f3"></td>
+                            <td class="light f4"></td>
+                            <td class="dark f5"></td>
+                            <td class="light f6"></td>
+                            <td class="dark f7"></td>
+                            <td class="light f8"></td>
+                        </tr>
+                        <tr>
+                            
+                            <td class="light g1"><p class="light-mohre" id="sw1">♟</p></td>
+                            <td class="dark g2"><p class="light-mohre" id="sw2">♟</p></td>
+                            <td class="light g3"><p class="light-mohre" id="sw3">♟</p></td>
+                            <td class="dark g4"><p class="light-mohre" id="sw4">♟</p></td>
+                            <td class="light g5"><p class="light-mohre" id="sw5">♟</p></td>
+                            <td class="dark g6"><p class="light-mohre" id="sw6">♟</p></td>
+                            <td class="light g7"><p class="light-mohre" id="sw7">♟</p></td>
+                            <td class="dark g8"><p class="light-mohre" id="sw8">♟</p></td>
+                        </tr>
+                        <tr>
+                            
+                            <td class="dark h1"><p class="light-mohre" id="rw1">♜</p></td>
+                            <td class="light h2"><p class="light-mohre" id="hw1">♞</p></td>
+                            <td class="dark h3"><p class="light-mohre" id="ew1">♝</p></td>
+                            <td class="light h4"><p class="light-mohre" id="vw1">♛</p></td>
+                            <td class="dark h5"><p class="light-mohre" id="kw1">♚</p></td>
+                            <td class="light h6"><p class="light-mohre" id="ew2">♝</p></td>
+                            <td class="dark h7"><p class="light-mohre" id="hw2">♞</p></td>
+                            <td class="light h8"><p class="light-mohre" id="rw2">♜</p></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="to-disable" id="deleted-black">
+                <p id="black1"></p>
+            </div>
+            <div class="history-container to-disable">
+                <h2>Log</h2>
+                <div class="history-section">
+
+                </div>
             </div>
         </div>
-        <div class="black-player">
-            <p id="player2">sgsher</p>
-            <div>
-                <span class="min" id="timer2m">00</span><span>:</span><span class="sec" id="timer2s">00</span>
-            </div>
+        <div class="button-container to-disable">
+            <button id="redo">Redo</button>
+            <button id="start">Start</button>
+            <button id="undo">Undo</button>
         </div>
-    </header>
-
-    <div id="finish">
-        <video id="vid" src="media/smoke.mp4" muted></video>
-        
-        <!-- <span class="note" id="the-winner">fdh</span> -->
-        <section class="tt">
-            <span class="note">The winner</span><br><br>
-            <span id="first" class="note winner">a m i</span>
-            <span id="second" class="note winner"> r r e</span>
-            <span id="third" class="note winner"> z a</span>
-        </section>
-       
-        <input type="submit" value="Reset The Game" id="finished-button">
-    </div>
-
-    <div class="flex-container">
-    <!-- <div class="to-disable" id="deleted-mohre"> -->
-        <div class="to-disable" id="deleted-white">
-
-            <p id="white1"></p>
-        </div>
-        
-        <!-- </div> -->
-        
-
-        <div class="middle to-disable">
-
-            <table class="chess-board">
-                <tbody>
-                    
-                    <tr>
-                        <td class="light a1"><p class="dark-mohre" id="rd1">♜</p></td>
-                        <td class="dark a2"><p class="dark-mohre" id="hd1">♞</p></td>
-                        <td class="light a3"><p class="dark-mohre" id="ed1">♝</p></td>
-                        <td class="dark a4"><p class="dark-mohre" id="vd1">♛</p></td>
-                        <td class="light a5"><p class="dark-mohre" id="kd1">♚</p></td>
-                        <td class="dark a6"><p class="dark-mohre" id="ed2">♝</p></td>
-                        <td class="light a7"><p class="dark-mohre" id="hd2">♞</p></td>
-                        <td class="dark a8"><p class="dark-mohre" id="rd2">♜</p></td>
-                        
-                    </tr>
-                    <tr>
-                        
-                        <td class="dark b1"><p class="dark-mohre" id="sd1">♟</p></td>
-                        <td class="light b2"><p class="dark-mohre" id="sd2">♟</p></td>
-                        <td class="dark b3"><p class="dark-mohre" id="sd3">♟</p></td>
-                        <td class="light b4"><p class="dark-mohre" id="sd4">♟</p></td>
-                        <td class="dark b5"><p class="dark-mohre" id="sd5">♟</p></td>
-                        <td class="light b6"><p class="dark-mohre" id="sd6">♟</p></td>
-                        <td class="dark b7"><p class="dark-mohre" id="sd7">♟</p></td>
-                        <td class="light b8"><p class="dark-mohre" id="sd8">♟</p></td>
-                    </tr>
-                    <tr>
-                        
-                        <td class="light c1"></td>
-                        <td class="dark c2"></td>
-                        <td class="light c3"></td>
-                        <td class="dark c4"></td>
-                        <td class="light c5"></td>
-                        <td class="dark c6"></td>
-                        <td class="light c7"></td>
-                        <td class="dark c8"></td>
-                    </tr>
-                    <tr>
-                        
-                        <td class="dark d1"></td>
-                        <td class="light d2"></td>
-                        <td class="dark d3"></td>
-                        <td class="light d4"></td>
-                        <td class="dark d5"></td>
-                        <td class="light d6"></td>
-                        <td class="dark d7"></td>
-                        <td class="light d8"></td>
-                    </tr>
-                    <tr>
-                        
-                        <td class="light e1"></td>
-                        <td class="dark e2"></td>
-                        <td class="light e3"></td>
-                        <td class="dark e4"></td>
-                        <td class="light e5"></td>
-                        <td class="dark e6"></td>
-                        <td class="light e7"></td>
-                        <td class="dark e8"></td>
-                    </tr>
-                    <tr>
-                        
-                        <td class="dark f1"></td>
-                        <td class="light f2"></td>
-                        <td class="dark f3"></td>
-                        <td class="light f4"></td>
-                        <td class="dark f5"></td>
-                        <td class="light f6"></td>
-                        <td class="dark f7"></td>
-                        <td class="light f8"></td>
-                    </tr>
-                    <tr>
-                        
-                        <td class="light g1"><p class="light-mohre" id="sw1">♟</p></td>
-                        <td class="dark g2"><p class="light-mohre" id="sw2">♟</p></td>
-                        <td class="light g3"><p class="light-mohre" id="sw3">♟</p></td>
-                        <td class="dark g4"><p class="light-mohre" id="sw4">♟</p></td>
-                        <td class="light g5"><p class="light-mohre" id="sw5">♟</p></td>
-                        <td class="dark g6"><p class="light-mohre" id="sw6">♟</p></td>
-                        <td class="light g7"><p class="light-mohre" id="sw7">♟</p></td>
-                        <td class="dark g8"><p class="light-mohre" id="sw8">♟</p></td>
-                    </tr>
-                    <tr>
-                        
-                        <td class="dark h1"><p class="light-mohre" id="rw1">♜</p></td>
-                        <td class="light h2"><p class="light-mohre" id="hw1">♞</p></td>
-                        <td class="dark h3"><p class="light-mohre" id="ew1">♝</p></td>
-                        <td class="light h4"><p class="light-mohre" id="vw1">♛</p></td>
-                        <td class="dark h5"><p class="light-mohre" id="kw1">♚</p></td>
-                        <td class="light h6"><p class="light-mohre" id="ew2">♝</p></td>
-                        <td class="dark h7"><p class="light-mohre" id="hw2">♞</p></td>
-                        <td class="light h8"><p class="light-mohre" id="rw2">♜</p></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="to-disable" id="deleted-black">
-            <p id="black1"></p>
-        </div>
-        <div class="history-container to-disable">
-            <h2>Log</h2>
-            <div class="history-section">
-
-            </div>
-        </div>
-    </div>
-    <div class="button-container to-disable">
-        <button id="redo">Redo</button>
-        <button id="start">Start</button>
-        <button id="undo">Undo</button>
-    </div>
-    <audio id="sliding" src="media/game-piece-slide-1-sound-effect-99743653-[AudioTrimmer.com].mp3"></audio>
-    <audio id="slide" src="media/chess slide_2021_12_30_20_05_16_065.aac"></audio>
-    <audio id="winning" src="media/Winning_Triumphal_Fanfare_Sounds_Effects_Sound_Bites_Sound_Clips.mp3"></audio>
-    <audio id="when-kish" src="media/game-lose-sound-effect-[AudioTrimmer.com]_2.mp3"></audio>
+        <audio id="sliding" src="media/game-piece-slide-1-sound-effect-99743653-[AudioTrimmer.com].mp3"></audio>
+        <audio id="slide" src="media/chess slide_2021_12_30_20_05_16_065.aac"></audio>
+        <audio id="winning" src="media/Winning_Triumphal_Fanfare_Sounds_Effects_Sound_Bites_Sound_Clips.mp3"></audio>
+        <audio id="when-kish" src="media/game-lose-sound-effect-[AudioTrimmer.com]_2.mp3"></audio>
     </div>
     <script src="JsFiles/chess.js"></script>
     <script src="JsFiles/check_mate.js"></script>

@@ -1,9 +1,6 @@
 .main {
     display: none;
 }
-body {
-    display: grid;
-}
 .get-names {
     display: grid;
     
@@ -14,8 +11,6 @@ body {
     justify-self: center;
     border-radius: 7px;
 }
-
-
 
 form {
     display: grid;
@@ -33,9 +28,7 @@ form {
     border-bottom: 2px solid white;
     transition: border .3s ease-in-out;
 }
-@keyframes animate {
 
-}
 .name:focus {
     transform: scale(1.05);
     outline: none;
@@ -67,4 +60,20 @@ form {
 #submit:hover {
     transform: scale(1.01);
     background-color: rgb(29, 174, 99);
+}
+
+@media only screen and (max-width: 855px){
+    .black-player {
+        margin-top: 15px;
+    }
+    header {
+        flex-direction: column;
+        height: 120px;
+        flex-wrap: wrap;
+    }
+}
+@media only screen and (max-width: 600px){
+    header {
+        padding-left: 150px;
+    }
 }

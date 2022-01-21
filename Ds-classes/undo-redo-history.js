@@ -7,8 +7,7 @@ function to_undo (){
     redo.push(move);
     pressed_undo = true;
 
-    second = 0;
-    counter();
+    change_side();
 
     if (move.mohre[0] == 'r')
         if (parseInt(move.mohre[2]) < 3){
