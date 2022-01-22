@@ -539,13 +539,17 @@ function to_replay (clear_table){
 
     $("#black1").html("");
     $("#white1").html("");
+    let set_the_side = check_side_move;
 
     if (!clear_table){
+        clearInterval(interval);
         var inr = setInterval(function(){
             to_redo(specified_pos.data, false, true);
             specified_pos = specified_pos.next;
             if (specified_pos == null){
-                clearInterval(inr)
+                clearInterval(inr);
+                check_side_move = set_the_side;
+                start();
                 return;
             }
         }, 510);

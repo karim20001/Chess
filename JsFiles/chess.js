@@ -62,16 +62,14 @@ var interval;
 start_button.addEventListener('click',start)
 
 function start(){
-    // if (start_button.style.display != 'none'){
+    if (start_button.style.display != 'none'){
         start_button.style.display = 'none';
         redo_button.style.display = 'block';
         undo_button.style.display = 'block';
         $('.history-click').css('cursor', 'pointer');
         redo_button.addEventListener('click', to_redo);
         undo_button.addEventListener('click', to_undo);
-        // min_black--;
-        // min_white--;
-    // }
+    }
 
     interval = setInterval(counter, 1000)
 }
