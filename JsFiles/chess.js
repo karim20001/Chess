@@ -54,7 +54,7 @@ document.getElementById("submit").addEventListener('click', function (){
 // undo redo history
 const undo = new Stack();
 const redo = new Stack();
-const Log = new LinkedList();
+let Log = new LinkedList();
 let pressed_undo = false;
 //switch between dark & white in 30s
 var interval;

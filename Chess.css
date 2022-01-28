@@ -1,10 +1,16 @@
+
 body {
     background-color: #1a283a;
     /* overflow-x: hidden; */
     -webkit-touch-callout: none; 
     -webkit-user-select: none; 
     -khtml-user-select: none; 
-    -moz-user-select: none; 
+    -moz-user-select: none;
+    background-position: center;
+    background-image: url("media/bigstock-208614778-1024x683.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
     -ms-user-select: none; 
     user-select: none;
     display: grid;
@@ -294,7 +300,8 @@ td {
     text-shadow: 0 0 3px #411111, 0 0 5px #25217b;
 }
 
-.chess-board { 
+.chess-board {
+    z-index: 1;
     width: 464px;
     height: 464px;
     border-spacing: 0;
@@ -302,6 +309,7 @@ td {
 }
 
 table, th, td {
+    z-index: 1;
     border: 1px solid rgb(61, 61, 61);
     border-collapse: collapse;
 }
@@ -311,6 +319,7 @@ table, th, td {
 }
 
 .button-container {
+    z-index: 1;
     display: flex;
     margin: 10px;
     align-items: center;
@@ -433,7 +442,7 @@ button:hover {
     /* width: auto; */
     /* box-shadow: 0 0 5px 6px rgb(73, 184, 147); */
     /* outline: 3px solid rgb(16, 175, 16); */
-    z-index: 10;
+    z-index: 1;
     /* background-image: radial-gradient(red, yellow, green); */
     background: rgb(12, 167, 100);
     cursor: pointer;

@@ -512,7 +512,9 @@ function to_replay (clear_table){
     $('.to-disable').css('opacity', '1')
     document.getElementById('vid').style.display = 'none';
 
-    let specified_pos = Log.head;
+    const temp_log = Log;
+    let specified_pos = temp_log.head;
+
     if (specified_pos == null) return;
 
     $(".light, .dark").each(function (){
@@ -549,6 +551,8 @@ function to_replay (clear_table){
             if (specified_pos == null){
                 clearInterval(inr);
                 check_side_move = set_the_side;
+                Log = new LinkedList();
+                Log = temp_log;
                 start();
                 return;
             }
