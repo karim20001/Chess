@@ -7,7 +7,7 @@
     height: auto;
     background-color: rgb(21, 77, 97);
     width: fit-content;
-    margin-top: 20vh;
+    margin-top: 0vh;
     justify-self: center;
     border-radius: 7px;
     z-index: 1;
@@ -67,6 +67,9 @@ form {
 @media only screen and (max-width: 855px){
     .black-player {
         margin-top: 15px;
+    }
+    .history-container {
+        top: 730px;
     }
     header {
         flex-direction: column;

@@ -513,7 +513,7 @@ function to_replay (clear_table){
     document.getElementById('vid').style.display = 'none';
 
     const temp_log = Log;
-    let specified_pos = temp_log.head;
+    let specified_pos = Log.head;
 
     if (specified_pos == null) return;
 
@@ -544,6 +544,10 @@ function to_replay (clear_table){
     let set_the_side = check_side_move;
 
     if (!clear_table){
+        
+        undo.makeNull();
+        redo.makeNull();
+       
         clearInterval(interval);
         var inr = setInterval(function(){
             to_redo(specified_pos.data, false, true);
@@ -551,7 +555,7 @@ function to_replay (clear_table){
             if (specified_pos == null){
                 clearInterval(inr);
                 check_side_move = set_the_side;
-                Log = new LinkedList();
+                // Log = null;
                 Log = temp_log;
                 start();
                 return;

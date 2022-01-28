@@ -419,13 +419,15 @@ function soldier_reached_end (parent_class, id, dark_or_white, position){
     clearInterval(interval)
 
     $("body").append(`<div class='soldier-end'>
-                        <h3>Choose your piece to replace</h3>
-                        <p class='selected-option' id='r'>Rook</p>
-                        <p class='selected-option' id='h'>Horse</p>
-                        <p class='selected-option' id='b'>Bishop</p>
-                        <p class='selected-option' id='q'>Queen</p>
+                        <h3 style="font-size: 26px;">Choose your piece to replace</h3>
+                        <p class='selected-option' id='r'>♜</p>
+                        <p class='selected-option' id='h'>♞</p>
+                        <p class='selected-option' id='b'>♝</p>
+                        <p class='selected-option' id='q'>♛</p>
                     </div>`);
     $('.to-disable').css("opacity", ".4");
+    $("#replay").css("display", "none");
+    $(".button-container").css("display", "none");
 
     let temp;
     let hit;
@@ -443,7 +445,11 @@ function soldier_reached_end (parent_class, id, dark_or_white, position){
         $('.soldier-end').remove();
         $(`#${id}`).remove();
         $('.to-disable').css("opacity", "1");
-        temp = id[1]
+        $("#replay").css("display", "block");
+        $(".button-container").css("display", "flex");
+        redo_button.addEventListener('click', to_redo);
+        undo_button.addEventListener('click', to_undo);
+        temp = id[1];
 
         switch (clicked_id){
 

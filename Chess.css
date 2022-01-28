@@ -1,9 +1,10 @@
 
-body {
+body,html {
     background-color: #1a283a;
     /* overflow-x: hidden; */
     -webkit-touch-callout: none; 
-    -webkit-user-select: none; 
+    -webkit-user-select: none;
+    height: 100%;
     -khtml-user-select: none; 
     -moz-user-select: none;
     background-position: center;
@@ -344,22 +345,6 @@ button:hover {
     color: white;
 }
 
-/* #start {
-    background-color: aquamarine;
-    font-size: larger;
-    border: none;
-    border-radius: 5px;
-    margin : 10px auto;
-    cursor: pointer;
-    width : 60px;
-    height : 30px;
-} */
-
-/* #start:hover {
-    background-color: rgb(73, 184, 147);
-    color: white;
-} */
-
 #undo {
     display: none;
 }
@@ -375,7 +360,7 @@ button:hover {
     top: 9%;
     text-align: center;
     background-color: rgb(43, 83, 104);
-    left: 33%;
+    left: 35%;
 }
 
 .selected-option {
@@ -383,7 +368,7 @@ button:hover {
     border-radius: 5px;
     margin: 35px;
     padding: 5px;
-    font-size: x-large;
+    font-size: 36px;
 }
 
 .selected-option:hover {
