@@ -544,7 +544,7 @@ function to_replay (clear_table){
     let set_the_side = check_side_move;
 
     if (!clear_table){
-        
+
         undo.makeNull();
         redo.makeNull();
        
@@ -555,9 +555,14 @@ function to_replay (clear_table){
             if (specified_pos == null){
                 clearInterval(inr);
                 check_side_move = set_the_side;
-                // Log = null;
                 Log = temp_log;
+
+                if ($(".button-container").css("display") != "none")
                 start();
+                else {
+                    $(".light-mohre").prop("onclick", null).off("click");
+                    $(".dark-mohre").prop("onclick", null).off("click");
+                }
                 return;
             }
         }, 510);

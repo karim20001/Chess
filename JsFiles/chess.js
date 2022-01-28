@@ -557,7 +557,8 @@ function game_finished (player_win){
 
     setTimeout(function (){
         document.getElementById('finish').style.display = 'block';
-        $('.to-disable').css('opacity', '0.1')
+        $('.to-disable').css('opacity', '0.1');
+        $('.button-container').css('display', 'none');
         document.getElementById('vid').play();
         document.getElementById("winning").play();
         
